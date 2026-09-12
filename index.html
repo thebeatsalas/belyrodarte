@@ -22,9 +22,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
     -webkit-tap-highlight-color: transparent;
-
     touch-action: manipulation;
 }
 
@@ -52,8 +50,6 @@ body {
 body {
 
     font-family: "DM Sans", sans-serif;
-
-    background: #FCF9FA;
 
     color: #30292D;
 
@@ -627,7 +623,426 @@ p {
 
 
 /* =========================
-   ANIMACIONES
+   ANIMACIÓN ESPECIAL FINAL
+========================= */
+
+.celebration-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+.celebration-heart {
+
+    position: absolute;
+
+    font-size: 95px;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+}
+
+.celebration-heart.show {
+
+    animation:
+        heartReveal 2.2s ease forwards;
+
+}
+
+
+.heart-ring {
+
+    position: absolute;
+
+    width: 80px;
+
+    height: 80px;
+
+    border:
+        2px solid
+        rgba(201,138,157,.45);
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform: scale(.2);
+
+}
+
+.heart-ring.show {
+
+    animation:
+        ringExpand 1.8s ease forwards;
+
+}
+
+
+.celebration-glow {
+
+    position: absolute;
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201,138,157,.18);
+
+    filter: blur(18px);
+
+    opacity: 0;
+
+}
+
+.celebration-glow.show {
+
+    animation:
+        glowPulse 2s ease forwards;
+
+}
+
+
+.celebration-message {
+
+    position: absolute;
+
+    text-align: center;
+
+    width: 90%;
+
+    max-width: 360px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+}
+
+.celebration-message.show {
+
+    animation:
+        messageAppear 1s ease forwards;
+
+    animation-delay:
+        1.7s;
+
+}
+
+
+.celebration-message .big {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 48px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.celebration-message .small {
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #756B70;
+
+}
+
+
+.celebration-particle {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    font-size: 22px;
+
+    opacity: 0;
+
+}
+
+
+.celebration-particle.show {
+
+    animation:
+        particleBurst 2.2s ease forwards;
+
+}
+
+
+.final-heart-button {
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.final-heart-button:active {
+
+    animation:
+        buttonHeartBeat .7s ease;
+
+}
+
+
+/* =========================
+   ANIMACIONES ESPECIALES
+========================= */
+
+@keyframes heartReveal {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0);
+
+    }
+
+    20% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+    35% {
+
+        transform:
+            scale(.9);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.08);
+
+    }
+
+    65% {
+
+        transform:
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.7);
+
+    }
+
+}
+
+
+@keyframes ringExpand {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.2);
+
+    }
+
+    25% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(5);
+
+    }
+
+}
+
+
+@keyframes glowPulse {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.4);
+
+    }
+
+    30% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.2);
+
+    }
+
+    70% {
+
+        opacity: .5;
+
+        transform:
+            scale(2);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(3);
+
+    }
+
+}
+
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes particleBurst {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            rotate(var(--rotation))
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes buttonHeartBeat {
+
+    0% {
+
+        transform:
+            scale(1);
+
+    }
+
+    30% {
+
+        transform:
+            scale(.88);
+
+    }
+
+    55% {
+
+        transform:
+            scale(1.12);
+
+    }
+
+    75% {
+
+        transform:
+            scale(.96);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   ANIMACIONES ORIGINALES
 ========================= */
 
 @keyframes appear {
@@ -727,7 +1142,7 @@ p {
 
 
 /* =========================
-   IPHONE
+   MÓVIL
 ========================= */
 
 @media (max-width: 480px) {
@@ -765,7 +1180,7 @@ p {
 
 
 /* =========================
-   IPHONE CON POCA ALTURA
+   IPHONE PEQUEÑO EN ALTURA
 ========================= */
 
 @media (max-width: 480px)
@@ -1169,8 +1584,8 @@ p {
 
 
         <button
-            class="primary"
-            onclick="createHearts()">
+            class="primary final-heart-button"
+            onclick="celebrate()">
 
             ❤️
 
@@ -1520,97 +1935,270 @@ function sayYes() {
         "success"
     );
 
-    createHearts();
-
 }
 
 
 
 /* =========================
-   CORAZONES FINALES
+   ANIMACIÓN ESPECIAL
 ========================= */
 
-function createHearts() {
+function celebrate() {
 
+
+    const overlay =
+        document.createElement(
+            "div"
+        );
+
+
+    overlay.className =
+        "celebration-overlay";
+
+
+    document.body.appendChild(
+        overlay
+    );
+
+
+    /* =========================
+       BRILLO
+    ========================= */
+
+    const glow =
+        document.createElement(
+            "div"
+        );
+
+
+    glow.className =
+        "celebration-glow";
+
+
+    overlay.appendChild(
+        glow
+    );
+
+
+    /* =========================
+       ANILLO
+    ========================= */
+
+    const ring =
+        document.createElement(
+            "div"
+        );
+
+
+    ring.className =
+        "heart-ring";
+
+
+    overlay.appendChild(
+        ring
+    );
+
+
+    /* =========================
+       CORAZÓN GRANDE
+    ========================= */
+
+    const bigHeart =
+        document.createElement(
+            "div"
+        );
+
+
+    bigHeart.className =
+        "celebration-heart";
+
+
+    bigHeart.textContent =
+        "❤️";
+
+
+    overlay.appendChild(
+        bigHeart
+    );
+
+
+    /* =========================
+       ACTIVAR
+    ========================= */
+
+    requestAnimationFrame(() => {
+
+        glow.classList.add(
+            "show"
+        );
+
+        ring.classList.add(
+            "show"
+        );
+
+        bigHeart.classList.add(
+            "show"
+        );
+
+    });
+
+
+    /* =========================
+       PARTÍCULAS
+    ========================= */
 
     const symbols = [
 
         "❤️",
-
+        "💗",
         "💜",
-
         "🤍",
-
         "✨"
 
     ];
 
 
-    for (
-        let i = 0;
-        i < 35;
-        i++
-    ) {
+    const positions = [
+
+        [-170, -190],
+        [-110, -240],
+        [-40, -270],
+        [50, -250],
+        [125, -210],
+        [185, -150],
+
+        [-210, -70],
+        [210, -60],
+
+        [-230, 40],
+        [230, 45],
+
+        [-190, 130],
+        [-125, 180],
+        [-55, 220],
+        [30, 225],
+        [110, 185],
+        [180, 125]
+
+    ];
 
 
-        setTimeout(() => {
-
-
-            const heart =
-                document.createElement(
-                    "div"
-                );
-
-
-            heart.className =
-                "floating-heart";
-
-
-            heart.textContent =
-                symbols[
-                    Math.floor(
-                        Math.random() *
-                        symbols.length
-                    )
-                ];
-
-
-            heart.style.left =
-                Math.random() *
-                100 +
-                "vw";
-
-
-            heart.style.fontSize =
-                16 +
-                Math.random() *
-                24 +
-                "px";
-
-
-            heart.style.animationDuration =
-                3 +
-                Math.random() *
-                3 +
-                "s";
-
-
-            document.body.appendChild(
-                heart
-            );
+    positions.forEach(
+        (position, index) => {
 
 
             setTimeout(() => {
 
-                heart.remove();
 
-            }, 6500);
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
 
 
-        }, i * 90);
+                particle.className =
+                    "celebration-particle";
 
 
-    }
+                particle.textContent =
+                    symbols[
+                        index %
+                        symbols.length
+                    ];
+
+
+                particle.style.setProperty(
+                    "--x",
+                    position[0] + "px"
+                );
+
+
+                particle.style.setProperty(
+                    "--y",
+                    position[1] + "px"
+                );
+
+
+                particle.style.setProperty(
+                    "--rotation",
+                    (
+                        Math.random() * 60
+                        - 30
+                    ) + "deg"
+                );
+
+
+                overlay.appendChild(
+                    particle
+                );
+
+
+                requestAnimationFrame(() => {
+
+                    particle.classList.add(
+                        "show"
+                    );
+
+                });
+
+
+            }, index * 45);
+
+        }
+    );
+
+
+    /* =========================
+       MENSAJE FINAL
+    ========================= */
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "celebration-message";
+
+
+    message.innerHTML = `
+
+        <div class="big">
+            ❤️
+        </div>
+
+        <div class="small">
+            Y ahora sí...<br>
+            oficialmente somos nosotros 🥰
+        </div>
+
+    `;
+
+
+    overlay.appendChild(
+        message
+    );
+
+
+    requestAnimationFrame(() => {
+
+        message.classList.add(
+            "show"
+        );
+
+    });
+
+
+    /* =========================
+       LIMPIAR
+    ========================= */
+
+    setTimeout(() => {
+
+        overlay.remove();
+
+    }, 5000);
 
 }
 
@@ -1621,7 +2209,7 @@ function createHearts() {
 ========================= */
 
 
-/* Zoom mediante gesto de pellizco */
+/* Zoom mediante gesto */
 
 document.addEventListener(
     "gesturestart",
@@ -1668,7 +2256,9 @@ document.addEventListener(
     "touchmove",
     function(e) {
 
-        if (e.touches.length > 1) {
+        if (
+            e.touches.length > 1
+        ) {
 
             e.preventDefault();
 
@@ -1712,7 +2302,7 @@ document.addEventListener(
 );
 
 
-/* Evitar desplazamiento por gestos */
+/* Evitar desplazamiento */
 
 document.addEventListener(
     "touchmove",
