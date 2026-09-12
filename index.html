@@ -2,625 +2,1327 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
+
 <meta name="theme-color" content="#FCF9FA">
+
 <title>Para ti ❤️</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap');
+
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    overscroll-behavior: none;
+
+    background: #FCF9FA;
 }
 
 body {
     font-family: "DM Sans", sans-serif;
-    background: #FCF9FA;
     color: #30292D;
-    overflow: hidden;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
 }
 
+
+/* =========================
+   PANTALLAS
+========================= */
+
 .screen {
-    min-height: 100vh;
-    min-height: 100dvh;
+
     width: 100%;
+    height: 100dvh;
+
+    min-height: 100dvh;
+    max-height: 100dvh;
+
     display: none;
+
     align-items: center;
     justify-content: center;
-    padding: 30px 24px;
-    position: relative;
+
+    padding:
+        max(30px, env(safe-area-inset-top))
+        24px
+        max(30px, env(safe-area-inset-bottom))
+        24px;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    overflow: hidden;
+
+    overscroll-behavior: none;
+
 }
 
 .screen.active {
+
     display: flex;
+
     animation: appear .7s ease forwards;
+
 }
+
+
+/* =========================
+   CONTENEDOR
+========================= */
 
 .container {
+
     width: 100%;
+
     max-width: 540px;
+
     text-align: center;
+
     position: relative;
+
     z-index: 2;
+
 }
 
-/* DETALLES DE FONDO */
+
+/* =========================
+   DETALLES DE FONDO
+========================= */
 
 .circle {
+
     position: absolute;
+
     border-radius: 50%;
+
     pointer-events: none;
+
     z-index: 0;
+
 }
 
 .circle.one {
+
     width: 280px;
     height: 280px;
+
     background: #F3E5E9;
+
     top: -150px;
     left: -120px;
+
 }
 
 .circle.two {
+
     width: 250px;
     height: 250px;
+
     background: #F0E1E6;
+
     bottom: -150px;
     right: -100px;
+
 }
 
-/* TIPOGRAFÍA */
+
+/* =========================
+   TIPOGRAFÍA
+========================= */
 
 .heart {
+
     font-size: 42px;
+
     margin-bottom: 24px;
-    animation: softPulse 2.5s ease-in-out infinite;
+
+    animation:
+        softPulse 2.5s ease-in-out infinite;
+
 }
 
 h1,
 h2,
 .question,
 .final-question {
-    font-family: "Playfair Display", serif;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
     font-weight: 500;
+
 }
 
 h1 {
-    font-size: clamp(42px, 11vw, 64px);
+
+    font-size:
+        clamp(42px, 11vw, 64px);
+
     line-height: 1.05;
+
     margin-bottom: 22px;
+
 }
 
 h2 {
-    font-size: clamp(31px, 8vw, 44px);
+
+    font-size:
+        clamp(31px, 8vw, 44px);
+
     line-height: 1.15;
+
     margin-bottom: 20px;
+
 }
 
 p {
+
     font-size: 17px;
+
     line-height: 1.7;
+
     color: #756B70;
+
 }
 
 .subtitle {
+
     max-width: 430px;
-    margin: 0 auto 34px;
+
+    margin:
+        0 auto 34px;
+
 }
 
-/* BOTÓN */
+
+/* =========================
+   BOTÓN PRINCIPAL
+========================= */
 
 .primary {
+
     background: #30292D;
+
     color: #fff;
+
     border: none;
+
     border-radius: 999px;
+
     padding: 16px 38px;
+
     min-width: 180px;
+
     font-family: inherit;
+
     font-size: 16px;
+
     font-weight: 600;
+
     cursor: pointer;
-    transition: transform .25s ease, box-shadow .25s ease;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    touch-action: manipulation;
+
 }
 
 .primary:hover {
+
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(48,41,45,.18);
+
+    box-shadow:
+        0 12px 30px
+        rgba(48,41,45,.18);
+
 }
 
 .primary:active {
+
     transform: scale(.97);
+
 }
 
-/* PROGRESO */
+
+/* =========================
+   PROGRESO
+========================= */
 
 .progress-container {
+
     position: absolute;
+
     top: 25px;
+
     left: 24px;
+
     right: 24px;
+
     z-index: 3;
+
 }
 
 .progress-text {
+
     text-align: center;
+
     font-size: 12px;
+
     color: #9A858C;
+
     letter-spacing: 1.5px;
+
     text-transform: uppercase;
+
     margin-bottom: 10px;
+
 }
 
 .progress {
+
     width: 100%;
+
     height: 3px;
+
     background: #E9DDE1;
+
     border-radius: 10px;
+
     overflow: hidden;
+
 }
 
 .progress-bar {
+
     height: 100%;
+
     width: 20%;
+
     background: #C98A9D;
-    transition: width .6s ease;
+
+    transition:
+        width .6s ease;
+
 }
 
-/* PREGUNTAS */
+
+/* =========================
+   PREGUNTAS
+========================= */
 
 .question {
-    font-size: clamp(30px, 7.5vw, 43px);
+
+    font-size:
+        clamp(30px, 7.5vw, 43px);
+
     line-height: 1.18;
+
     margin-bottom: 34px;
+
 }
 
 .answers {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 12px;
+
 }
 
 .answer {
+
     width: 100%;
+
     padding: 17px 20px;
-    background: rgba(255,255,255,.8);
-    border: 1px solid #E2D7DB;
+
+    background:
+        rgba(255,255,255,.8);
+
+    border:
+        1px solid #E2D7DB;
+
     border-radius: 15px;
+
     color: #443A3F;
+
     font-family: inherit;
+
     font-size: 16px;
+
     text-align: center;
+
     cursor: pointer;
-    transition: all .25s ease;
+
+    transition:
+        all .25s ease;
+
+    touch-action: manipulation;
+
 }
 
 .answer:hover {
+
     background: #fff;
+
     border-color: #C99AA8;
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
 }
 
 .answer:active {
+
     transform: scale(.98);
+
 }
 
-/* TRANSICIÓN */
+
+/* =========================
+   TRANSICIÓN
+========================= */
 
 .question-changing {
-    animation: questionOut .35s ease forwards;
+
+    animation:
+        questionOut .35s ease forwards;
+
 }
 
-/* FOTO */
+
+/* =========================
+   FOTO
+========================= */
 
 .photo-frame {
+
     width: 100%;
+
     height: 310px;
+
     margin: 28px 0;
+
     border-radius: 22px;
+
     overflow: hidden;
+
     background: #F3E5E9;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
 }
 
 .photo-placeholder {
+
     color: #9A858C;
+
     font-size: 15px;
+
 }
 
-/* FINAL */
+
+/* =========================
+   FINAL
+========================= */
 
 .final-question {
-    font-size: clamp(39px, 10vw, 58px);
+
+    font-size:
+        clamp(39px, 10vw, 58px);
+
     line-height: 1.08;
+
     margin: 25px 0;
+
 }
 
 .final-message {
+
     max-width: 430px;
+
     margin: 0 auto;
+
 }
 
 .final-buttons {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 12px;
+
     margin-top: 30px;
+
 }
 
 .yes-button {
+
     width: 100%;
+
     padding: 18px;
+
     border-radius: 999px;
+
     border: none;
+
     background: #30292D;
+
     color: white;
+
     font-family: inherit;
+
     font-size: 17px;
+
     font-weight: 600;
+
     cursor: pointer;
-    transition: transform .25s ease, box-shadow .25s ease;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    touch-action: manipulation;
+
 }
 
 .yes-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(48,41,45,.18);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(48,41,45,.18);
+
+}
+
+.yes-button:active {
+
+    transform:
+        scale(.98);
+
 }
 
 .yes-button.secondary {
+
     background: white;
+
     color: #30292D;
-    border: 1px solid #E1D6DA;
+
+    border:
+        1px solid #E1D6DA;
+
 }
 
-/* FINAL FELIZ */
+
+/* =========================
+   FINAL FELIZ
+========================= */
 
 .success-heart {
+
     font-size: 75px;
+
     margin-bottom: 25px;
-    animation: softPulse 1.5s ease-in-out infinite;
+
+    animation:
+        softPulse 1.5s ease-in-out infinite;
+
 }
 
 .success-title {
-    font-size: clamp(42px, 10vw, 58px);
+
+    font-size:
+        clamp(42px, 10vw, 58px);
+
 }
 
-/* CORAZONES */
+
+/* =========================
+   CORAZONES
+========================= */
 
 .floating-heart {
+
     position: fixed;
+
     bottom: -30px;
+
     pointer-events: none;
+
     z-index: 20;
-    animation: floatHeart 5s linear forwards;
+
+    animation:
+        floatHeart 5s linear forwards;
+
 }
 
-/* ANIMACIONES */
+
+/* =========================
+   ANIMACIONES
+========================= */
 
 @keyframes appear {
+
     from {
+
         opacity: 0;
-        transform: translateY(12px);
+
+        transform:
+            translateY(12px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
+
 }
+
 
 @keyframes questionOut {
+
     from {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
 
     to {
+
         opacity: 0;
-        transform: translateY(-10px);
+
+        transform:
+            translateY(-10px);
+
     }
+
 }
 
+
 @keyframes softPulse {
+
     0%, 100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
 
     50% {
-        transform: scale(1.08);
+
+        transform:
+            scale(1.08);
+
     }
+
 }
 
+
 @keyframes floatHeart {
+
     0% {
+
         opacity: 0;
-        transform: translateY(0) rotate(0deg);
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
     }
 
     15% {
+
         opacity: .9;
+
     }
 
     100% {
+
         opacity: 0;
-        transform: translateY(-110vh) rotate(25deg);
+
+        transform:
+            translateY(-110vh)
+            rotate(25deg);
+
     }
+
 }
+
+
+/* =========================
+   AJUSTES PARA IPHONE
+========================= */
 
 @media (max-width: 480px) {
 
     .screen {
-        padding: 35px 20px;
+
+        padding:
+            max(25px, env(safe-area-inset-top))
+            20px
+            max(25px, env(safe-area-inset-bottom))
+            20px;
+
     }
 
     .question {
+
         margin-bottom: 28px;
+
     }
 
     .photo-frame {
+
         height: 270px;
+
     }
 
     .answer {
-        padding: 18px 15px;
+
+        padding:
+            18px 15px;
+
     }
+
 }
+
+
+/* =========================
+   IPHONE PEQUEÑO EN ALTURA
+========================= */
+
+@media (max-width: 480px)
+       and (max-height: 750px) {
+
+    .heart {
+
+        margin-bottom: 16px;
+
+    }
+
+    h1 {
+
+        margin-bottom: 15px;
+
+    }
+
+    .subtitle {
+
+        margin-bottom: 22px;
+
+    }
+
+    .question {
+
+        font-size: 34px;
+
+        margin-bottom: 22px;
+
+    }
+
+    .answer {
+
+        padding:
+            14px 12px;
+
+    }
+
+    .final-question {
+
+        font-size: 45px;
+
+        margin: 18px 0;
+
+    }
+
+    .final-buttons {
+
+        margin-top: 22px;
+
+    }
+
+}
+
+
+/* =========================
+   IPHONE 13 PRO
+   390 x 844
+========================= */
+
+@media (min-width: 381px)
+       and (max-width: 400px)
+       and (min-height: 800px)
+       and (max-height: 880px) {
+
+    .container {
+
+        max-width: 350px;
+
+    }
+
+    h1 {
+
+        font-size: 55px;
+
+    }
+
+    .question {
+
+        font-size: 38px;
+
+    }
+
+    .final-question {
+
+        font-size: 50px;
+
+    }
+
+    p {
+
+        font-size: 17px;
+
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- INICIO -->
 
-<section class="screen active" id="welcome">
+<!-- =========================
+     INICIO
+========================= -->
+
+<section
+    class="screen active"
+    id="welcome">
+
 
     <div class="circle one"></div>
+
     <div class="circle two"></div>
+
 
     <div class="container">
 
-        <div class="heart">❤️</div>
 
-        <h1>Hola, Belinda</h1>
+        <div class="heart">
+
+            ❤️
+
+        </div>
+
+
+        <h1>
+
+            Hola, Belinda
+
+        </h1>
+
 
         <p class="subtitle">
+
             Tengo unas preguntas para ti...
             pero hay una razón detrás de todas ellas.
+
         </p>
 
-        <button class="primary" onclick="startQuiz()">
+
+        <button
+            class="primary"
+            onclick="startQuiz()">
+
             Empezar
+
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- PREGUNTAS -->
 
-<section class="screen" id="quiz">
+<!-- =========================
+     PREGUNTAS
+========================= -->
+
+<section
+    class="screen"
+    id="quiz">
+
 
     <div class="progress-container">
 
-        <div class="progress-text" id="progressText">
+
+        <div
+            class="progress-text"
+            id="progressText">
+
             Pregunta 1 de 5
+
         </div>
+
 
         <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
 
-    </div>
-
-    <div class="container">
-
-        <div class="question" id="questionText"></div>
-
-        <div class="answers" id="answers"></div>
-
-    </div>
-
-</section>
-
-
-<!-- RECUERDO -->
-
-<section class="screen" id="memory">
-
-    <div class="container">
-
-        <div class="heart">🤍</div>
-
-        <h2>Y una última cosa...</h2>
-
-        <p>
-            Antes de hacerte la última pregunta,
-            quería recordarte algo.
-        </p>
-
-        <div class="photo-frame">
-
-            <div class="photo-placeholder">
-                Aquí pondremos una foto de nosotros ❤️
+            <div
+                class="progress-bar"
+                id="progressBar">
             </div>
 
         </div>
 
-        <p class="subtitle">
-            Me gusta mucho todo lo que hemos vivido juntos
-            y, sobre todo, me gusta compartirlo contigo.
-        </p>
 
-        <button class="primary" onclick="showFinalQuestion()">
-            Continuar ❤️
-        </button>
+    </div>
+
+
+    <div class="container">
+
+
+        <div
+            class="question"
+            id="questionText">
+        </div>
+
+
+        <div
+            class="answers"
+            id="answers">
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- PREGUNTA FINAL -->
 
-<section class="screen" id="finalQuestion">
+<!-- =========================
+     RECUERDO
+========================= -->
 
-    <div class="circle one"></div>
-    <div class="circle two"></div>
+<section
+    class="screen"
+    id="memory">
+
 
     <div class="container">
 
-        <div class="heart">❤️</div>
 
-        <p>
-            Y ahora sí...
-        </p>
+        <div class="heart">
 
-        <div class="final-question">
-            ¿Quieres ser mi novia?
+            🤍
+
         </div>
 
+
+        <h2>
+
+            Y una última cosa...
+
+        </h2>
+
+
+        <p>
+
+            Antes de hacerte la última pregunta,
+            quería recordarte algo.
+
+        </p>
+
+
+        <div class="photo-frame">
+
+
+            <div class="photo-placeholder">
+
+                Aquí pondremos una foto de nosotros ❤️
+
+            </div>
+
+
+        </div>
+
+
+        <p class="subtitle">
+
+            Me gusta mucho todo lo que hemos vivido juntos
+            y, sobre todo, me gusta compartirlo contigo.
+
+        </p>
+
+
+        <button
+            class="primary"
+            onclick="showFinalQuestion()">
+
+            Continuar ❤️
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PREGUNTA FINAL
+========================= -->
+
+<section
+    class="screen"
+    id="finalQuestion">
+
+
+    <div class="circle one"></div>
+
+    <div class="circle two"></div>
+
+
+    <div class="container">
+
+
+        <div class="heart">
+
+            ❤️
+
+        </div>
+
+
+        <p>
+
+            Y ahora sí...
+
+        </p>
+
+
+        <div class="final-question">
+
+            ¿Quieres ser mi novia?
+
+        </div>
+
+
         <p class="final-message">
+
             No hay una respuesta perfecta.
             Solo quería preguntártelo porque
             eres alguien muy especial para mí.
+
         </p>
+
 
         <div class="final-buttons">
 
-            <button class="yes-button" onclick="sayYes()">
+
+            <button
+                class="yes-button"
+                onclick="sayYes()">
+
                 Sí ❤️
+
             </button>
 
-            <button class="yes-button secondary" onclick="sayYes()">
+
+            <button
+                class="yes-button secondary"
+                onclick="sayYes()">
+
                 Sí, quiero 🥰
+
             </button>
+
 
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- RESPUESTA -->
 
-<section class="screen" id="success">
+<!-- =========================
+     RESPUESTA
+========================= -->
+
+<section
+    class="screen"
+    id="success">
+
 
     <div class="container">
 
+
         <div class="success-heart">
+
             ❤️
+
         </div>
 
+
         <h1 class="success-title">
+
             Entonces...
+
         </h1>
 
+
         <h2>
+
             Tenemos algo que celebrar 🥰
+
         </h2>
 
+
         <p class="final-message">
+
             Gracias por decir que sí.
             Ahora sí empieza oficialmente
             una nueva etapa para nosotros.
+
         </p>
 
-        <button class="primary" onclick="createHearts()">
+
+        <button
+            class="primary"
+            onclick="createHearts()">
+
             ❤️
+
         </button>
+
 
     </div>
 
 </section>
+
 
 
 <script>
 
+
+/* =========================
+   PREGUNTAS
+========================= */
+
 const questions = [
 
+
     {
-        question: "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
+
+        question:
+            "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
+
         answers: [
+
             "Las veces que nos hemos reído juntos",
+
             "Las conversaciones que tenemos",
+
             "Los lugares que hemos conocido",
+
             "Todas las anteriores ❤️"
+
         ]
+
     },
 
+
     {
-        question: "¿Crees que me gusta pasar tiempo contigo?",
+
+        question:
+            "¿Crees que me gusta pasar tiempo contigo?",
+
         answers: [
+
             "Sí",
+
             "Muchísimo",
+
             "Demasiado",
+
             "Creo que ya es bastante obvio 😂"
+
         ]
+
     },
 
+
     {
-        question: "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
+
+        question:
+            "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
+
         answers: [
+
             "Uno tranquilo",
+
             "Uno lleno de aventuras",
+
             "Uno en el que no paramos de reír",
+
             "Cualquiera mientras sea contigo"
+
         ]
+
     },
 
+
     {
-        question: "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
+
+        question:
+            "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
+
         answers: [
+
             "Sí ❤️",
+
             "Definitivamente",
+
             "Muchísimos",
+
             "Espero que todavía nos falten muchos más"
+
         ]
+
     },
 
+
     {
-        question: "Y siendo completamente sincera...",
+
+        question:
+            "Y siendo completamente sincera...",
+
         answers: [
+
             "Creo que ya sé qué me quieres preguntar",
+
             "Me estás poniendo nerviosa 😂",
+
             "Tengo una pequeña sospecha...",
+
             "Quiero saber cuál es la última pregunta ❤️"
+
         ]
+
     }
+
 
 ];
 
+
 let currentQuestion = 0;
+
+
+
+/* =========================
+   OCULTAR PANTALLAS
+========================= */
 
 function hideScreens() {
 
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
-    });
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
 
 }
+
+
+
+/* =========================
+   MOSTRAR PANTALLA
+========================= */
 
 function showScreen(id) {
 
     hideScreens();
 
-    const screen = document.getElementById(id);
+
+    const screen =
+        document.getElementById(id);
+
 
     screen.classList.add("active");
+
 
     window.scrollTo(0, 0);
 
 }
+
+
+
+/* =========================
+   INICIAR QUIZ
+========================= */
 
 function startQuiz() {
 
@@ -632,77 +1334,160 @@ function startQuiz() {
 
 }
 
+
+
+/* =========================
+   CARGAR PREGUNTA
+========================= */
+
 function loadQuestion() {
 
+
     const questionElement =
-        document.getElementById("questionText");
+        document.getElementById(
+            "questionText"
+        );
+
 
     const answersElement =
-        document.getElementById("answers");
+        document.getElementById(
+            "answers"
+        );
+
 
     const question =
         questions[currentQuestion];
 
+
     questionElement.textContent =
         question.question;
 
+
     answersElement.innerHTML = "";
 
-    question.answers.forEach(answerText => {
 
-        const button =
-            document.createElement("button");
+    question.answers.forEach(
+        answerText => {
 
-        button.className = "answer";
 
-        button.textContent = answerText;
+            const button =
+                document.createElement(
+                    "button"
+                );
 
-        button.onclick = nextQuestion;
 
-        answersElement.appendChild(button);
+            button.className =
+                "answer";
 
-    });
 
-    document.getElementById("progressText").textContent =
+            button.textContent =
+                answerText;
+
+
+            button.onclick =
+                nextQuestion;
+
+
+            answersElement.appendChild(
+                button
+            );
+
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "progressText"
+        )
+        .textContent =
         `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 
-    document.getElementById("progressBar").style.width =
+
+    document
+        .getElementById(
+            "progressBar"
+        )
+        .style.width =
         `${((currentQuestion + 1) / questions.length) * 100}%`;
 
 }
 
+
+
+/* =========================
+   SIGUIENTE PREGUNTA
+========================= */
+
 function nextQuestion() {
 
-    const questionElement =
-        document.getElementById("questionText");
 
-    questionElement.classList.add("question-changing");
+    const questionElement =
+        document.getElementById(
+            "questionText"
+        );
+
+
+    questionElement.classList.add(
+        "question-changing"
+    );
+
 
     setTimeout(() => {
 
+
         currentQuestion++;
 
-        if (currentQuestion >= questions.length) {
+
+        if (
+            currentQuestion >=
+            questions.length
+        ) {
+
 
             showScreen("memory");
 
-        } else {
 
-            questionElement.classList.remove("question-changing");
+        }
+
+        else {
+
+
+            questionElement.classList.remove(
+                "question-changing"
+            );
+
 
             loadQuestion();
 
+
         }
+
 
     }, 350);
 
 }
 
+
+
+/* =========================
+   PREGUNTA FINAL
+========================= */
+
 function showFinalQuestion() {
 
-    showScreen("finalQuestion");
+    showScreen(
+        "finalQuestion"
+    );
 
 }
+
+
+
+/* =========================
+   RESPUESTA SÍ
+========================= */
 
 function sayYes() {
 
@@ -712,48 +1497,93 @@ function sayYes() {
 
 }
 
+
+
+/* =========================
+   CORAZONES FINALES
+========================= */
+
 function createHearts() {
 
+
     const symbols = [
+
         "❤️",
         "💜",
         "🤍",
         "✨"
+
     ];
 
-    for (let i = 0; i < 35; i++) {
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
 
         setTimeout(() => {
 
+
             const heart =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             heart.className =
                 "floating-heart";
 
+
             heart.textContent =
-                symbols[Math.floor(Math.random() * symbols.length)];
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
 
             heart.style.left =
-                Math.random() * 100 + "vw";
+                Math.random() *
+                100 +
+                "vw";
+
 
             heart.style.fontSize =
-                16 + Math.random() * 24 + "px";
+                16 +
+                Math.random() *
+                24 +
+                "px";
+
 
             heart.style.animationDuration =
-                3 + Math.random() * 3 + "s";
+                3 +
+                Math.random() *
+                3 +
+                "s";
 
-            document.body.appendChild(heart);
+
+            document.body.appendChild(
+                heart
+            );
+
 
             setTimeout(() => {
+
                 heart.remove();
+
             }, 6500);
 
+
         }, i * 90);
+
 
     }
 
 }
+
 
 </script>
 
