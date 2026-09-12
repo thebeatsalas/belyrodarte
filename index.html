@@ -14,9 +14,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap');
 
 
-/* =========================
+/* ==================================================
    CONFIGURACIÓN GENERAL
-========================= */
+================================================== */
 
 * {
     box-sizing: border-box;
@@ -57,28 +57,24 @@ body {
     user-select: none;
 
     -webkit-touch-callout: none;
-
 }
 
 
-/* =========================
+/* ==================================================
    PANTALLAS
-========================= */
+================================================== */
 
 .screen {
 
     width: 100%;
-
     height: 100dvh;
 
     min-height: 100dvh;
-
     max-height: 100dvh;
 
     display: none;
 
     align-items: center;
-
     justify-content: center;
 
     padding:
@@ -95,7 +91,6 @@ body {
     overflow: hidden;
 
     overscroll-behavior: none;
-
 }
 
 .screen.active {
@@ -104,32 +99,28 @@ body {
 
     animation:
         appear .7s ease forwards;
-
 }
 
 
-/* =========================
+/* ==================================================
    CONTENEDOR
-========================= */
+================================================== */
 
 .container {
 
     width: 100%;
-
     max-width: 540px;
 
     text-align: center;
 
     position: relative;
-
     z-index: 2;
-
 }
 
 
-/* =========================
-   DETALLES DE FONDO
-========================= */
+/* ==================================================
+   CÍRCULOS DE FONDO
+================================================== */
 
 .circle {
 
@@ -140,41 +131,34 @@ body {
     pointer-events: none;
 
     z-index: 0;
-
 }
 
 .circle.one {
 
     width: 280px;
-
     height: 280px;
 
     background: #F3E5E9;
 
     top: -150px;
-
     left: -120px;
-
 }
 
 .circle.two {
 
     width: 250px;
-
     height: 250px;
 
     background: #F0E1E6;
 
     bottom: -150px;
-
     right: -100px;
-
 }
 
 
-/* =========================
+/* ==================================================
    TIPOGRAFÍA
-========================= */
+================================================== */
 
 .heart {
 
@@ -184,7 +168,6 @@ body {
 
     animation:
         softPulse 2.5s ease-in-out infinite;
-
 }
 
 h1,
@@ -197,7 +180,6 @@ h2,
         serif;
 
     font-weight: 500;
-
 }
 
 h1 {
@@ -208,7 +190,6 @@ h1 {
     line-height: 1.05;
 
     margin-bottom: 22px;
-
 }
 
 h2 {
@@ -219,7 +200,6 @@ h2 {
     line-height: 1.15;
 
     margin-bottom: 20px;
-
 }
 
 p {
@@ -229,7 +209,6 @@ p {
     line-height: 1.7;
 
     color: #756B70;
-
 }
 
 .subtitle {
@@ -238,13 +217,12 @@ p {
 
     margin:
         0 auto 34px;
-
 }
 
 
-/* =========================
+/* ==================================================
    BOTÓN PRINCIPAL
-========================= */
+================================================== */
 
 .primary {
 
@@ -274,7 +252,6 @@ p {
         box-shadow .25s ease;
 
     touch-action: manipulation;
-
 }
 
 .primary:hover {
@@ -285,20 +262,18 @@ p {
     box-shadow:
         0 12px 30px
         rgba(48,41,45,.18);
-
 }
 
 .primary:active {
 
     transform:
         scale(.97);
-
 }
 
 
-/* =========================
+/* ==================================================
    PROGRESO
-========================= */
+================================================== */
 
 .progress-container {
 
@@ -307,11 +282,9 @@ p {
     top: 25px;
 
     left: 24px;
-
     right: 24px;
 
     z-index: 3;
-
 }
 
 .progress-text {
@@ -327,7 +300,6 @@ p {
     text-transform: uppercase;
 
     margin-bottom: 10px;
-
 }
 
 .progress {
@@ -341,7 +313,6 @@ p {
     border-radius: 10px;
 
     overflow: hidden;
-
 }
 
 .progress-bar {
@@ -354,13 +325,12 @@ p {
 
     transition:
         width .6s ease;
-
 }
 
 
-/* =========================
+/* ==================================================
    PREGUNTAS
-========================= */
+================================================== */
 
 .question {
 
@@ -370,7 +340,6 @@ p {
     line-height: 1.18;
 
     margin-bottom: 34px;
-
 }
 
 .answers {
@@ -380,7 +349,6 @@ p {
     flex-direction: column;
 
     gap: 12px;
-
 }
 
 .answer {
@@ -412,7 +380,6 @@ p {
         all .25s ease;
 
     touch-action: manipulation;
-
 }
 
 .answer:hover {
@@ -423,32 +390,29 @@ p {
 
     transform:
         translateY(-2px);
-
 }
 
 .answer:active {
 
     transform:
         scale(.98);
-
 }
 
 
-/* =========================
-   TRANSICIÓN
-========================= */
+/* ==================================================
+   TRANSICIÓN DE PREGUNTAS
+================================================== */
 
 .question-changing {
 
     animation:
         questionOut .35s ease forwards;
-
 }
 
 
-/* =========================
+/* ==================================================
    FOTO
-========================= */
+================================================== */
 
 .photo-frame {
 
@@ -468,9 +432,7 @@ p {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
-
 }
 
 .photo-placeholder {
@@ -478,13 +440,12 @@ p {
     color: #9A858C;
 
     font-size: 15px;
-
 }
 
 
-/* =========================
-   FINAL
-========================= */
+/* ==================================================
+   PREGUNTA FINAL
+================================================== */
 
 .final-question {
 
@@ -495,7 +456,6 @@ p {
 
     margin:
         25px 0;
-
 }
 
 .final-message {
@@ -504,7 +464,6 @@ p {
 
     margin:
         0 auto;
-
 }
 
 .final-buttons {
@@ -516,7 +475,6 @@ p {
     gap: 12px;
 
     margin-top: 30px;
-
 }
 
 .yes-button {
@@ -546,7 +504,6 @@ p {
         box-shadow .25s ease;
 
     touch-action: manipulation;
-
 }
 
 .yes-button:hover {
@@ -557,14 +514,12 @@ p {
     box-shadow:
         0 10px 25px
         rgba(48,41,45,.18);
-
 }
 
 .yes-button:active {
 
     transform:
         scale(.98);
-
 }
 
 .yes-button.secondary {
@@ -575,13 +530,12 @@ p {
 
     border:
         1px solid #E1D6DA;
-
 }
 
 
-/* =========================
-   FINAL FELIZ
-========================= */
+/* ==================================================
+   PANTALLA DE ÉXITO
+================================================== */
 
 .success-heart {
 
@@ -591,20 +545,18 @@ p {
 
     animation:
         softPulse 1.5s ease-in-out infinite;
-
 }
 
 .success-title {
 
     font-size:
         clamp(42px, 10vw, 58px);
-
 }
 
 
-/* =========================
-   CORAZONES
-========================= */
+/* ==================================================
+   CORAZONES FLOTANTES
+================================================== */
 
 .floating-heart {
 
@@ -618,13 +570,17 @@ p {
 
     animation:
         floatHeart 5s linear forwards;
-
 }
 
 
-/* =========================
-   ANIMACIÓN ESPECIAL FINAL
-========================= */
+/* ==================================================
+   ANIMACIÓN FINAL
+================================================== */
+
+/*
+   Esta capa cubre COMPLETAMENTE la pantalla anterior.
+   Así ningún texto de "Entonces..." queda debajo.
+*/
 
 .celebration-overlay {
 
@@ -632,20 +588,89 @@ p {
 
     inset: 0;
 
-    z-index: 50;
+    z-index: 9999;
 
     pointer-events: none;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
+
+    width: 100vw;
+    height: 100dvh;
 
     overflow: hidden;
 
+    background: #FCF9FA;
 }
 
+
+/* ==================================================
+   BRILLO CENTRAL
+================================================== */
+
+.celebration-glow {
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201,138,157,.18);
+
+    filter:
+        blur(20px);
+
+    opacity: 0;
+
+    transform:
+        scale(.4);
+}
+
+.celebration-glow.show {
+
+    animation:
+        glowPulse 2.3s ease forwards;
+}
+
+
+/* ==================================================
+   ANILLO
+================================================== */
+
+.heart-ring {
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    border:
+        2px solid
+        rgba(201,138,157,.48);
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform:
+        scale(.2);
+}
+
+.heart-ring.show {
+
+    animation:
+        ringExpand 2s ease forwards;
+}
+
+
+/* ==================================================
+   CORAZÓN GRANDE
+================================================== */
 
 .celebration-heart {
 
@@ -655,88 +680,65 @@ p {
 
     opacity: 0;
 
-    transform: scale(0);
-
+    transform:
+        scale(0);
 }
 
 .celebration-heart.show {
 
     animation:
-        heartReveal 2.2s ease forwards;
-
+        heartReveal 2.4s ease forwards;
 }
 
 
-.heart-ring {
+/* ==================================================
+   PARTÍCULAS
+================================================== */
+
+.celebration-particle {
 
     position: absolute;
 
-    width: 80px;
+    left: 50%;
+    top: 50%;
 
-    height: 80px;
-
-    border:
-        2px solid
-        rgba(201,138,157,.45);
-
-    border-radius: 50%;
+    font-size: 22px;
 
     opacity: 0;
 
-    transform: scale(.2);
-
+    will-change:
+        transform,
+        opacity;
 }
 
-.heart-ring.show {
+.celebration-particle.show {
 
     animation:
-        ringExpand 1.8s ease forwards;
-
+        particleBurst 2.5s ease forwards;
 }
 
 
-.celebration-glow {
-
-    position: absolute;
-
-    width: 100px;
-
-    height: 100px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(201,138,157,.18);
-
-    filter: blur(18px);
-
-    opacity: 0;
-
-}
-
-.celebration-glow.show {
-
-    animation:
-        glowPulse 2s ease forwards;
-
-}
-
+/* ==================================================
+   MENSAJE FINAL DE LA ANIMACIÓN
+================================================== */
 
 .celebration-message {
 
     position: absolute;
 
-    text-align: center;
+    left: 50%;
+    top: 50%;
 
     width: 90%;
-
     max-width: 360px;
+
+    text-align: center;
 
     opacity: 0;
 
     transform:
-        translateY(20px);
-
+        translate(-50%, -50%)
+        scale(.94);
 }
 
 .celebration-message.show {
@@ -746,9 +748,7 @@ p {
 
     animation-delay:
         1.7s;
-
 }
-
 
 .celebration-message .big {
 
@@ -756,67 +756,42 @@ p {
         "Playfair Display",
         serif;
 
-    font-size: 48px;
+    font-size: 52px;
 
-    margin-bottom: 12px;
-
+    margin-bottom: 16px;
 }
-
 
 .celebration-message .small {
 
-    font-size: 17px;
+    font-size: 19px;
 
     line-height: 1.6;
 
     color: #756B70;
-
 }
 
 
-.celebration-particle {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    font-size: 22px;
-
-    opacity: 0;
-
-}
-
-
-.celebration-particle.show {
-
-    animation:
-        particleBurst 2.2s ease forwards;
-
-}
-
+/* ==================================================
+   BOTÓN FINAL
+================================================== */
 
 .final-heart-button {
 
     transition:
         transform .25s ease,
         box-shadow .25s ease;
-
 }
-
 
 .final-heart-button:active {
 
     animation:
         buttonHeartBeat .7s ease;
-
 }
 
 
-/* =========================
-   ANIMACIONES ESPECIALES
-========================= */
+/* ==================================================
+   KEYFRAMES
+================================================== */
 
 @keyframes heartReveal {
 
@@ -826,37 +801,32 @@ p {
 
         transform:
             scale(0);
-
     }
 
-    20% {
+    18% {
 
         opacity: 1;
 
         transform:
             scale(1.15);
-
     }
 
-    35% {
+    32% {
 
         transform:
-            scale(.9);
-
+            scale(.90);
     }
 
-    50% {
+    47% {
 
         transform:
             scale(1.08);
-
     }
 
-    65% {
+    62% {
 
         transform:
             scale(1);
-
     }
 
     100% {
@@ -864,10 +834,8 @@ p {
         opacity: 0;
 
         transform:
-            scale(1.7);
-
+            scale(1.75);
     }
-
 }
 
 
@@ -879,13 +847,11 @@ p {
 
         transform:
             scale(.2);
-
     }
 
-    25% {
+    20% {
 
         opacity: 1;
-
     }
 
     100% {
@@ -893,10 +859,8 @@ p {
         opacity: 0;
 
         transform:
-            scale(5);
-
+            scale(5.5);
     }
-
 }
 
 
@@ -908,25 +872,22 @@ p {
 
         transform:
             scale(.4);
-
     }
 
-    30% {
+    25% {
 
         opacity: 1;
 
         transform:
-            scale(1.2);
-
+            scale(1.15);
     }
 
-    70% {
+    60% {
 
-        opacity: .5;
+        opacity: .55;
 
         transform:
             scale(2);
-
     }
 
     100% {
@@ -934,10 +895,8 @@ p {
         opacity: 0;
 
         transform:
-            scale(3);
-
+            scale(3.2);
     }
-
 }
 
 
@@ -948,9 +907,8 @@ p {
         opacity: 0;
 
         transform:
-            translateY(20px)
-            scale(.96);
-
+            translate(-50%, -50%)
+            scale(.94);
     }
 
     to {
@@ -958,11 +916,9 @@ p {
         opacity: 1;
 
         transform:
-            translateY(0)
+            translate(-50%, -50%)
             scale(1);
-
     }
-
 }
 
 
@@ -975,13 +931,11 @@ p {
         transform:
             translate(-50%, -50%)
             scale(.2);
-
     }
 
     15% {
 
         opacity: 1;
-
     }
 
     100% {
@@ -995,9 +949,7 @@ p {
             )
             rotate(var(--rotation))
             scale(1);
-
     }
-
 }
 
 
@@ -1007,43 +959,37 @@ p {
 
         transform:
             scale(1);
-
     }
 
     30% {
 
         transform:
             scale(.88);
-
     }
 
     55% {
 
         transform:
             scale(1.12);
-
     }
 
     75% {
 
         transform:
             scale(.96);
-
     }
 
     100% {
 
         transform:
             scale(1);
-
     }
-
 }
 
 
-/* =========================
+/* ==================================================
    ANIMACIONES ORIGINALES
-========================= */
+================================================== */
 
 @keyframes appear {
 
@@ -1053,7 +999,6 @@ p {
 
         transform:
             translateY(12px);
-
     }
 
     to {
@@ -1062,9 +1007,7 @@ p {
 
         transform:
             translateY(0);
-
     }
-
 }
 
 
@@ -1076,7 +1019,6 @@ p {
 
         transform:
             translateY(0);
-
     }
 
     to {
@@ -1085,28 +1027,24 @@ p {
 
         transform:
             translateY(-10px);
-
     }
-
 }
 
 
 @keyframes softPulse {
 
-    0%, 100% {
+    0%,
+    100% {
 
         transform:
             scale(1);
-
     }
 
     50% {
 
         transform:
             scale(1.08);
-
     }
-
 }
 
 
@@ -1119,13 +1057,11 @@ p {
         transform:
             translateY(0)
             rotate(0deg);
-
     }
 
     15% {
 
         opacity: .9;
-
     }
 
     100% {
@@ -1135,15 +1071,13 @@ p {
         transform:
             translateY(-110vh)
             rotate(25deg);
-
     }
-
 }
 
 
-/* =========================
+/* ==================================================
    MÓVIL
-========================= */
+================================================== */
 
 @media (max-width: 480px) {
 
@@ -1154,34 +1088,29 @@ p {
             20px
             max(25px, env(safe-area-inset-bottom))
             20px;
-
     }
 
     .question {
 
         margin-bottom: 28px;
-
     }
 
     .photo-frame {
 
         height: 270px;
-
     }
 
     .answer {
 
         padding:
             18px 15px;
-
     }
-
 }
 
 
-/* =========================
+/* ==================================================
    IPHONE PEQUEÑO EN ALTURA
-========================= */
+================================================== */
 
 @media (max-width: 480px)
        and (max-height: 750px) {
@@ -1189,19 +1118,16 @@ p {
     .heart {
 
         margin-bottom: 16px;
-
     }
 
     h1 {
 
         margin-bottom: 15px;
-
     }
 
     .subtitle {
 
         margin-bottom: 22px;
-
     }
 
     .question {
@@ -1209,14 +1135,12 @@ p {
         font-size: 34px;
 
         margin-bottom: 22px;
-
     }
 
     .answer {
 
         padding:
             14px 12px;
-
     }
 
     .final-question {
@@ -1224,22 +1148,19 @@ p {
         font-size: 45px;
 
         margin: 18px 0;
-
     }
 
     .final-buttons {
 
         margin-top: 22px;
-
     }
-
 }
 
 
-/* =========================
+/* ==================================================
    IPHONE 13 PRO
    390 x 844
-========================= */
+================================================== */
 
 @media (min-width: 381px)
        and (max-width: 400px)
@@ -1249,31 +1170,26 @@ p {
     .container {
 
         max-width: 350px;
-
     }
 
     h1 {
 
         font-size: 55px;
-
     }
 
     .question {
 
         font-size: 38px;
-
     }
 
     .final-question {
 
         font-size: 50px;
-
     }
 
     p {
 
         font-size: 17px;
-
     }
 
 }
@@ -1285,36 +1201,26 @@ p {
 <body>
 
 
-<!-- =========================
-     INICIO
-========================= -->
+<!-- ==================================================
+     PANTALLA DE BIENVENIDA
+================================================== -->
 
 <section
     class="screen active"
     id="welcome">
 
-
     <div class="circle one"></div>
-
     <div class="circle two"></div>
-
 
     <div class="container">
 
-
         <div class="heart">
-
             ❤️
-
         </div>
 
-
         <h1>
-
             Hola, Belinda
-
         </h1>
-
 
         <p class="subtitle">
 
@@ -1322,7 +1228,6 @@ p {
             pero hay una razón detrás de todas ellas.
 
         </p>
-
 
         <button
             class="primary"
@@ -1332,24 +1237,21 @@ p {
 
         </button>
 
-
     </div>
 
 </section>
 
 
 
-<!-- =========================
-     PREGUNTAS
-========================= -->
+<!-- ==================================================
+     QUIZ
+================================================== -->
 
 <section
     class="screen"
     id="quiz">
 
-
     <div class="progress-container">
-
 
         <div
             class="progress-text"
@@ -1358,7 +1260,6 @@ p {
             Pregunta 1 de 5
 
         </div>
-
 
         <div class="progress">
 
@@ -1369,24 +1270,20 @@ p {
 
         </div>
 
-
     </div>
 
 
     <div class="container">
-
 
         <div
             class="question"
             id="questionText">
         </div>
 
-
         <div
             class="answers"
             id="answers">
         </div>
-
 
     </div>
 
@@ -1394,31 +1291,23 @@ p {
 
 
 
-<!-- =========================
-     RECUERDO
-========================= -->
+<!-- ==================================================
+     MEMORIA
+================================================== -->
 
 <section
     class="screen"
     id="memory">
 
-
     <div class="container">
 
-
         <div class="heart">
-
             🤍
-
         </div>
 
-
         <h2>
-
             Y una última cosa...
-
         </h2>
-
 
         <p>
 
@@ -1430,13 +1319,11 @@ p {
 
         <div class="photo-frame">
 
-
             <div class="photo-placeholder">
 
                 Aquí pondremos una foto de nosotros ❤️
 
             </div>
-
 
         </div>
 
@@ -1457,41 +1344,31 @@ p {
 
         </button>
 
-
     </div>
 
 </section>
 
 
 
-<!-- =========================
+<!-- ==================================================
      PREGUNTA FINAL
-========================= -->
+================================================== -->
 
 <section
     class="screen"
     id="finalQuestion">
 
-
     <div class="circle one"></div>
-
     <div class="circle two"></div>
-
 
     <div class="container">
 
-
         <div class="heart">
-
             ❤️
-
         </div>
 
-
         <p>
-
             Y ahora sí...
-
         </p>
 
 
@@ -1513,7 +1390,6 @@ p {
 
         <div class="final-buttons">
 
-
             <button
                 class="yes-button"
                 onclick="sayYes()">
@@ -1531,9 +1407,7 @@ p {
 
             </button>
 
-
         </div>
-
 
     </div>
 
@@ -1541,36 +1415,28 @@ p {
 
 
 
-<!-- =========================
-     RESPUESTA
-========================= -->
+<!-- ==================================================
+     PANTALLA DE ÉXITO
+================================================== -->
 
 <section
     class="screen"
     id="success">
 
-
     <div class="container">
 
-
         <div class="success-heart">
-
             ❤️
-
         </div>
 
 
         <h1 class="success-title">
-
             Entonces...
-
         </h1>
 
 
         <h2>
-
             Tenemos algo que celebrar 🥰
-
         </h2>
 
 
@@ -1591,7 +1457,6 @@ p {
 
         </button>
 
-
     </div>
 
 </section>
@@ -1601,14 +1466,13 @@ p {
 <script>
 
 
-/* =========================
+/* ==================================================
    PREGUNTAS
-========================= */
+================================================== */
 
 const questions = [
 
     {
-
         question:
             "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
 
@@ -1623,12 +1487,10 @@ const questions = [
             "Todas las anteriores ❤️"
 
         ]
-
     },
 
 
     {
-
         question:
             "¿Crees que me gusta pasar tiempo contigo?",
 
@@ -1643,12 +1505,10 @@ const questions = [
             "Creo que ya es bastante obvio 😂"
 
         ]
-
     },
 
 
     {
-
         question:
             "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
 
@@ -1663,12 +1523,10 @@ const questions = [
             "Cualquiera mientras sea contigo"
 
         ]
-
     },
 
 
     {
-
         question:
             "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
 
@@ -1683,12 +1541,10 @@ const questions = [
             "Espero que todavía nos falten muchos más"
 
         ]
-
     },
 
 
     {
-
         question:
             "Y siendo completamente sincera...",
 
@@ -1703,7 +1559,6 @@ const questions = [
             "Quiero saber cuál es la última pregunta ❤️"
 
         ]
-
     }
 
 ];
@@ -1713,9 +1568,9 @@ let currentQuestion = 0;
 
 
 
-/* =========================
+/* ==================================================
    OCULTAR PANTALLAS
-========================= */
+================================================== */
 
 function hideScreens() {
 
@@ -1733,9 +1588,9 @@ function hideScreens() {
 
 
 
-/* =========================
+/* ==================================================
    MOSTRAR PANTALLA
-========================= */
+================================================== */
 
 function showScreen(id) {
 
@@ -1757,9 +1612,9 @@ function showScreen(id) {
 
 
 
-/* =========================
+/* ==================================================
    INICIAR QUIZ
-========================= */
+================================================== */
 
 function startQuiz() {
 
@@ -1773,12 +1628,11 @@ function startQuiz() {
 
 
 
-/* =========================
+/* ==================================================
    CARGAR PREGUNTA
-========================= */
+================================================== */
 
 function loadQuestion() {
-
 
     const questionElement =
         document.getElementById(
@@ -1807,7 +1661,6 @@ function loadQuestion() {
     question.answers.forEach(
         answerText => {
 
-
             const button =
                 document.createElement(
                     "button"
@@ -1829,7 +1682,6 @@ function loadQuestion() {
             answersElement.appendChild(
                 button
             );
-
 
         }
     );
@@ -1854,12 +1706,11 @@ function loadQuestion() {
 
 
 
-/* =========================
+/* ==================================================
    SIGUIENTE PREGUNTA
-========================= */
+================================================== */
 
 function nextQuestion() {
-
 
     const questionElement =
         document.getElementById(
@@ -1874,7 +1725,6 @@ function nextQuestion() {
 
     setTimeout(() => {
 
-
         currentQuestion++;
 
 
@@ -1883,27 +1733,21 @@ function nextQuestion() {
             questions.length
         ) {
 
-
             showScreen(
                 "memory"
             );
-
 
         }
 
         else {
 
-
             questionElement.classList.remove(
                 "question-changing"
             );
 
-
             loadQuestion();
 
-
         }
-
 
     }, 350);
 
@@ -1911,9 +1755,9 @@ function nextQuestion() {
 
 
 
-/* =========================
+/* ==================================================
    PREGUNTA FINAL
-========================= */
+================================================== */
 
 function showFinalQuestion() {
 
@@ -1925,9 +1769,9 @@ function showFinalQuestion() {
 
 
 
-/* =========================
+/* ==================================================
    RESPUESTA SÍ
-========================= */
+================================================== */
 
 function sayYes() {
 
@@ -1939,12 +1783,16 @@ function sayYes() {
 
 
 
-/* =========================
-   ANIMACIÓN ESPECIAL
-========================= */
+/* ==================================================
+   CELEBRACIÓN FINAL
+================================================== */
 
 function celebrate() {
 
+
+    /* ----------------------------------------------
+       CREAR CAPA QUE CUBRE TODA LA PANTALLA
+    ---------------------------------------------- */
 
     const overlay =
         document.createElement(
@@ -1961,9 +1809,9 @@ function celebrate() {
     );
 
 
-    /* =========================
+    /* ----------------------------------------------
        BRILLO
-    ========================= */
+    ---------------------------------------------- */
 
     const glow =
         document.createElement(
@@ -1980,9 +1828,9 @@ function celebrate() {
     );
 
 
-    /* =========================
+    /* ----------------------------------------------
        ANILLO
-    ========================= */
+    ---------------------------------------------- */
 
     const ring =
         document.createElement(
@@ -1999,9 +1847,9 @@ function celebrate() {
     );
 
 
-    /* =========================
+    /* ----------------------------------------------
        CORAZÓN GRANDE
-    ========================= */
+    ---------------------------------------------- */
 
     const bigHeart =
         document.createElement(
@@ -2022,9 +1870,9 @@ function celebrate() {
     );
 
 
-    /* =========================
-       ACTIVAR
-    ========================= */
+    /* ----------------------------------------------
+       ACTIVAR ANIMACIONES
+    ---------------------------------------------- */
 
     requestAnimationFrame(() => {
 
@@ -2043,9 +1891,9 @@ function celebrate() {
     });
 
 
-    /* =========================
-       PARTÍCULAS
-    ========================= */
+    /* ----------------------------------------------
+       CORAZONES Y DESTELLOS
+    ---------------------------------------------- */
 
     const symbols = [
 
@@ -2148,9 +1996,9 @@ function celebrate() {
     );
 
 
-    /* =========================
+    /* ----------------------------------------------
        MENSAJE FINAL
-    ========================= */
+    ---------------------------------------------- */
 
     const message =
         document.createElement(
@@ -2169,8 +2017,11 @@ function celebrate() {
         </div>
 
         <div class="small">
+
             Y ahora sí...<br>
+
             oficialmente somos nosotros 🥰
+
         </div>
 
     `;
@@ -2190,9 +2041,9 @@ function celebrate() {
     });
 
 
-    /* =========================
-       LIMPIAR
-    ========================= */
+    /* ----------------------------------------------
+       ELIMINAR ANIMACIÓN DESPUÉS DE 5 SEGUNDOS
+    ---------------------------------------------- */
 
     setTimeout(() => {
 
@@ -2204,12 +2055,14 @@ function celebrate() {
 
 
 
-/* =========================
+/* ==================================================
    BLOQUEAR ZOOM EN IPHONE
-========================= */
+================================================== */
 
 
-/* Zoom mediante gesto */
+/* ----------------------------------------------
+   GESTOS DE ZOOM
+---------------------------------------------- */
 
 document.addEventListener(
     "gesturestart",
@@ -2250,7 +2103,9 @@ document.addEventListener(
 );
 
 
-/* Zoom con dos dedos */
+/* ----------------------------------------------
+   ZOOM CON DOS DEDOS
+---------------------------------------------- */
 
 document.addEventListener(
     "touchmove",
@@ -2271,7 +2126,9 @@ document.addEventListener(
 );
 
 
-/* Zoom mediante doble toque */
+/* ----------------------------------------------
+   ZOOM CON DOBLE TOQUE
+---------------------------------------------- */
 
 let lastTouchEnd = 0;
 
@@ -2302,7 +2159,9 @@ document.addEventListener(
 );
 
 
-/* Evitar desplazamiento */
+/* ----------------------------------------------
+   EVITAR DESPLAZAMIENTO
+---------------------------------------------- */
 
 document.addEventListener(
     "touchmove",
