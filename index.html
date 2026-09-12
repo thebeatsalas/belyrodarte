@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fff7f8">
+<title>Una pregunta para ti ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #fff7f8;
+    color: #302529;
+    overflow-x: hidden;
+}
+
+.screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 22px;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.6s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.heart {
+    font-size: 48px;
+    margin-bottom: 22px;
+    animation: heartbeat 1.8s infinite;
+}
+
+h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 10vw, 58px);
+    line-height: 1.05;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(30px, 8vw, 42px);
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #665a5f;
+}
+
+.subtitle {
+    max-width: 420px;
+    margin: 0 auto 34px;
+}
+
+button {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.primary {
+    background: #302529;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 180px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.primary:active {
+    transform: scale(.96);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(48,37,41,.18);
+}
+
+/* FONDOS */
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(5px);
+    opacity: .55;
+    z-index: 0;
+}
+
+.blob.one {
+    width: 180px;
+    height: 180px;
+    background: #ffdce4;
+    top: -50px;
+    left: -50px;
+}
+
+.blob.two {
+    width: 220px;
+    height: 220px;
+    background: #f4ddea;
+    bottom: -80px;
+    right: -70px;
+}
+
+/* PREGUNTAS */
+
+.question-number {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a18189;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.question {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer {
+    width: 100%;
+    padding: 17px 20px;
+    background: white;
+    border: 1px solid #eadde1;
+    border-radius: 16px;
+    font-size: 16px;
+    color: #40353a;
+    text-align: left;
+    transition: all .2s ease;
+    box-shadow: 0 5px 18px rgba(50,30,40,.04);
+}
+
+.answer:hover {
+    border-color: #d5aab5;
+    transform: translateY(-2px);
+}
+
+.answer:active {
+    transform: scale(.98);
+}
+
+/* PROGRESO */
+
+.progress {
+    position: absolute;
+    top: 20px;
+    left: 22px;
+    right: 22px;
+    height: 5px;
+    background: #eadde1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #302529;
+    border-radius: 10px;
+    transition: width .5s ease;
+}
+
+/* FOTOS */
+
+.photo-frame {
+    width: 100%;
+    height: 300px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin: 25px 0;
+    background: linear-gradient(135deg, #f3dce3, #f8eef1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 40px rgba(70,40,50,.10);
+}
+
+.photo-frame span {
+    color: #9b7c84;
+    padding: 30px;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* PREGUNTA FINAL */
+
+.final-question {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 1.1;
+    margin: 25px 0;
+}
+
+.final-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 30px;
+}
+
+.yes-button {
+    background: #302529;
+    color: white;
+    padding: 18px;
+    border-radius: 999px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.yes-button.second {
+    background: white;
+    color: #302529;
+    border: 1px solid #ded0d5;
+}
+
+/* FINAL */
+
+.big-heart {
+    font-size: 80px;
+    animation: heartbeat 1.4s infinite;
+    margin-bottom: 25px;
+}
+
+.final-message {
+    margin: 0 auto 30px;
+    max-width: 430px;
+}
+
+/* CORAZONES */
+
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    pointer-events: none;
+    animation: floatUp 5s linear forwards;
+    z-index: 10;
+}
+
+/* ANIMACIONES */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.12);
+    }
+    30% {
+        transform: scale(1);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+/* IPHONE */
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 35px 20px;
+    }
+
+    .photo-frame {
+        height: 260px;
+    }
+
+    .answer {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==================== INICIO ==================== -->
+
+<section class="screen active" id="welcome">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+
+        <h1>Hola, Belinda</h1>
+
+        <p class="subtitle">
+            Tengo unas preguntas para ti...
+            pero hay una razón detrás de todas ellas.
+        </p>
+
+        <button class="primary" onclick="startQuiz()">
+            Empezar
+        </button>
+    </div>
+</section>
+
+
+<!-- ==================== PREGUNTAS ==================== -->
+
+<section class="screen" id="quiz">
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+
+        <div class="question-number" id="questionNumber">
+            Pregunta 1 de 5
+        </div>
+
+        <div class="question" id="questionText"></div>
+
+        <div class="answers" id="answers"></div>
+
+    </div>
+</section>
+
+
+<!-- ==================== FOTO / TRANSICIÓN ==================== -->
+
+<section class="screen" id="memory">
+
+    <div class="container">
+
+        <div class="heart">🤍</div>
+
+        <h2>Y una última cosa...</h2>
+
+        <p>
+            Antes de hacerte la última pregunta,
+            quería recordarte algo.
+        </p>
+
+        <div class="photo-frame">
+            <!--
+            MÁS ADELANTE AQUÍ PONDREMOS UNA FOTO DE USTEDES.
+            -->
+            <span>
+                Aquí podremos poner una foto de nosotros ❤️
+            </span>
+        </div>
+
+        <p class="subtitle">
+            Me gusta mucho todo lo que hemos vivido juntos
+            y, sobre todo, me gusta compartirlo contigo.
+        </p>
+
+        <button class="primary" onclick="showFinalQuestion()">
+            Continuar ❤️
+        </button>
+
+    </div>
+</section>
+
+
+<!-- ==================== PREGUNTA FINAL ==================== -->
+
+<section class="screen" id="finalQuestion">
+
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+
+    <div class="container">
+
+        <div class="heart">❤️</div>
+
+        <p>
+            Y ahora sí...
+        </p>
+
+        <div class="final-question">
+            ¿Quieres ser mi novia?
+        </div>
+
+        <p class="final-message">
+            No hay una respuesta perfecta.
+            Solo quería preguntártelo porque
+            eres alguien muy especial para mí.
+        </p>
+
+        <div class="final-buttons">
+
+            <button class="yes-button" onclick="sayYes()">
+                Sí ❤️
+            </button>
+
+            <button class="yes-button second" onclick="sayYes()">
+                Sí, quiero 🥰
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ==================== RESPUESTA ==================== -->
+
+<section class="screen" id="success">
+
+    <div class="container">
+
+        <div class="big-heart">❤️</div>
+
+        <h1>Entonces...</h1>
+
+        <h2>Tenemos algo que celebrar 🥰</h2>
+
+        <p class="final-message">
+            Gracias por decir que sí.
+            Ahora sí empieza oficialmente
+            una nueva etapa para nosotros.
+        </p>
+
+        <button class="primary" onclick="celebrate()">
+            ❤️
+        </button>
+
+    </div>
+</section>
+
+
+<script>
+
+const questions = [
+
+    {
+        question: "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
+        answers: [
+            "Las veces que nos hemos reído juntos",
+            "Las conversaciones que tenemos",
+            "Los lugares que hemos conocido",
+            "Todas las anteriores ❤️"
+        ]
+    },
+
+    {
+        question: "¿Crees que me gusta pasar tiempo contigo?",
+        answers: [
+            "Sí",
+            "Muchísimo",
+            "Demasiado",
+            "Creo que ya es bastante obvio 😂"
+        ]
+    },
+
+    {
+        question: "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
+        answers: [
+            "Uno tranquilo",
+            "Uno lleno de aventuras",
+            "Uno en el que no paramos de reír",
+            "Cualquiera mientras sea contigo"
+        ]
+    },
+
+    {
+        question: "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
+        answers: [
+            "Sí ❤️",
+            "Definitivamente",
+            "Muchísimos",
+            "Espero que todavía nos falten muchos más"
+        ]
+    },
+
+    {
+        question: "Y siendo completamente sincera...",
+        answers: [
+            "Creo que ya sé qué me quieres preguntar",
+            "Me estás poniendo nerviosa 😂",
+            "Tengo una pequeña sospecha...",
+            "Quiero saber cuál es la última pregunta ❤️"
+        ]
+    }
+
+];
+
+let currentQuestion = 0;
+
+function hideAll() {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+}
+
+function showScreen(id) {
+    hideAll();
+
+    const screen = document.getElementById(id);
+    screen.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+}
+
+function startQuiz() {
+
+    currentQuestion = 0;
+
+    showScreen("quiz");
+
+    loadQuestion();
+}
+
+function loadQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+
+    document.getElementById("questionText").textContent =
+        q.question;
+
+    const answersContainer =
+        document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    q.answers.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent = answer;
+
+        button.onclick = () => nextQuestion();
+
+        answersContainer.appendChild(button);
+
+    });
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+}
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+
+        showScreen("memory");
+
+    } else {
+
+        loadQuestion();
+
+    }
+}
+
+function showFinalQuestion() {
+
+    showScreen("finalQuestion");
+
+}
+
+function sayYes() {
+
+    showScreen("success");
+
+    createHearts();
+
+}
+
+function createHearts() {
+
+    for (let i = 0; i < 35; i++) {
+
+        setTimeout(() => {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            heart.textContent =
+                ["❤️", "💕", "💗", "💖", "🥰"][Math.floor(Math.random() * 5)];
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (16 + Math.random() * 25) + "px";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+
+        }, i * 100);
+
+    }
+
+}
+
+function celebrate() {
+
+    createHearts();
+
+}
+
+</script>
+
+</body>
+</html>
