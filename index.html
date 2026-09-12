@@ -400,7 +400,7 @@ p {
 
 
 /* ==================================================
-   TRANSICIÓN DE PREGUNTAS
+   TRANSICIÓN
 ================================================== */
 
 .question-changing {
@@ -574,155 +574,255 @@ p {
 
 
 /* ==================================================
-   ANIMACIÓN FINAL
+   FINAL ESTILO PELÍCULA
 ================================================== */
 
-/*
-   Esta capa cubre COMPLETAMENTE la pantalla anterior.
-   Así ningún texto de "Entonces..." queda debajo.
-*/
-
-.celebration-overlay {
+.movie-ending {
 
     position: fixed;
 
     inset: 0;
 
-    z-index: 9999;
+    z-index: 99999;
 
-    pointer-events: none;
+    width: 100vw;
+    height: 100dvh;
+
+    background: #171416;
+
+    color: #F9F5F6;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    width: 100vw;
-    height: 100dvh;
-
     overflow: hidden;
 
-    background: #FCF9FA;
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.2s ease;
+}
+
+.movie-ending.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
 }
 
 
 /* ==================================================
-   BRILLO CENTRAL
+   BRILLO MUY SUTIL
 ================================================== */
 
-.celebration-glow {
+.movie-ending::before {
+
+    content: "";
 
     position: absolute;
 
-    width: 110px;
-    height: 110px;
+    width: 280px;
+    height: 280px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
 
     border-radius: 50%;
 
     background:
-        rgba(201,138,157,.18);
+        rgba(201,138,157,.07);
 
     filter:
-        blur(20px);
+        blur(60px);
 
     opacity: 0;
 
-    transform:
-        scale(.4);
-}
-
-.celebration-glow.show {
-
     animation:
-        glowPulse 2.3s ease forwards;
+        movieGlow 4s ease forwards;
+
 }
 
 
 /* ==================================================
-   ANILLO
+   CONTENIDO DE LA PELÍCULA
 ================================================== */
 
-.heart-ring {
+.movie-content {
 
-    position: absolute;
+    width: 88%;
 
-    width: 85px;
-    height: 85px;
+    max-width: 360px;
 
-    border:
-        2px solid
-        rgba(201,138,157,.48);
+    text-align: center;
 
-    border-radius: 50%;
+    position: relative;
 
-    opacity: 0;
-
-    transform:
-        scale(.2);
-}
-
-.heart-ring.show {
-
-    animation:
-        ringExpand 2s ease forwards;
+    z-index: 2;
 }
 
 
 /* ==================================================
-   CORAZÓN GRANDE
+   ESCENAS
 ================================================== */
 
-.celebration-heart {
-
-    position: absolute;
-
-    font-size: 95px;
-
-    opacity: 0;
-
-    transform:
-        scale(0);
-}
-
-.celebration-heart.show {
-
-    animation:
-        heartReveal 2.4s ease forwards;
-}
-
-
-/* ==================================================
-   PARTÍCULAS
-================================================== */
-
-.celebration-particle {
+.movie-scene {
 
     position: absolute;
 
     left: 50%;
     top: 50%;
 
-    font-size: 22px;
+    width: 100%;
+
+    transform:
+        translate(-50%, -50%);
 
     opacity: 0;
 
-    will-change:
-        transform,
-        opacity;
+    text-align: center;
+
+    pointer-events: none;
 }
 
-.celebration-particle.show {
+
+/* ESCENA 1 */
+
+.movie-scene.scene-1 {
 
     animation:
-        particleBurst 2.5s ease forwards;
+        sceneOne 3.5s ease forwards;
+}
+
+
+/* ESCENA 2 */
+
+.movie-scene.scene-2 {
+
+    animation:
+        sceneTwo 4s ease forwards;
+
+    animation-delay:
+        3.5s;
+}
+
+
+/* ESCENA 3 */
+
+.movie-scene.scene-3 {
+
+    animation:
+        sceneThree 4s ease forwards;
+
+    animation-delay:
+        7.5s;
+}
+
+
+/* ESCENA 4 */
+
+.movie-scene.scene-4 {
+
+    animation:
+        sceneFour 4s ease forwards;
+
+    animation-delay:
+        11.5s;
 }
 
 
 /* ==================================================
-   MENSAJE FINAL DE LA ANIMACIÓN
+   TEXTO DE CADA ESCENA
 ================================================== */
 
-.celebration-message {
+.movie-small {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #CDBBC1;
+
+    margin-bottom: 22px;
+}
+
+
+.movie-main {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(38px, 10vw, 52px);
+
+    line-height: 1.15;
+
+    font-weight: 500;
+}
+
+
+.movie-main.heart-text {
+
+    font-size:
+        clamp(40px, 10vw, 54px);
+
+}
+
+
+/* ==================================================
+   ESCENA DE CRÉDITOS
+================================================== */
+
+.movie-credit-title {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #BDAAB1;
+
+    margin-bottom: 14px;
+}
+
+
+.movie-credit-name {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+}
+
+
+.movie-credit-small {
+
+    font-size: 15px;
+
+    color: #CBBEC3;
+
+    line-height: 1.7;
+}
+
+
+/* ==================================================
+   FINAL
+================================================== */
+
+.movie-final {
 
     position: absolute;
 
@@ -730,199 +830,110 @@ p {
     top: 50%;
 
     width: 90%;
+
     max-width: 360px;
+
+    transform:
+        translate(-50%, -50%);
 
     text-align: center;
 
     opacity: 0;
 
-    transform:
-        translate(-50%, -50%)
-        scale(.94);
-}
-
-.celebration-message.show {
-
     animation:
-        messageAppear 1s ease forwards;
+        finalMovie 5s ease forwards;
 
     animation-delay:
-        1.7s;
+        15.5s;
 }
 
-.celebration-message .big {
+
+.movie-final-title {
 
     font-family:
         "Playfair Display",
         serif;
 
-    font-size: 52px;
+    font-size:
+        clamp(45px, 12vw, 62px);
 
-    margin-bottom: 16px;
-}
+    line-height: 1.1;
 
-.celebration-message .small {
-
-    font-size: 19px;
-
-    line-height: 1.6;
-
-    color: #756B70;
+    margin-bottom: 22px;
 }
 
 
-/* ==================================================
-   BOTÓN FINAL
-================================================== */
+.movie-final-subtitle {
 
-.final-heart-button {
+    font-size: 17px;
 
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+    line-height: 1.7;
+
+    color: #CBBEC3;
 }
 
-.final-heart-button:active {
+
+.movie-final-heart {
+
+    font-size: 42px;
+
+    margin-top: 28px;
 
     animation:
-        buttonHeartBeat .7s ease;
+        finalHeart 2s ease-in-out infinite;
+
 }
 
 
 /* ==================================================
-   KEYFRAMES
+   KEYFRAMES PELÍCULA
 ================================================== */
 
-@keyframes heartReveal {
+@keyframes sceneOne {
 
     0% {
 
         opacity: 0;
 
         transform:
-            scale(0);
-    }
-
-    18% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.15);
-    }
-
-    32% {
-
-        transform:
-            scale(.90);
-    }
-
-    47% {
-
-        transform:
-            scale(1.08);
-    }
-
-    62% {
-
-        transform:
-            scale(1);
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            scale(1.75);
-    }
-}
-
-
-@keyframes ringExpand {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(.2);
+            translate(-50%, -50%)
+            translateY(15px)
+            scale(.98);
     }
 
     20% {
 
         opacity: 1;
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            scale(5.5);
-    }
-}
-
-
-@keyframes glowPulse {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(.4);
-    }
-
-    25% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.15);
-    }
-
-    60% {
-
-        opacity: .55;
-
-        transform:
-            scale(2);
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            scale(3.2);
-    }
-}
-
-
-@keyframes messageAppear {
-
-    from {
-
-        opacity: 0;
 
         transform:
             translate(-50%, -50%)
-            scale(.94);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
+            translateY(0)
             scale(1);
     }
+
+    70% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0)
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-12px)
+            scale(1.02);
+    }
 }
 
 
-@keyframes particleBurst {
+@keyframes sceneTwo {
 
     0% {
 
@@ -930,59 +941,174 @@ p {
 
         transform:
             translate(-50%, -50%)
-            scale(.2);
+            translateY(15px);
+    }
+
+    20% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+    75% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-12px);
+    }
+}
+
+
+@keyframes sceneThree {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(15px);
+    }
+
+    20% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+    75% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-12px);
+    }
+}
+
+
+@keyframes sceneFour {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(15px);
+    }
+
+    20% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+    75% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(-12px);
+    }
+}
+
+
+@keyframes finalMovie {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.96);
     }
 
     15% {
 
         opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
     }
 
     100% {
 
-        opacity: 0;
+        opacity: 1;
 
         transform:
-            translate(
-                calc(-50% + var(--x)),
-                calc(-50% + var(--y))
-            )
-            rotate(var(--rotation))
+            translate(-50%, -50%)
             scale(1);
     }
 }
 
 
-@keyframes buttonHeartBeat {
+@keyframes finalHeart {
 
-    0% {
-
-        transform:
-            scale(1);
-    }
-
-    30% {
-
-        transform:
-            scale(.88);
-    }
-
-    55% {
-
-        transform:
-            scale(1.12);
-    }
-
-    75% {
-
-        transform:
-            scale(.96);
-    }
-
+    0%,
     100% {
 
         transform:
             scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+    }
+}
+
+
+@keyframes movieGlow {
+
+    0% {
+
+        opacity: 0;
+    }
+
+    25% {
+
+        opacity: 1;
+    }
+
+    70% {
+
+        opacity: .7;
+    }
+
+    100% {
+
+        opacity: .3;
     }
 }
 
@@ -1105,11 +1231,12 @@ p {
         padding:
             18px 15px;
     }
+
 }
 
 
 /* ==================================================
-   IPHONE PEQUEÑO EN ALTURA
+   IPHONE PEQUEÑO
 ================================================== */
 
 @media (max-width: 480px)
@@ -1154,6 +1281,7 @@ p {
 
         margin-top: 22px;
     }
+
 }
 
 
@@ -1202,7 +1330,7 @@ p {
 
 
 <!-- ==================================================
-     PANTALLA DE BIENVENIDA
+     BIENVENIDA
 ================================================== -->
 
 <section
@@ -1450,8 +1578,8 @@ p {
 
 
         <button
-            class="primary final-heart-button"
-            onclick="celebrate()">
+            class="primary"
+            onclick="startMovieEnding()">
 
             ❤️
 
@@ -1460,6 +1588,156 @@ p {
     </div>
 
 </section>
+
+
+
+<!-- ==================================================
+     FINAL ESTILO PELÍCULA
+================================================== -->
+
+<div
+    class="movie-ending"
+    id="movieEnding">
+
+
+    <div class="movie-content">
+
+
+        <!-- ESCENA 1 -->
+
+        <div
+            class="movie-scene scene-1">
+
+            <div class="movie-small">
+
+                Y entonces...
+
+            </div>
+
+            <div class="movie-main">
+
+                dijo que sí. ❤️
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ESCENA 2 -->
+
+        <div
+            class="movie-scene scene-2">
+
+            <div class="movie-credit-title">
+
+                Una historia de
+
+            </div>
+
+            <div class="movie-credit-name">
+
+                David & Belinda
+
+            </div>
+
+            <div class="movie-credit-title">
+
+                Género
+
+            </div>
+
+            <div class="movie-credit-small">
+
+                Romance · Comedia · Nosotros 😂
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ESCENA 3 -->
+
+        <div
+            class="movie-scene scene-3">
+
+            <div class="movie-credit-title">
+
+                Protagonistas
+
+            </div>
+
+            <div class="movie-credit-name">
+
+                David<br>
+                Belinda
+
+            </div>
+
+            <div class="movie-credit-small">
+
+                Dos personas,
+                una historia.
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ESCENA 4 -->
+
+        <div
+            class="movie-scene scene-4">
+
+            <div class="movie-small">
+
+                Próximamente...
+
+            </div>
+
+            <div class="movie-main">
+
+                Todos los momentos
+                que todavía nos faltan.
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- FINAL -->
+
+    <div class="movie-final">
+
+        <div class="movie-final-title">
+
+            FIN...
+
+        </div>
+
+        <div class="movie-final-subtitle">
+
+            o más bien,<br>
+            apenas comienza.
+
+        </div>
+
+        <div class="movie-final-heart">
+
+            ❤️
+
+        </div>
+
+    </div>
+
+
+</div>
 
 
 
@@ -1567,7 +1845,6 @@ const questions = [
 let currentQuestion = 0;
 
 
-
 /* ==================================================
    OCULTAR PANTALLAS
 ================================================== */
@@ -1585,7 +1862,6 @@ function hideScreens() {
         });
 
 }
-
 
 
 /* ==================================================
@@ -1611,7 +1887,6 @@ function showScreen(id) {
 }
 
 
-
 /* ==================================================
    INICIAR QUIZ
 ================================================== */
@@ -1625,7 +1900,6 @@ function startQuiz() {
     loadQuestion();
 
 }
-
 
 
 /* ==================================================
@@ -1705,7 +1979,6 @@ function loadQuestion() {
 }
 
 
-
 /* ==================================================
    SIGUIENTE PREGUNTA
 ================================================== */
@@ -1754,7 +2027,6 @@ function nextQuestion() {
 }
 
 
-
 /* ==================================================
    PREGUNTA FINAL
 ================================================== */
@@ -1766,7 +2038,6 @@ function showFinalQuestion() {
     );
 
 }
-
 
 
 /* ==================================================
@@ -1782,277 +2053,23 @@ function sayYes() {
 }
 
 
-
 /* ==================================================
-   CELEBRACIÓN FINAL
+   INICIAR FINAL DE PELÍCULA
 ================================================== */
 
-function celebrate() {
+function startMovieEnding() {
 
-
-    /* ----------------------------------------------
-       CREAR CAPA QUE CUBRE TODA LA PANTALLA
-    ---------------------------------------------- */
-
-    const overlay =
-        document.createElement(
-            "div"
+    const movie =
+        document.getElementById(
+            "movieEnding"
         );
 
 
-    overlay.className =
-        "celebration-overlay";
-
-
-    document.body.appendChild(
-        overlay
+    movie.classList.add(
+        "active"
     );
-
-
-    /* ----------------------------------------------
-       BRILLO
-    ---------------------------------------------- */
-
-    const glow =
-        document.createElement(
-            "div"
-        );
-
-
-    glow.className =
-        "celebration-glow";
-
-
-    overlay.appendChild(
-        glow
-    );
-
-
-    /* ----------------------------------------------
-       ANILLO
-    ---------------------------------------------- */
-
-    const ring =
-        document.createElement(
-            "div"
-        );
-
-
-    ring.className =
-        "heart-ring";
-
-
-    overlay.appendChild(
-        ring
-    );
-
-
-    /* ----------------------------------------------
-       CORAZÓN GRANDE
-    ---------------------------------------------- */
-
-    const bigHeart =
-        document.createElement(
-            "div"
-        );
-
-
-    bigHeart.className =
-        "celebration-heart";
-
-
-    bigHeart.textContent =
-        "❤️";
-
-
-    overlay.appendChild(
-        bigHeart
-    );
-
-
-    /* ----------------------------------------------
-       ACTIVAR ANIMACIONES
-    ---------------------------------------------- */
-
-    requestAnimationFrame(() => {
-
-        glow.classList.add(
-            "show"
-        );
-
-        ring.classList.add(
-            "show"
-        );
-
-        bigHeart.classList.add(
-            "show"
-        );
-
-    });
-
-
-    /* ----------------------------------------------
-       CORAZONES Y DESTELLOS
-    ---------------------------------------------- */
-
-    const symbols = [
-
-        "❤️",
-        "💗",
-        "💜",
-        "🤍",
-        "✨"
-
-    ];
-
-
-    const positions = [
-
-        [-170, -190],
-        [-110, -240],
-        [-40, -270],
-        [50, -250],
-        [125, -210],
-        [185, -150],
-
-        [-210, -70],
-        [210, -60],
-
-        [-230, 40],
-        [230, 45],
-
-        [-190, 130],
-        [-125, 180],
-        [-55, 220],
-        [30, 225],
-        [110, 185],
-        [180, 125]
-
-    ];
-
-
-    positions.forEach(
-        (position, index) => {
-
-
-            setTimeout(() => {
-
-
-                const particle =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                particle.className =
-                    "celebration-particle";
-
-
-                particle.textContent =
-                    symbols[
-                        index %
-                        symbols.length
-                    ];
-
-
-                particle.style.setProperty(
-                    "--x",
-                    position[0] + "px"
-                );
-
-
-                particle.style.setProperty(
-                    "--y",
-                    position[1] + "px"
-                );
-
-
-                particle.style.setProperty(
-                    "--rotation",
-                    (
-                        Math.random() * 60
-                        - 30
-                    ) + "deg"
-                );
-
-
-                overlay.appendChild(
-                    particle
-                );
-
-
-                requestAnimationFrame(() => {
-
-                    particle.classList.add(
-                        "show"
-                    );
-
-                });
-
-
-            }, index * 45);
-
-        }
-    );
-
-
-    /* ----------------------------------------------
-       MENSAJE FINAL
-    ---------------------------------------------- */
-
-    const message =
-        document.createElement(
-            "div"
-        );
-
-
-    message.className =
-        "celebration-message";
-
-
-    message.innerHTML = `
-
-        <div class="big">
-            ❤️
-        </div>
-
-        <div class="small">
-
-            Y ahora sí...<br>
-
-            oficialmente somos nosotros 🥰
-
-        </div>
-
-    `;
-
-
-    overlay.appendChild(
-        message
-    );
-
-
-    requestAnimationFrame(() => {
-
-        message.classList.add(
-            "show"
-        );
-
-    });
-
-
-    /* ----------------------------------------------
-       ELIMINAR ANIMACIÓN DESPUÉS DE 5 SEGUNDOS
-    ---------------------------------------------- */
-
-    setTimeout(() => {
-
-        overlay.remove();
-
-    }, 5000);
 
 }
-
 
 
 /* ==================================================
@@ -2060,9 +2077,7 @@ function celebrate() {
 ================================================== */
 
 
-/* ----------------------------------------------
-   GESTOS DE ZOOM
----------------------------------------------- */
+/* Gestos */
 
 document.addEventListener(
     "gesturestart",
@@ -2103,9 +2118,7 @@ document.addEventListener(
 );
 
 
-/* ----------------------------------------------
-   ZOOM CON DOS DEDOS
----------------------------------------------- */
+/* Dos dedos */
 
 document.addEventListener(
     "touchmove",
@@ -2126,9 +2139,7 @@ document.addEventListener(
 );
 
 
-/* ----------------------------------------------
-   ZOOM CON DOBLE TOQUE
----------------------------------------------- */
+/* Doble toque */
 
 let lastTouchEnd = 0;
 
@@ -2159,9 +2170,7 @@ document.addEventListener(
 );
 
 
-/* ----------------------------------------------
-   EVITAR DESPLAZAMIENTO
----------------------------------------------- */
+/* Evitar desplazamiento */
 
 document.addEventListener(
     "touchmove",
