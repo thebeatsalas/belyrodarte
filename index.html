@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F7F2FA">
-
-<title>Para ti 💜</title>
+<meta name="theme-color" content="#FCF9FA">
+<title>Para ti ❤️</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap');
 
 * {
@@ -23,8 +21,8 @@ html {
 
 body {
     font-family: "DM Sans", sans-serif;
-    background: #F7F2FA;
-    color: #302936;
+    background: #FCF9FA;
+    color: #30292D;
     overflow: hidden;
 }
 
@@ -52,10 +50,7 @@ body {
     z-index: 2;
 }
 
-
-/* =========================
-   DETALLES DE FONDO
-========================= */
+/* DETALLES DE FONDO */
 
 .circle {
     position: absolute;
@@ -65,25 +60,22 @@ body {
 }
 
 .circle.one {
-    width: 300px;
-    height: 300px;
-    background: #E8D9F0;
-    top: -155px;
-    left: -125px;
+    width: 280px;
+    height: 280px;
+    background: #F3E5E9;
+    top: -150px;
+    left: -120px;
 }
 
 .circle.two {
-    width: 280px;
-    height: 280px;
-    background: #E2D3EC;
-    bottom: -165px;
-    right: -110px;
+    width: 250px;
+    height: 250px;
+    background: #F0E1E6;
+    bottom: -150px;
+    right: -100px;
 }
 
-
-/* =========================
-   TIPOGRAFÍA
-========================= */
+/* TIPOGRAFÍA */
 
 .heart {
     font-size: 42px;
@@ -114,7 +106,7 @@ h2 {
 p {
     font-size: 17px;
     line-height: 1.7;
-    color: #75697C;
+    color: #756B70;
 }
 
 .subtitle {
@@ -122,14 +114,11 @@ p {
     margin: 0 auto 34px;
 }
 
-
-/* =========================
-   BOTÓN PRINCIPAL
-========================= */
+/* BOTÓN */
 
 .primary {
-    background: #654A76;
-    color: #FFFFFF;
+    background: #30292D;
+    color: #fff;
     border: none;
     border-radius: 999px;
     padding: 16px 38px;
@@ -143,17 +132,14 @@ p {
 
 .primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(101,74,118,.25);
+    box-shadow: 0 12px 30px rgba(48,41,45,.18);
 }
 
 .primary:active {
     transform: scale(.97);
 }
 
-
-/* =========================
-   PROGRESO
-========================= */
+/* PROGRESO */
 
 .progress-container {
     position: absolute;
@@ -166,7 +152,7 @@ p {
 .progress-text {
     text-align: center;
     font-size: 12px;
-    color: #907AA0;
+    color: #9A858C;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -174,8 +160,8 @@ p {
 
 .progress {
     width: 100%;
-    height: 4px;
-    background: #E0D4E7;
+    height: 3px;
+    background: #E9DDE1;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -183,14 +169,11 @@ p {
 .progress-bar {
     height: 100%;
     width: 20%;
-    background: #9A79B4;
+    background: #C98A9D;
     transition: width .6s ease;
 }
 
-
-/* =========================
-   PREGUNTAS
-========================= */
+/* PREGUNTAS */
 
 .question {
     font-size: clamp(30px, 7.5vw, 43px);
@@ -207,10 +190,10 @@ p {
 .answer {
     width: 100%;
     padding: 17px 20px;
-    background: rgba(255,255,255,.88);
-    border: 1.5px solid #D8C8E2;
+    background: rgba(255,255,255,.8);
+    border: 1px solid #E2D7DB;
     border-radius: 15px;
-    color: #44384B;
+    color: #443A3F;
     font-family: inherit;
     font-size: 16px;
     text-align: center;
@@ -219,29 +202,22 @@ p {
 }
 
 .answer:hover {
-    background: #FFFFFF;
-    border-color: #A987BE;
+    background: #fff;
+    border-color: #C99AA8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(120,90,140,.10);
 }
 
 .answer:active {
     transform: scale(.98);
 }
 
-
-/* =========================
-   TRANSICIÓN
-========================= */
+/* TRANSICIÓN */
 
 .question-changing {
     animation: questionOut .35s ease forwards;
 }
 
-
-/* =========================
-   FOTO
-========================= */
+/* FOTO */
 
 .photo-frame {
     width: 100%;
@@ -249,22 +225,18 @@ p {
     margin: 28px 0;
     border-radius: 22px;
     overflow: hidden;
-    background: #E9DDF0;
-    border: 1px solid #D9C9E2;
+    background: #F3E5E9;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .photo-placeholder {
-    color: #917C9D;
+    color: #9A858C;
     font-size: 15px;
 }
 
-
-/* =========================
-   PREGUNTA FINAL
-========================= */
+/* FINAL */
 
 .final-question {
     font-size: clamp(39px, 10vw, 58px);
@@ -289,7 +261,7 @@ p {
     padding: 18px;
     border-radius: 999px;
     border: none;
-    background: #654A76;
+    background: #30292D;
     color: white;
     font-family: inherit;
     font-size: 17px;
@@ -300,19 +272,16 @@ p {
 
 .yes-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(101,74,118,.25);
+    box-shadow: 0 10px 25px rgba(48,41,45,.18);
 }
 
 .yes-button.secondary {
-    background: #FFFFFF;
-    color: #654A76;
-    border: 1.5px solid #D8C8E2;
+    background: white;
+    color: #30292D;
+    border: 1px solid #E1D6DA;
 }
 
-
-/* =========================
-   FINAL FELIZ
-========================= */
+/* FINAL FELIZ */
 
 .success-heart {
     font-size: 75px;
@@ -324,10 +293,7 @@ p {
     font-size: clamp(42px, 10vw, 58px);
 }
 
-
-/* =========================
-   CORAZONES FLOTANTES
-========================= */
+/* CORAZONES */
 
 .floating-heart {
     position: fixed;
@@ -337,13 +303,9 @@ p {
     animation: floatHeart 5s linear forwards;
 }
 
-
-/* =========================
-   ANIMACIONES
-========================= */
+/* ANIMACIONES */
 
 @keyframes appear {
-
     from {
         opacity: 0;
         transform: translateY(12px);
@@ -353,11 +315,9 @@ p {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 @keyframes questionOut {
-
     from {
         opacity: 1;
         transform: translateY(0);
@@ -367,11 +327,9 @@ p {
         opacity: 0;
         transform: translateY(-10px);
     }
-
 }
 
 @keyframes softPulse {
-
     0%, 100% {
         transform: scale(1);
     }
@@ -379,11 +337,9 @@ p {
     50% {
         transform: scale(1.08);
     }
-
 }
 
 @keyframes floatHeart {
-
     0% {
         opacity: 0;
         transform: translateY(0) rotate(0deg);
@@ -397,13 +353,7 @@ p {
         opacity: 0;
         transform: translateY(-110vh) rotate(25deg);
     }
-
 }
-
-
-/* =========================
-   MÓVIL
-========================= */
 
 @media (max-width: 480px) {
 
@@ -422,19 +372,13 @@ p {
     .answer {
         padding: 18px 15px;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     INICIO
-========================= -->
+<!-- INICIO -->
 
 <section class="screen active" id="welcome">
 
@@ -443,7 +387,7 @@ p {
 
     <div class="container">
 
-        <div class="heart">💜</div>
+        <div class="heart">❤️</div>
 
         <h1>Hola, Belinda</h1>
 
@@ -461,10 +405,7 @@ p {
 </section>
 
 
-
-<!-- =========================
-     PREGUNTAS
-========================= -->
+<!-- PREGUNTAS -->
 
 <section class="screen" id="quiz">
 
@@ -475,44 +416,29 @@ p {
         </div>
 
         <div class="progress">
-
-            <div
-                class="progress-bar"
-                id="progressBar">
-            </div>
-
+            <div class="progress-bar" id="progressBar"></div>
         </div>
 
     </div>
 
-
     <div class="container">
 
-        <div
-            class="question"
-            id="questionText">
-        </div>
+        <div class="question" id="questionText"></div>
 
-        <div
-            class="answers"
-            id="answers">
-        </div>
+        <div class="answers" id="answers"></div>
 
     </div>
 
 </section>
 
 
-
-<!-- =========================
-     RECUERDO
-========================= -->
+<!-- RECUERDO -->
 
 <section class="screen" id="memory">
 
     <div class="container">
 
-        <div class="heart">💜</div>
+        <div class="heart">🤍</div>
 
         <h2>Y una última cosa...</h2>
 
@@ -521,30 +447,21 @@ p {
             quería recordarte algo.
         </p>
 
-
         <div class="photo-frame">
 
             <div class="photo-placeholder">
-                Aquí pondremos una foto de nosotros 💜
+                Aquí pondremos una foto de nosotros ❤️
             </div>
 
         </div>
 
-
         <p class="subtitle">
-
             Me gusta mucho todo lo que hemos vivido juntos
             y, sobre todo, me gusta compartirlo contigo.
-
         </p>
 
-
-        <button
-            class="primary"
-            onclick="showFinalQuestion()">
-
-            Continuar 💜
-
+        <button class="primary" onclick="showFinalQuestion()">
+            Continuar ❤️
         </button>
 
     </div>
@@ -552,10 +469,7 @@ p {
 </section>
 
 
-
-<!-- =========================
-     PREGUNTA FINAL
-========================= -->
+<!-- PREGUNTA FINAL -->
 
 <section class="screen" id="finalQuestion">
 
@@ -564,49 +478,31 @@ p {
 
     <div class="container">
 
-        <div class="heart">💜</div>
+        <div class="heart">❤️</div>
 
         <p>
             Y ahora sí...
         </p>
 
-
         <div class="final-question">
-
             ¿Quieres ser mi novia?
-
         </div>
 
-
         <p class="final-message">
-
             No hay una respuesta perfecta.
             Solo quería preguntártelo porque
             eres alguien muy especial para mí.
-
         </p>
-
 
         <div class="final-buttons">
 
-
-            <button
-                class="yes-button"
-                onclick="sayYes()">
-
-                Sí 💜
-
+            <button class="yes-button" onclick="sayYes()">
+                Sí ❤️
             </button>
 
-
-            <button
-                class="yes-button secondary"
-                onclick="sayYes()">
-
+            <button class="yes-button secondary" onclick="sayYes()">
                 Sí, quiero 🥰
-
             </button>
-
 
         </div>
 
@@ -615,45 +511,32 @@ p {
 </section>
 
 
-
-<!-- =========================
-     RESPUESTA
-========================= -->
+<!-- RESPUESTA -->
 
 <section class="screen" id="success">
 
     <div class="container">
 
         <div class="success-heart">
-            💜
+            ❤️
         </div>
-
 
         <h1 class="success-title">
             Entonces...
         </h1>
 
-
         <h2>
             Tenemos algo que celebrar 🥰
         </h2>
 
-
         <p class="final-message">
-
             Gracias por decir que sí.
             Ahora sí empieza oficialmente
             una nueva etapa para nosotros.
-
         </p>
 
-
-        <button
-            class="primary"
-            onclick="createHearts()">
-
-            💜
-
+        <button class="primary" onclick="createHearts()">
+            ❤️
         </button>
 
     </div>
@@ -661,147 +544,83 @@ p {
 </section>
 
 
-
 <script>
-
-
-/* =========================
-   PREGUNTAS
-========================= */
 
 const questions = [
 
     {
-        question:
-            "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
-
+        question: "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
         answers: [
-
             "Las veces que nos hemos reído juntos",
-
             "Las conversaciones que tenemos",
-
             "Los lugares que hemos conocido",
-
-            "Todas las anteriores 💜"
-
+            "Todas las anteriores ❤️"
         ]
     },
 
-
     {
-        question:
-            "¿Crees que me gusta pasar tiempo contigo?",
-
+        question: "¿Crees que me gusta pasar tiempo contigo?",
         answers: [
-
             "Sí",
-
             "Muchísimo",
-
             "Demasiado",
-
             "Creo que ya es bastante obvio 😂"
-
         ]
     },
 
-
     {
-        question:
-            "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
-
+        question: "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
         answers: [
-
             "Uno tranquilo",
-
             "Uno lleno de aventuras",
-
             "Uno en el que no paramos de reír",
-
             "Cualquiera mientras sea contigo"
-
         ]
     },
 
-
     {
-        question:
-            "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
-
+        question: "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
         answers: [
-
-            "Sí 💜",
-
+            "Sí ❤️",
             "Definitivamente",
-
             "Muchísimos",
-
             "Espero que todavía nos falten muchos más"
-
         ]
     },
 
-
     {
-        question:
-            "Y siendo completamente sincera...",
-
+        question: "Y siendo completamente sincera...",
         answers: [
-
             "Creo que ya sé qué me quieres preguntar",
-
             "Me estás poniendo nerviosa 😂",
-
             "Tengo una pequeña sospecha...",
-
-            "Quiero saber cuál es la última pregunta 💜"
-
+            "Quiero saber cuál es la última pregunta ❤️"
         ]
     }
 
 ];
 
-
 let currentQuestion = 0;
-
-
-
-/* =========================
-   CAMBIO DE PANTALLAS
-========================= */
 
 function hideScreens() {
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-
-            screen.classList.remove("active");
-
-        });
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
 
 }
-
 
 function showScreen(id) {
 
     hideScreens();
 
-    const screen =
-        document.getElementById(id);
+    const screen = document.getElementById(id);
 
     screen.classList.add("active");
 
     window.scrollTo(0, 0);
 
 }
-
-
-
-/* =========================
-   INICIAR
-========================= */
 
 function startQuiz() {
 
@@ -813,105 +632,63 @@ function startQuiz() {
 
 }
 
-
-
-/* =========================
-   CARGAR PREGUNTA
-========================= */
-
 function loadQuestion() {
 
     const questionElement =
         document.getElementById("questionText");
 
-
     const answersElement =
         document.getElementById("answers");
-
 
     const question =
         questions[currentQuestion];
 
-
     questionElement.textContent =
         question.question;
 
-
     answersElement.innerHTML = "";
 
-
     question.answers.forEach(answerText => {
-
 
         const button =
             document.createElement("button");
 
+        button.className = "answer";
 
-        button.className =
-            "answer";
+        button.textContent = answerText;
 
-
-        button.textContent =
-            answerText;
-
-
-        button.onclick =
-            nextQuestion;
-
+        button.onclick = nextQuestion;
 
         answersElement.appendChild(button);
 
     });
 
-
-    document.getElementById("progressText")
-        .textContent =
+    document.getElementById("progressText").textContent =
         `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 
-
-    document.getElementById("progressBar")
-        .style.width =
+    document.getElementById("progressBar").style.width =
         `${((currentQuestion + 1) / questions.length) * 100}%`;
 
 }
-
-
-
-/* =========================
-   SIGUIENTE PREGUNTA
-========================= */
 
 function nextQuestion() {
 
     const questionElement =
         document.getElementById("questionText");
 
-
-    questionElement.classList.add(
-        "question-changing"
-    );
-
+    questionElement.classList.add("question-changing");
 
     setTimeout(() => {
 
-
         currentQuestion++;
 
-
-        if (
-            currentQuestion >=
-            questions.length
-        ) {
+        if (currentQuestion >= questions.length) {
 
             showScreen("memory");
 
-        }
+        } else {
 
-        else {
-
-            questionElement.classList.remove(
-                "question-changing"
-            );
+            questionElement.classList.remove("question-changing");
 
             loadQuestion();
 
@@ -921,23 +698,11 @@ function nextQuestion() {
 
 }
 
-
-
-/* =========================
-   PREGUNTA FINAL
-========================= */
-
 function showFinalQuestion() {
 
     showScreen("finalQuestion");
 
 }
-
-
-
-/* =========================
-   RESPUESTA SÍ
-========================= */
 
 function sayYes() {
 
@@ -947,85 +712,42 @@ function sayYes() {
 
 }
 
-
-
-/* =========================
-   CORAZONES FINALES
-========================= */
-
 function createHearts() {
 
-
     const symbols = [
-
+        "❤️",
         "💜",
         "🤍",
-        "💗",
-        "✨",
-        "💜",
-        "🤍"
-
+        "✨"
     ];
 
-
-    for (
-        let i = 0;
-        i < 35;
-        i++
-    ) {
-
+    for (let i = 0; i < 35; i++) {
 
         setTimeout(() => {
-
 
             const heart =
                 document.createElement("div");
 
-
             heart.className =
                 "floating-heart";
 
-
             heart.textContent =
-                symbols[
-                    Math.floor(
-                        Math.random() *
-                        symbols.length
-                    )
-                ];
-
+                symbols[Math.floor(Math.random() * symbols.length)];
 
             heart.style.left =
-                Math.random() *
-                100 +
-                "vw";
-
+                Math.random() * 100 + "vw";
 
             heart.style.fontSize =
-                16 +
-                Math.random() *
-                24 +
-                "px";
-
+                16 + Math.random() * 24 + "px";
 
             heart.style.animationDuration =
-                3 +
-                Math.random() *
-                3 +
-                "s";
+                3 + Math.random() * 3 + "s";
 
-
-            document.body.appendChild(
-                heart
-            );
-
+            document.body.appendChild(heart);
 
             setTimeout(() => {
-
                 heart.remove();
-
             }, 6500);
-
 
         }, i * 90);
 
@@ -1034,7 +756,6 @@ function createHearts() {
 }
 
 </script>
-
 
 </body>
 </html>
