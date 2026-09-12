@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no,
-               viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
 <meta name="theme-color" content="#FCF9FA">
 
@@ -27,14 +22,18 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
     -webkit-tap-highlight-color: transparent;
+
     touch-action: manipulation;
 }
 
 html,
 body {
+
     width: 100%;
     height: 100%;
+
     margin: 0;
     padding: 0;
 
@@ -51,13 +50,18 @@ body {
 }
 
 body {
+
     font-family: "DM Sans", sans-serif;
+
+    background: #FCF9FA;
+
     color: #30292D;
 
     -webkit-user-select: none;
     user-select: none;
 
     -webkit-touch-callout: none;
+
 }
 
 
@@ -68,14 +72,17 @@ body {
 .screen {
 
     width: 100%;
+
     height: 100dvh;
 
     min-height: 100dvh;
+
     max-height: 100dvh;
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     padding:
@@ -86,8 +93,8 @@ body {
 
     position: fixed;
 
-    left: 0;
     top: 0;
+    left: 0;
 
     overflow: hidden;
 
@@ -99,7 +106,8 @@ body {
 
     display: flex;
 
-    animation: appear .7s ease forwards;
+    animation:
+        appear .7s ease forwards;
 
 }
 
@@ -142,11 +150,13 @@ body {
 .circle.one {
 
     width: 280px;
+
     height: 280px;
 
     background: #F3E5E9;
 
     top: -150px;
+
     left: -120px;
 
 }
@@ -154,11 +164,13 @@ body {
 .circle.two {
 
     width: 250px;
+
     height: 250px;
 
     background: #F0E1E6;
 
     bottom: -150px;
+
     right: -100px;
 
 }
@@ -248,7 +260,8 @@ p {
 
     border-radius: 999px;
 
-    padding: 16px 38px;
+    padding:
+        16px 38px;
 
     min-width: 180px;
 
@@ -270,7 +283,8 @@ p {
 
 .primary:hover {
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
         0 12px 30px
@@ -280,7 +294,8 @@ p {
 
 .primary:active {
 
-    transform: scale(.97);
+    transform:
+        scale(.97);
 
 }
 
@@ -376,7 +391,8 @@ p {
 
     width: 100%;
 
-    padding: 17px 20px;
+    padding:
+        17px 20px;
 
     background:
         rgba(255,255,255,.8);
@@ -416,7 +432,8 @@ p {
 
 .answer:active {
 
-    transform: scale(.98);
+    transform:
+        scale(.98);
 
 }
 
@@ -443,7 +460,8 @@ p {
 
     height: 310px;
 
-    margin: 28px 0;
+    margin:
+        28px 0;
 
     border-radius: 22px;
 
@@ -479,7 +497,8 @@ p {
 
     line-height: 1.08;
 
-    margin: 25px 0;
+    margin:
+        25px 0;
 
 }
 
@@ -487,7 +506,8 @@ p {
 
     max-width: 430px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
 }
 
@@ -707,7 +727,7 @@ p {
 
 
 /* =========================
-   AJUSTES PARA IPHONE
+   IPHONE
 ========================= */
 
 @media (max-width: 480px) {
@@ -745,7 +765,7 @@ p {
 
 
 /* =========================
-   IPHONE PEQUEÑO EN ALTURA
+   IPHONE CON POCA ALTURA
 ========================= */
 
 @media (max-width: 480px)
@@ -1172,7 +1192,6 @@ p {
 
 const questions = [
 
-
     {
 
         question:
@@ -1272,7 +1291,6 @@ const questions = [
 
     }
 
-
 ];
 
 
@@ -1290,7 +1308,9 @@ function hideScreens() {
         .querySelectorAll(".screen")
         .forEach(screen => {
 
-            screen.classList.remove("active");
+            screen.classList.remove(
+                "active"
+            );
 
         });
 
@@ -1311,7 +1331,9 @@ function showScreen(id) {
         document.getElementById(id);
 
 
-    screen.classList.add("active");
+    screen.classList.add(
+        "active"
+    );
 
 
     window.scrollTo(0, 0);
@@ -1363,7 +1385,8 @@ function loadQuestion() {
         question.question;
 
 
-    answersElement.innerHTML = "";
+    answersElement.innerHTML =
+        "";
 
 
     question.answers.forEach(
@@ -1446,7 +1469,9 @@ function nextQuestion() {
         ) {
 
 
-            showScreen("memory");
+            showScreen(
+                "memory"
+            );
 
 
         }
@@ -1491,7 +1516,9 @@ function showFinalQuestion() {
 
 function sayYes() {
 
-    showScreen("success");
+    showScreen(
+        "success"
+    );
 
     createHearts();
 
@@ -1509,8 +1536,11 @@ function createHearts() {
     const symbols = [
 
         "❤️",
+
         "💜",
+
         "🤍",
+
         "✨"
 
     ];
@@ -1584,6 +1614,131 @@ function createHearts() {
 
 }
 
+
+
+/* =========================
+   BLOQUEAR ZOOM EN IPHONE
+========================= */
+
+
+/* Zoom mediante gesto de pellizco */
+
+document.addEventListener(
+    "gesturestart",
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+document.addEventListener(
+    "gesturechange",
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+document.addEventListener(
+    "gestureend",
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* Zoom con dos dedos */
+
+document.addEventListener(
+    "touchmove",
+    function(e) {
+
+        if (e.touches.length > 1) {
+
+            e.preventDefault();
+
+        }
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* Zoom mediante doble toque */
+
+let lastTouchEnd = 0;
+
+
+document.addEventListener(
+    "touchend",
+    function(e) {
+
+        const now =
+            Date.now();
+
+
+        if (
+            now - lastTouchEnd <= 300
+        ) {
+
+            e.preventDefault();
+
+        }
+
+
+        lastTouchEnd = now;
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* Evitar desplazamiento por gestos */
+
+document.addEventListener(
+    "touchmove",
+    function(e) {
+
+        if (
+            e.target.closest(
+                ".screen"
+            )
+        ) {
+
+            if (
+                e.touches.length === 1
+            ) {
+
+                e.preventDefault();
+
+            }
+
+        }
+
+    },
+    {
+        passive: false
+    }
+);
 
 </script>
 
