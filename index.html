@@ -1873,12 +1873,117 @@ function showFinalQuestion() {
 
 function sayYes() {
 
-    showScreen(
-        "success"
-    );
+    /* La cuenta regresiva empieza inmediatamente al presionar SÍ */
+    const overlay = document.createElement("div");
+    overlay.className = "yes-countdown-overlay";
+
+    const content = document.createElement("div");
+    content.className = "yes-countdown-content";
+
+    const small = document.createElement("div");
+    small.className = "yes-countdown-small";
+    small.textContent = "Preparando una pequeña sorpresa...";
+
+    const number = document.createElement("div");
+    number.className = "yes-countdown-number";
+    number.textContent = "3";
+
+    const message = document.createElement("div");
+    message.className = "yes-countdown-message";
+    message.textContent = "Espera... ❤️";
+
+    content.appendChild(small);
+    content.appendChild(number);
+    content.appendChild(message);
+    overlay.appendChild(content);
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+        overlay.classList.add("show");
+    });
+
+    const steps = [
+        ["3", "Espera... ❤️"],
+        ["2", "Confirmando tu respuesta... 🥰"],
+        ["1", "Preparando algo especial... 👀❤️"]
+    ];
+
+    steps.forEach((step, index) => {
+        setTimeout(() => {
+            number.textContent = step[0];
+            message.textContent = step[1];
+            number.classList.remove("yes-countdown-number");
+            void number.offsetWidth;
+            number.classList.add("yes-countdown-number");
+        }, index * 1100);
+    });
+
+    setTimeout(() => {
+        overlay.classList.remove("show");
+
+        setTimeout(() => {
+            overlay.remove();
+            showScreen("success");
+        }, 350);
+    }, 3500);
 
 }
 
+
+
+
+
+/* ==================================================
+   CUENTA REGRESIVA AL DECIR SÍ
+================================================== */
+
+.yes-countdown-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCF9FA;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.yes-countdown-overlay.show {
+    opacity: 1;
+}
+
+.yes-countdown-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.yes-countdown-small {
+    font-size: 16px;
+    color: #756B70;
+    margin-bottom: 18px;
+}
+
+.yes-countdown-number {
+    font-size: 92px;
+    line-height: 1;
+    font-weight: 500;
+    color: #30292D;
+    animation: countdownPop .8s ease both;
+}
+
+.yes-countdown-message {
+    margin-top: 22px;
+    font-size: 18px;
+    color: #756B70;
+    min-height: 28px;
+}
+
+@keyframes countdownPop {
+    0% { transform: scale(.55); opacity: 0; }
+    45% { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
 
 
 /* ==================================================
