@@ -2,542 +2,946 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
 <meta name="theme-color" content="#FCF9FA">
+
 <title>Para ti ❤️</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap');
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-    touch-action:manipulation;
+
+/* ==================================================
+   CONFIGURACIÓN GENERAL
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
-    overflow:hidden;
-    position:fixed;
-    left:0;
-    top:0;
-    overscroll-behavior:none;
-    background:#FCF9FA;
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    overscroll-behavior: none;
+
+    background: #FCF9FA;
 }
 
-body{
-    font-family:"DM Sans",sans-serif;
-    color:#30292D;
-    -webkit-user-select:none;
-    user-select:none;
-    -webkit-touch-callout:none;
+body {
+
+    font-family: "DM Sans", sans-serif;
+
+    color: #30292D;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
 }
 
-.screen{
-    width:100%;
-    height:100dvh;
-    min-height:100dvh;
-    max-height:100dvh;
-    display:none;
-    align-items:center;
-    justify-content:center;
+
+/* ==================================================
+   PANTALLAS
+================================================== */
+
+.screen {
+
+    width: 100%;
+    height: 100dvh;
+
+    min-height: 100dvh;
+    max-height: 100dvh;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
     padding:
-        max(30px,env(safe-area-inset-top))
+        max(30px, env(safe-area-inset-top))
         24px
-        max(30px,env(safe-area-inset-bottom))
+        max(30px, env(safe-area-inset-bottom))
         24px;
-    position:fixed;
-    top:0;
-    left:0;
-    overflow:hidden;
-    overscroll-behavior:none;
-}
 
-.screen.active{
-    display:flex;
-    animation:appear .7s ease forwards;
-}
+    position: fixed;
 
-.container{
-    width:100%;
-    max-width:540px;
-    text-align:center;
-    position:relative;
-    z-index:2;
-}
+    top: 0;
+    left: 0;
 
-.circle{
-    position:absolute;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:0;
-}
+    overflow: hidden;
 
-.circle.one{
-    width:280px;
-    height:280px;
-    background:#F3E5E9;
-    top:-150px;
-    left:-120px;
+    overscroll-behavior: none;
 }
 
-.circle.two{
-    width:250px;
-    height:250px;
-    background:#F0E1E6;
-    bottom:-150px;
-    right:-100px;
-}
+.screen.active {
 
-.heart{
-    font-size:42px;
-    margin-bottom:24px;
-    animation:softPulse 2.5s ease-in-out infinite;
-}
+    display: flex;
 
-h1,h2,.question,.final-question{
-    font-family:"Playfair Display",serif;
-    font-weight:500;
+    animation:
+        appear .7s ease forwards;
 }
 
-h1{
-    font-size:clamp(42px,11vw,64px);
-    line-height:1.05;
-    margin-bottom:22px;
-}
 
-h2{
-    font-size:clamp(31px,8vw,44px);
-    line-height:1.15;
-    margin-bottom:20px;
-}
+/* ==================================================
+   CONTENEDOR
+================================================== */
 
-p{
-    font-size:17px;
-    line-height:1.7;
-    color:#756B70;
-}
+.container {
 
-.subtitle{
-    max-width:430px;
-    margin:0 auto 34px;
-}
+    width: 100%;
+    max-width: 540px;
 
-.primary{
-    background:#30292D;
-    color:#fff;
-    border:none;
-    border-radius:999px;
-    padding:16px 38px;
-    min-width:180px;
-    font-family:inherit;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease;
-    touch-action:manipulation;
-}
+    text-align: center;
 
-.primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(48,41,45,.18);
+    position: relative;
+    z-index: 2;
 }
 
-.primary:active{
-    transform:scale(.97);
-}
 
-/* PROGRESO */
+/* ==================================================
+   CÍRCULOS DE FONDO
+================================================== */
 
-.progress-container{
-    position:absolute;
-    top:25px;
-    left:24px;
-    right:24px;
-    z-index:3;
-}
+.circle {
 
-.progress-text{
-    text-align:center;
-    font-size:12px;
-    color:#9A858C;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    margin-bottom:10px;
-}
+    position: absolute;
 
-.progress{
-    width:100%;
-    height:3px;
-    background:#E9DDE1;
-    border-radius:10px;
-    overflow:hidden;
-}
+    border-radius: 50%;
+
+    pointer-events: none;
 
-.progress-bar{
-    height:100%;
-    width:20%;
-    background:#C98A9D;
-    transition:width .6s ease;
+    z-index: 0;
 }
 
-/* VERIFICACIÓN */
+.circle.one {
 
-.verification-container{
-    max-width:430px;
+    width: 280px;
+    height: 280px;
+
+    background: #F3E5E9;
+
+    top: -150px;
+    left: -120px;
 }
+
+.circle.two {
+
+    width: 250px;
+    height: 250px;
 
-.verification-icon{
-    font-size:58px;
-    margin-bottom:22px;
-    animation:softPulse 2.5s ease-in-out infinite;
+    background: #F0E1E6;
+
+    bottom: -150px;
+    right: -100px;
 }
+
+
+/* ==================================================
+   TIPOGRAFÍA
+================================================== */
 
-.verification-container h2{
-    margin-bottom:18px;
+.heart {
+
+    font-size: 42px;
+
+    margin-bottom: 24px;
+
+    animation:
+        softPulse 2.5s ease-in-out infinite;
 }
+
+h1,
+h2,
+.question,
+.final-question {
 
-.verification-text{
-    max-width:380px;
-    margin:0 auto;
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-weight: 500;
 }
+
+h1 {
+
+    font-size:
+        clamp(42px, 11vw, 64px);
 
-.verification-status{
-    margin-top:24px;
-    min-height:24px;
-    font-size:14px;
-    color:#9A858C;
+    line-height: 1.05;
+
+    margin-bottom: 22px;
 }
+
+h2 {
+
+    font-size:
+        clamp(31px, 8vw, 44px);
+
+    line-height: 1.15;
 
-.verification-progress{
-    width:100%;
-    height:4px;
-    margin:12px auto 0;
-    background:#E9DDE1;
-    border-radius:10px;
-    overflow:hidden;
-    opacity:0;
-    transition:opacity .25s ease;
+    margin-bottom: 20px;
 }
 
-.verification-progress.active{
-    opacity:1;
+p {
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #756B70;
 }
 
-.verification-progress-bar{
-    width:0%;
-    height:100%;
-    background:#C98A9D;
-    transition:width .35s ease;
+.subtitle {
+
+    max-width: 430px;
+
+    margin:
+        0 auto 34px;
 }
+
+
+/* ==================================================
+   BOTÓN PRINCIPAL
+================================================== */
 
-.verification-result{
-    min-height:58px;
-    margin-top:22px;
-    font-size:17px;
-    line-height:1.55;
-    color:#756B70;
+.primary {
+
+    background: #30292D;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding:
+        16px 38px;
+
+    min-width: 180px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    touch-action: manipulation;
 }
+
+.primary:hover {
+
+    transform:
+        translateY(-2px);
 
-.verification-result strong{
-    color:#30292D;
+    box-shadow:
+        0 12px 30px
+        rgba(48,41,45,.18);
 }
 
-.verification-button{
-    margin-top:4px;
+.primary:active {
+
+    transform:
+        scale(.97);
 }
+
+
+/* ==================================================
+   PROGRESO
+================================================== */
+
+.progress-container {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 24px;
+    right: 24px;
 
-.verification-button.hidden{
-    display:none;
+    z-index: 3;
 }
 
-/* PREGUNTAS */
+.progress-text {
 
-.question{
-    font-size:clamp(30px,7.5vw,43px);
-    line-height:1.18;
-    margin-bottom:34px;
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #9A858C;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
 }
+
+.progress {
+
+    width: 100%;
 
-.answers{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+    height: 3px;
+
+    background: #E9DDE1;
+
+    border-radius: 10px;
+
+    overflow: hidden;
 }
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 20%;
+
+    background: #C98A9D;
 
-.answer{
-    width:100%;
-    padding:17px 20px;
-    background:rgba(255,255,255,.8);
-    border:1px solid #E2D7DB;
-    border-radius:15px;
-    color:#443A3F;
-    font-family:inherit;
-    font-size:16px;
-    text-align:center;
-    cursor:pointer;
-    transition:all .25s ease;
-    touch-action:manipulation;
+    transition:
+        width .6s ease;
 }
 
-.answer:hover{
-    background:#fff;
-    border-color:#C99AA8;
-    transform:translateY(-2px);
+
+/* ==================================================
+   PREGUNTAS
+================================================== */
+
+.question {
+
+    font-size:
+        clamp(30px, 7.5vw, 43px);
+
+    line-height: 1.18;
+
+    margin-bottom: 34px;
 }
+
+.answers {
+
+    display: flex;
 
-.answer:active{
-    transform:scale(.98);
+    flex-direction: column;
+
+    gap: 12px;
 }
+
+.answer {
+
+    width: 100%;
+
+    padding:
+        17px 20px;
+
+    background:
+        rgba(255,255,255,.8);
+
+    border:
+        1px solid #E2D7DB;
+
+    border-radius: 15px;
 
-.question-changing{
-    animation:questionOut .35s ease forwards;
+    color: #443A3F;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        all .25s ease;
+
+    touch-action: manipulation;
 }
+
+.answer:hover {
 
-/* FOTO */
+    background: #fff;
 
-.photo-frame{
-    width:100%;
-    height:310px;
-    margin:28px 0;
-    border-radius:22px;
-    overflow:hidden;
-    background:#F3E5E9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    border-color: #C99AA8;
+
+    transform:
+        translateY(-2px);
 }
 
-.photo-placeholder{
-    color:#9A858C;
-    font-size:15px;
+.answer:active {
+
+    transform:
+        scale(.98);
 }
+
 
-/* PREGUNTA FINAL */
+/* ==================================================
+   TRANSICIÓN DE PREGUNTAS
+================================================== */
 
-.final-question{
-    font-size:clamp(39px,10vw,58px);
-    line-height:1.08;
-    margin:25px 0;
+.question-changing {
+
+    animation:
+        questionOut .35s ease forwards;
 }
+
+
+/* ==================================================
+   FOTO
+================================================== */
+
+.photo-frame {
+
+    width: 100%;
+
+    height: 310px;
+
+    margin:
+        28px 0;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    background: #F3E5E9;
+
+    display: flex;
 
-.final-message{
-    max-width:430px;
-    margin:0 auto;
+    align-items: center;
+    justify-content: center;
 }
 
-.final-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:30px;
+.photo-placeholder {
+
+    color: #9A858C;
+
+    font-size: 15px;
 }
+
+
+/* ==================================================
+   PREGUNTA FINAL
+================================================== */
+
+.final-question {
+
+    font-size:
+        clamp(39px, 10vw, 58px);
 
-.yes-button{
-    width:100%;
-    padding:18px;
-    border-radius:999px;
-    border:none;
-    background:#30292D;
-    color:white;
-    font-family:inherit;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease;
-    touch-action:manipulation;
+    line-height: 1.08;
+
+    margin:
+        25px 0;
 }
+
+.final-message {
+
+    max-width: 430px;
 
-.yes-button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 25px rgba(48,41,45,.18);
+    margin:
+        0 auto;
 }
+
+.final-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
 
-.yes-button:active{
-    transform:scale(.98);
+    margin-top: 30px;
 }
 
-.yes-button.secondary{
-    background:white;
-    color:#30292D;
-    border:1px solid #E1D6DA;
+.yes-button {
+
+    width: 100%;
+
+    padding: 18px;
+
+    border-radius: 999px;
+
+    border: none;
+
+    background: #30292D;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    touch-action: manipulation;
 }
 
-/* ÉXITO */
+.yes-button:hover {
 
-.success-heart{
-    font-size:75px;
-    margin-bottom:25px;
-    animation:softPulse 1.5s ease-in-out infinite;
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(48,41,45,.18);
 }
+
+.yes-button:active {
 
-.success-title{
-    font-size:clamp(42px,10vw,58px);
+    transform:
+        scale(.98);
 }
 
-/* CORAZONES */
+.yes-button.secondary {
 
-.floating-heart{
-    position:fixed;
-    bottom:-30px;
-    pointer-events:none;
-    z-index:20;
-    animation:floatHeart 5s linear forwards;
+    background: white;
+
+    color: #30292D;
+
+    border:
+        1px solid #E1D6DA;
 }
+
 
-/* ANIMACIÓN FINAL */
+/* ==================================================
+   PANTALLA DE ÉXITO
+================================================== */
 
-.celebration-overlay{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    pointer-events:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100vw;
-    height:100dvh;
-    overflow:hidden;
-    background:#FCF9FA;
+.success-heart {
+
+    font-size: 75px;
+
+    margin-bottom: 25px;
+
+    animation:
+        softPulse 1.5s ease-in-out infinite;
 }
+
+.success-title {
 
-.celebration-glow{
-    position:absolute;
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    background:rgba(201,138,157,.18);
-    filter:blur(20px);
-    opacity:0;
-    transform:scale(.4);
+    font-size:
+        clamp(42px, 10vw, 58px);
 }
+
+
+/* ==================================================
+   CORAZONES FLOTANTES
+================================================== */
+
+.floating-heart {
+
+    position: fixed;
+
+    bottom: -30px;
+
+    pointer-events: none;
+
+    z-index: 20;
 
-.celebration-glow.show{
-    animation:glowPulse 2.3s ease forwards;
+    animation:
+        floatHeart 5s linear forwards;
 }
 
-.heart-ring{
-    position:absolute;
-    width:85px;
-    height:85px;
-    border:2px solid rgba(201,138,157,.48);
-    border-radius:50%;
-    opacity:0;
-    transform:scale(.2);
+
+/* ==================================================
+   ANIMACIÓN FINAL
+================================================== */
+
+/*
+   Esta capa cubre COMPLETAMENTE la pantalla anterior.
+   Así ningún texto de "Entonces..." queda debajo.
+*/
+
+.celebration-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    background: #FCF9FA;
 }
+
+
+/* ==================================================
+   BRILLO CENTRAL
+================================================== */
 
-.heart-ring.show{
-    animation:ringExpand 2s ease forwards;
+.celebration-glow {
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201,138,157,.18);
+
+    filter:
+        blur(20px);
+
+    opacity: 0;
+
+    transform:
+        scale(.4);
 }
 
-.celebration-heart{
-    position:absolute;
-    font-size:95px;
-    opacity:0;
-    transform:scale(0);
+.celebration-glow.show {
+
+    animation:
+        glowPulse 2.3s ease forwards;
 }
+
+
+/* ==================================================
+   ANILLO
+================================================== */
+
+.heart-ring {
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    border:
+        2px solid
+        rgba(201,138,157,.48);
 
-.celebration-heart.show{
-    animation:heartReveal 2.4s ease forwards;
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform:
+        scale(.2);
 }
+
+.heart-ring.show {
 
-.celebration-particle{
-    position:absolute;
-    left:50%;
-    top:50%;
-    font-size:22px;
-    opacity:0;
-    will-change:transform,opacity;
+    animation:
+        ringExpand 2s ease forwards;
 }
+
+
+/* ==================================================
+   CORAZÓN GRANDE
+================================================== */
+
+.celebration-heart {
+
+    position: absolute;
 
-.celebration-particle.show{
-    animation:particleBurst 2.5s ease forwards;
+    font-size: 95px;
+
+    opacity: 0;
+
+    transform:
+        scale(0);
 }
+
+.celebration-heart.show {
 
-.celebration-message{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:90%;
-    max-width:360px;
-    text-align:center;
-    opacity:0;
-    transform:translate(-50%,-50%) scale(.94);
+    animation:
+        heartReveal 2.4s ease forwards;
 }
+
+
+/* ==================================================
+   PARTÍCULAS
+================================================== */
+
+.celebration-particle {
+
+    position: absolute;
 
-.celebration-message.show{
-    animation:messageAppear 1s ease forwards;
-    animation-delay:1.7s;
+    left: 50%;
+    top: 50%;
+
+    font-size: 22px;
+
+    opacity: 0;
+
+    will-change:
+        transform,
+        opacity;
 }
 
-.celebration-message .big{
-    font-family:"Playfair Display",serif;
-    font-size:52px;
-    margin-bottom:16px;
+.celebration-particle.show {
+
+    animation:
+        particleBurst 2.5s ease forwards;
 }
+
+
+/* ==================================================
+   MENSAJE FINAL DE LA ANIMACIÓN
+================================================== */
+
+.celebration-message {
 
-.celebration-message .small{
-    font-size:19px;
-    line-height:1.6;
-    color:#756B70;
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 90%;
+    max-width: 360px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.94);
 }
+
+.celebration-message.show {
+
+    animation:
+        messageAppear 1s ease forwards;
 
-.final-heart-button{
-    transition:transform .25s ease,box-shadow .25s ease;
+    animation-delay:
+        1.7s;
 }
 
-.final-heart-button:active{
-    animation:buttonHeartBeat .7s ease;
+.celebration-message .big {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 52px;
+
+    margin-bottom: 16px;
 }
 
-/* ANIMACIONES */
+.celebration-message .small {
 
-@keyframes heartReveal{
-    0%{opacity:0;transform:scale(0)}
-    18%{opacity:1;transform:scale(1.15)}
-    32%{transform:scale(.90)}
-    47%{transform:scale(1.08)}
-    62%{transform:scale(1)}
-    100%{opacity:0;transform:scale(1.75)}
+    font-size: 19px;
+
+    line-height: 1.6;
+
+    color: #756B70;
 }
+
+
+/* ==================================================
+   BOTÓN FINAL
+================================================== */
 
-@keyframes ringExpand{
-    0%{opacity:0;transform:scale(.2)}
-    20%{opacity:1}
-    100%{opacity:0;transform:scale(5.5)}
+.final-heart-button {
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-@keyframes glowPulse{
-    0%{opacity:0;transform:scale(.4)}
-    25%{opacity:1;transform:scale(1.15)}
-    60%{opacity:.55;transform:scale(2)}
-    100%{opacity:0;transform:scale(3.2)}
+.final-heart-button:active {
+
+    animation:
+        buttonHeartBeat .7s ease;
 }
+
+
+/* ==================================================
+   KEYFRAMES
+================================================== */
+
+@keyframes heartReveal {
+
+    0% {
+
+        opacity: 0;
 
-@keyframes messageAppear{
-    from{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(.94);
+        transform:
+            scale(0);
     }
-    to{
-        opacity:1;
-        transform:translate(-50%,-50%) scale(1);
+
+    18% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+    }
+
+    32% {
+
+        transform:
+            scale(.90);
+    }
+
+    47% {
+
+        transform:
+            scale(1.08);
+    }
+
+    62% {
+
+        transform:
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.75);
     }
 }
 
-@keyframes particleBurst{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(.2);
+
+@keyframes ringExpand {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.2);
     }
-    15%{opacity:1}
-    100%{
-        opacity:0;
+
+    20% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(5.5);
+    }
+}
+
+
+@keyframes glowPulse {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.4);
+    }
+
+    25% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+    }
+
+    60% {
+
+        opacity: .55;
+
+        transform:
+            scale(2);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(3.2);
+    }
+}
+
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.94);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+@keyframes particleBurst {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+    }
+
+    15% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
         transform:
             translate(
                 calc(-50% + var(--x)),
@@ -548,143 +952,274 @@ p{
     }
 }
 
-@keyframes buttonHeartBeat{
-    0%{transform:scale(1)}
-    30%{transform:scale(.88)}
-    55%{transform:scale(1.12)}
-    75%{transform:scale(.96)}
-    100%{transform:scale(1)}
-}
 
-@keyframes appear{
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+@keyframes buttonHeartBeat {
 
-@keyframes questionOut{
-    from{
-        opacity:1;
-        transform:translateY(0);
-    }
-    to{
-        opacity:0;
-        transform:translateY(-10px);
-    }
-}
+    0% {
 
-@keyframes softPulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-}
-
-@keyframes floatHeart{
-    0%{
-        opacity:0;
-        transform:translateY(0) rotate(0deg);
+        transform:
+            scale(1);
     }
-    15%{opacity:.9}
-    100%{
-        opacity:0;
-        transform:translateY(-110vh) rotate(25deg);
+
+    30% {
+
+        transform:
+            scale(.88);
+    }
+
+    55% {
+
+        transform:
+            scale(1.12);
+    }
+
+    75% {
+
+        transform:
+            scale(.96);
+    }
+
+    100% {
+
+        transform:
+            scale(1);
     }
 }
 
-/* MÓVIL */
 
-@media(max-width:480px){
+/* ==================================================
+   ANIMACIONES ORIGINALES
+================================================== */
 
-    .screen{
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes questionOut {
+
+    from {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+@keyframes softPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.08);
+    }
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    15% {
+
+        opacity: .9;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateY(-110vh)
+            rotate(25deg);
+    }
+}
+
+
+/* ==================================================
+   MÓVIL
+================================================== */
+
+@media (max-width: 480px) {
+
+    .screen {
+
         padding:
-            max(25px,env(safe-area-inset-top))
+            max(25px, env(safe-area-inset-top))
             20px
-            max(25px,env(safe-area-inset-bottom))
+            max(25px, env(safe-area-inset-bottom))
             20px;
     }
 
-    .question{
-        margin-bottom:28px;
+    .question {
+
+        margin-bottom: 28px;
     }
 
-    .photo-frame{
-        height:270px;
+    .photo-frame {
+
+        height: 270px;
     }
 
-    .answer{
-        padding:18px 15px;
-    }
-}
+    .answer {
 
-@media(max-width:480px) and (max-height:750px){
-
-    .heart{
-        margin-bottom:16px;
-    }
-
-    h1{
-        margin-bottom:15px;
-    }
-
-    .subtitle{
-        margin-bottom:22px;
-    }
-
-    .question{
-        font-size:34px;
-        margin-bottom:22px;
-    }
-
-    .answer{
-        padding:14px 12px;
-    }
-
-    .final-question{
-        font-size:45px;
-        margin:18px 0;
-    }
-
-    .final-buttons{
-        margin-top:22px;
+        padding:
+            18px 15px;
     }
 }
 
-@media(min-width:381px) and (max-width:400px) and (min-height:800px) and (max-height:880px){
 
-    .container{
-        max-width:350px;
+/* ==================================================
+   IPHONE PEQUEÑO EN ALTURA
+================================================== */
+
+@media (max-width: 480px)
+       and (max-height: 750px) {
+
+    .heart {
+
+        margin-bottom: 16px;
     }
 
-    h1{
-        font-size:55px;
+    h1 {
+
+        margin-bottom: 15px;
     }
 
-    .question{
-        font-size:38px;
+    .subtitle {
+
+        margin-bottom: 22px;
     }
 
-    .final-question{
-        font-size:50px;
+    .question {
+
+        font-size: 34px;
+
+        margin-bottom: 22px;
     }
 
-    p{
-        font-size:17px;
+    .answer {
+
+        padding:
+            14px 12px;
+    }
+
+    .final-question {
+
+        font-size: 45px;
+
+        margin: 18px 0;
+    }
+
+    .final-buttons {
+
+        margin-top: 22px;
     }
 }
+
+
+/* ==================================================
+   IPHONE 13 PRO
+   390 x 844
+================================================== */
+
+@media (min-width: 381px)
+       and (max-width: 400px)
+       and (min-height: 800px)
+       and (max-height: 880px) {
+
+    .container {
+
+        max-width: 350px;
+    }
+
+    h1 {
+
+        font-size: 55px;
+    }
+
+    .question {
+
+        font-size: 38px;
+    }
+
+    .final-question {
+
+        font-size: 50px;
+    }
+
+    p {
+
+        font-size: 17px;
+    }
+
+}
+
+
+/* VALIDACION DE IDENTIDAD */
+.validation-container { max-width:430px; }
+.validation-icon { font-size:58px; margin-bottom:20px; animation:softPulse 2.5s ease-in-out infinite; }
+.validation-container h2 { margin-bottom:18px; }
+.validation-subtitle { margin-bottom:28px; }
+.validation-status { min-height:105px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:16px; line-height:1.55; color:#443A3F; margin-bottom:22px; padding:0 12px; }
+.validation-progress { width:100%; max-width:300px; height:8px; background:#E9DDE1; border-radius:20px; overflow:hidden; margin:0 auto 28px; }
+.validation-progress-bar { height:100%; width:0%; background:#C98A9D; border-radius:20px; transition:width .8s ease; }
+.validation-button { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+.validation-button.show { opacity:1; pointer-events:auto; }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- ==================================================
      PANTALLA DE BIENVENIDA
 ================================================== -->
 
-<section class="screen active" id="welcome">
+<section
+    class="screen active"
+    id="welcome">
 
     <div class="circle one"></div>
     <div class="circle two"></div>
@@ -700,22 +1235,29 @@ p{
         </h1>
 
         <p class="subtitle">
+
             Tengo unas preguntas para ti...
             pero hay una razón detrás de todas ellas.
+
         </p>
 
         <button
             class="primary"
             onclick="startQuiz()">
+
             Empezar
+
         </button>
 
     </div>
 
 </section>
 
+
+
+
 <!-- ==================================================
-     VERIFICACIÓN DE IDENTIDAD
+     VALIDACION DE IDENTIDAD
 ================================================== -->
 
 <section class="screen" id="verification">
@@ -723,51 +1265,26 @@ p{
     <div class="circle one"></div>
     <div class="circle two"></div>
 
-    <div class="container verification-container">
+    <div class="container validation-container">
 
-        <div
-            class="verification-icon"
-            id="verificationIcon">
-            🔐
-        </div>
+        <div class="validation-icon">🔐</div>
 
-        <h2>
-            Verificación de identidad
-        </h2>
+        <h2>Verificación de identidad</h2>
 
-        <p
-            class="verification-text"
-            id="verificationText">
-            Para continuar, necesitamos comprobar que realmente eres Belinda.
+        <p class="validation-subtitle">
+            Coloca tu cara frente a la pantalla...
         </p>
 
-        <div
-            class="verification-status"
-            id="verificationStatus">
-            Coloca tu cara frente a la pantalla...
+        <div class="validation-status" id="validationStatus">
+            Iniciando reconocimiento...
         </div>
 
-        <div class="verification-progress">
-
-            <div
-                class="verification-progress-bar"
-                id="verificationProgressBar">
-            </div>
-
+        <div class="validation-progress">
+            <div class="validation-progress-bar" id="validationProgress"></div>
         </div>
 
-        <div
-            class="verification-result"
-            id="verificationResult">
-        </div>
-
-        <button
-            class="primary verification-button"
-            id="verificationButton"
-            onclick="runVerification()">
-
-            Iniciar verificación
-
+        <button class="primary validation-button" id="validationButton">
+            Continuar →
         </button>
 
     </div>
@@ -778,14 +1295,18 @@ p{
      QUIZ
 ================================================== -->
 
-<section class="screen" id="quiz">
+<section
+    class="screen"
+    id="quiz">
 
     <div class="progress-container">
 
         <div
             class="progress-text"
             id="progressText">
+
             Pregunta 1 de 5
+
         </div>
 
         <div class="progress">
@@ -798,6 +1319,7 @@ p{
         </div>
 
     </div>
+
 
     <div class="container">
 
@@ -815,11 +1337,15 @@ p{
 
 </section>
 
+
+
 <!-- ==================================================
      MEMORIA
 ================================================== -->
 
-<section class="screen" id="memory">
+<section
+    class="screen"
+    id="memory">
 
     <div class="container">
 
@@ -832,22 +1358,31 @@ p{
         </h2>
 
         <p>
+
             Antes de hacerte la última pregunta,
             quería recordarte algo.
+
         </p>
+
 
         <div class="photo-frame">
 
             <div class="photo-placeholder">
+
                 Aquí pondremos una foto de nosotros ❤️
+
             </div>
 
         </div>
 
+
         <p class="subtitle">
+
             Me gusta mucho todo lo que hemos vivido juntos
             y, sobre todo, me gusta compartirlo contigo.
+
         </p>
+
 
         <button
             class="primary"
@@ -861,11 +1396,15 @@ p{
 
 </section>
 
+
+
 <!-- ==================================================
      PREGUNTA FINAL
 ================================================== -->
 
-<section class="screen" id="finalQuestion">
+<section
+    class="screen"
+    id="finalQuestion">
 
     <div class="circle one"></div>
     <div class="circle two"></div>
@@ -880,28 +1419,40 @@ p{
             Y ahora sí...
         </p>
 
+
         <div class="final-question">
+
             ¿Quieres ser mi novia?
+
         </div>
 
+
         <p class="final-message">
+
             No hay una respuesta perfecta.
             Solo quería preguntártelo porque
             eres alguien muy especial para mí.
+
         </p>
+
 
         <div class="final-buttons">
 
             <button
                 class="yes-button"
                 onclick="sayYes()">
+
                 Sí ❤️
+
             </button>
+
 
             <button
                 class="yes-button secondary"
                 onclick="sayYes()">
+
                 Sí, quiero 🥰
+
             </button>
 
         </div>
@@ -910,11 +1461,15 @@ p{
 
 </section>
 
+
+
 <!-- ==================================================
      PANTALLA DE ÉXITO
 ================================================== -->
 
-<section class="screen" id="success">
+<section
+    class="screen"
+    id="success">
 
     <div class="container">
 
@@ -922,19 +1477,25 @@ p{
             ❤️
         </div>
 
+
         <h1 class="success-title">
             Entonces...
         </h1>
+
 
         <h2>
             Tenemos algo que celebrar 🥰
         </h2>
 
+
         <p class="final-message">
+
             Gracias por decir que sí.
             Ahora sí empieza oficialmente
             una nueva etapa para nosotros.
+
         </p>
+
 
         <button
             class="primary final-heart-button"
@@ -948,7 +1509,10 @@ p{
 
 </section>
 
+
+
 <script>
+
 
 /* ==================================================
    PREGUNTAS
@@ -961,251 +1525,200 @@ const questions = [
             "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
 
         answers: [
+
             "Las veces que nos hemos reído juntos",
+
             "Las conversaciones que tenemos",
+
             "Los lugares que hemos conocido",
+
             "Todas las anteriores ❤️"
+
         ]
     },
+
 
     {
         question:
             "¿Crees que me gusta pasar tiempo contigo?",
 
         answers: [
+
             "Sí",
+
             "Muchísimo",
+
             "Demasiado",
+
             "Creo que ya es bastante obvio 😂"
+
         ]
     },
+
 
     {
         question:
             "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
 
         answers: [
+
             "Uno tranquilo",
+
             "Uno lleno de aventuras",
+
             "Uno en el que no paramos de reír",
+
             "Cualquiera mientras sea contigo"
+
         ]
     },
+
 
     {
         question:
             "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
 
         answers: [
+
             "Sí ❤️",
+
             "Definitivamente",
+
             "Muchísimos",
+
             "Espero que todavía nos falten muchos más"
+
         ]
     },
+
 
     {
         question:
             "Y siendo completamente sincera...",
 
         answers: [
+
             "Creo que ya sé qué me quieres preguntar",
+
             "Me estás poniendo nerviosa 😂",
+
             "Tengo una pequeña sospecha...",
+
             "Quiero saber cuál es la última pregunta ❤️"
+
         ]
     }
 
 ];
 
+
 let currentQuestion = 0;
+
 
 
 /* ==================================================
    OCULTAR PANTALLAS
 ================================================== */
 
-function hideScreens(){
+function hideScreens() {
 
     document
         .querySelectorAll(".screen")
         .forEach(screen => {
 
-            screen.classList.remove("active");
+            screen.classList.remove(
+                "active"
+            );
 
         });
 
 }
 
 
+
 /* ==================================================
    MOSTRAR PANTALLA
 ================================================== */
 
-function showScreen(id){
+function showScreen(id) {
 
     hideScreens();
+
 
     const screen =
         document.getElementById(id);
 
-    screen.classList.add("active");
 
-    window.scrollTo(0,0);
+    screen.classList.add(
+        "active"
+    );
+
+
+    window.scrollTo(0, 0);
 
 }
+
 
 
 /* ==================================================
    INICIAR QUIZ
 ================================================== */
 
-function startQuiz(){
+function startQuiz() {
 
     currentQuestion = 0;
 
     showScreen("verification");
+    runVerification();
 
 }
 
 
-/* ==================================================
-   VERIFICACIÓN
-================================================== */
+function runVerification() {
 
-let verificationRunning = false;
+    const status = document.getElementById("validationStatus");
+    const progress = document.getElementById("validationProgress");
+    const button = document.getElementById("validationButton");
 
-function runVerification(){
-
-    if(verificationRunning) return;
-
-    verificationRunning = true;
-
-    const icon =
-        document.getElementById(
-            "verificationIcon"
-        );
-
-    const text =
-        document.getElementById(
-            "verificationText"
-        );
-
-    const status =
-        document.getElementById(
-            "verificationStatus"
-        );
-
-    const progress =
-        document.querySelector(
-            "#verification .verification-progress"
-        );
-
-    const progressBar =
-        document.getElementById(
-            "verificationProgressBar"
-        );
-
-    const result =
-        document.getElementById(
-            "verificationResult"
-        );
-
-    const button =
-        document.getElementById(
-            "verificationButton"
-        );
-
-    button.classList.add("hidden");
-
-    progress.classList.add("active");
-
-    result.innerHTML = "";
+    button.classList.remove("show");
+    button.onclick = null;
+    progress.style.width = "0%";
 
     const steps = [
-
-        [
-            "Iniciando reconocimiento facial...",
-            18
-        ],
-
-        [
-            "Detectando rostro...",
-            38
-        ],
-
-        [
-            "Analizando...",
-            61
-        ],
-
-        [
-            "Comparando características...",
-            82
-        ],
-
-        [
-            "Buscando coincidencias...",
-            100
-        ]
-
+        ["Buscando coincidencias...", 10],
+        ["Espera... es difícil concentrarse así. 👀❤️", 22],
+        ["Analizando rasgos...", 35],
+        ["Hay demasiada belleza para procesar de una sola vez. 😂❤️", 50],
+        ["Comparando resultados...", 64],
+        ["Confirmado: esa sonrisa no puede ser de nadie más. 🥰", 78],
+        ["Realizando última comprobación...", 88],
+        ["El resultado parece bastante claro...", 94],
+        ["100% Belinda.
+Aunque, siendo sinceros, era imposible confundirte. ❤️", 100]
     ];
 
-    let step = 0;
+    let i = 0;
 
-    function nextStep(){
-
-        status.textContent =
-            steps[step][0];
-
-        progressBar.style.width =
-            steps[step][1] + "%";
-
-        step++;
-
-        if(step < steps.length){
-
-            setTimeout(
-                nextStep,
-                650
-            );
-
-        }else{
-
-            setTimeout(() => {
-
-                icon.textContent = "✅";
-
-                text.innerHTML =
-                    "<strong>Identidad confirmada.</strong>";
-
-                status.textContent =
-                    "Resultado: probablemente eres Belinda.";
-
-                result.innerHTML =
-                    "La verdad no tenemos tecnología para comprobarlo. 😂❤️";
-
-                button.textContent =
-                    "Continuar →";
-
-                button.classList.remove(
-                    "hidden"
-                );
-
-                button.onclick = function(){
-
-                    showScreen("quiz");
-
-                    loadQuestion();
-
-                };
-
-                verificationRunning = false;
-
-            },700);
-
+    function nextStep() {
+        if (i >= steps.length) {
+            button.classList.add("show");
+            button.onclick = function() {
+                showScreen("quiz");
+                loadQuestion();
+            };
+            return;
         }
 
+        status.style.opacity = "0";
+
+        setTimeout(() => {
+            status.innerHTML = steps[i][0].replace("\n", "<br>");
+            progress.style.width = steps[i][1] + "%";
+            status.style.transition = "opacity .45s ease";
+            status.style.opacity = "1";
+            i++;
+            setTimeout(nextStep, i === steps.length ? 1700 : 1050);
+        }, 350);
     }
 
     nextStep();
@@ -1213,29 +1726,36 @@ function runVerification(){
 }
 
 
+
 /* ==================================================
    CARGAR PREGUNTA
 ================================================== */
 
-function loadQuestion(){
+function loadQuestion() {
 
     const questionElement =
         document.getElementById(
             "questionText"
         );
 
+
     const answersElement =
         document.getElementById(
             "answers"
         );
 
+
     const question =
         questions[currentQuestion];
+
 
     questionElement.textContent =
         question.question;
 
-    answersElement.innerHTML = "";
+
+    answersElement.innerHTML =
+        "";
+
 
     question.answers.forEach(
         answerText => {
@@ -1245,14 +1765,18 @@ function loadQuestion(){
                     "button"
                 );
 
+
             button.className =
                 "answer";
+
 
             button.textContent =
                 answerText;
 
+
             button.onclick =
                 nextQuestion;
+
 
             answersElement.appendChild(
                 button
@@ -1261,12 +1785,14 @@ function loadQuestion(){
         }
     );
 
+
     document
         .getElementById(
             "progressText"
         )
         .textContent =
         `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+
 
     document
         .getElementById(
@@ -1278,33 +1804,41 @@ function loadQuestion(){
 }
 
 
+
 /* ==================================================
    SIGUIENTE PREGUNTA
 ================================================== */
 
-function nextQuestion(){
+function nextQuestion() {
 
     const questionElement =
         document.getElementById(
             "questionText"
         );
 
+
     questionElement.classList.add(
         "question-changing"
     );
+
 
     setTimeout(() => {
 
         currentQuestion++;
 
-        if(
+
+        if (
             currentQuestion >=
             questions.length
-        ){
+        ) {
 
-            showScreen("memory");
+            showScreen(
+                "memory"
+            );
 
-        }else{
+        }
+
+        else {
 
             questionElement.classList.remove(
                 "question-changing"
@@ -1314,16 +1848,17 @@ function nextQuestion(){
 
         }
 
-    },350);
+    }, 350);
 
 }
+
 
 
 /* ==================================================
    PREGUNTA FINAL
 ================================================== */
 
-function showFinalQuestion(){
+function showFinalQuestion() {
 
     showScreen(
         "finalQuestion"
@@ -1332,11 +1867,12 @@ function showFinalQuestion(){
 }
 
 
+
 /* ==================================================
    RESPUESTA SÍ
 ================================================== */
 
-function sayYes(){
+function sayYes() {
 
     showScreen(
         "success"
@@ -1345,62 +1881,97 @@ function sayYes(){
 }
 
 
+
 /* ==================================================
    CELEBRACIÓN FINAL
 ================================================== */
 
-function celebrate(){
+function celebrate() {
+
+
+    /* ----------------------------------------------
+       CREAR CAPA QUE CUBRE TODA LA PANTALLA
+    ---------------------------------------------- */
 
     const overlay =
         document.createElement(
             "div"
         );
 
+
     overlay.className =
         "celebration-overlay";
+
 
     document.body.appendChild(
         overlay
     );
+
+
+    /* ----------------------------------------------
+       BRILLO
+    ---------------------------------------------- */
 
     const glow =
         document.createElement(
             "div"
         );
 
+
     glow.className =
         "celebration-glow";
+
 
     overlay.appendChild(
         glow
     );
+
+
+    /* ----------------------------------------------
+       ANILLO
+    ---------------------------------------------- */
 
     const ring =
         document.createElement(
             "div"
         );
 
+
     ring.className =
         "heart-ring";
+
 
     overlay.appendChild(
         ring
     );
+
+
+    /* ----------------------------------------------
+       CORAZÓN GRANDE
+    ---------------------------------------------- */
 
     const bigHeart =
         document.createElement(
             "div"
         );
 
+
     bigHeart.className =
         "celebration-heart";
+
 
     bigHeart.textContent =
         "❤️";
 
+
     overlay.appendChild(
         bigHeart
     );
+
+
+    /* ----------------------------------------------
+       ACTIVAR ANIMACIONES
+    ---------------------------------------------- */
 
     requestAnimationFrame(() => {
 
@@ -1418,50 +1989,63 @@ function celebrate(){
 
     });
 
+
+    /* ----------------------------------------------
+       CORAZONES Y DESTELLOS
+    ---------------------------------------------- */
+
     const symbols = [
+
         "❤️",
         "💗",
         "💜",
         "🤍",
         "✨"
+
     ];
+
 
     const positions = [
 
-        [-170,-190],
-        [-110,-240],
-        [-40,-270],
-        [50,-250],
-        [125,-210],
-        [185,-150],
+        [-170, -190],
+        [-110, -240],
+        [-40, -270],
+        [50, -250],
+        [125, -210],
+        [185, -150],
 
-        [-210,-70],
-        [210,-60],
+        [-210, -70],
+        [210, -60],
 
-        [-230,40],
-        [230,45],
+        [-230, 40],
+        [230, 45],
 
-        [-190,130],
-        [-125,180],
-        [-55,220],
-        [30,225],
-        [110,185],
-        [180,125]
+        [-190, 130],
+        [-125, 180],
+        [-55, 220],
+        [30, 225],
+        [110, 185],
+        [180, 125]
 
     ];
 
+
     positions.forEach(
-        (position,index) => {
+        (position, index) => {
+
 
             setTimeout(() => {
+
 
                 const particle =
                     document.createElement(
                         "div"
                     );
 
+
                 particle.className =
                     "celebration-particle";
+
 
                 particle.textContent =
                     symbols[
@@ -1469,26 +2053,32 @@ function celebrate(){
                         symbols.length
                     ];
 
+
                 particle.style.setProperty(
                     "--x",
                     position[0] + "px"
                 );
+
 
                 particle.style.setProperty(
                     "--y",
                     position[1] + "px"
                 );
 
+
                 particle.style.setProperty(
                     "--rotation",
                     (
-                        Math.random() * 60 - 30
+                        Math.random() * 60
+                        - 30
                     ) + "deg"
                 );
+
 
                 overlay.appendChild(
                     particle
                 );
+
 
                 requestAnimationFrame(() => {
 
@@ -1498,18 +2088,26 @@ function celebrate(){
 
                 });
 
-            },index * 45);
+
+            }, index * 45);
 
         }
     );
+
+
+    /* ----------------------------------------------
+       MENSAJE FINAL
+    ---------------------------------------------- */
 
     const message =
         document.createElement(
             "div"
         );
 
+
     message.className =
         "celebration-message";
+
 
     message.innerHTML = `
 
@@ -1518,15 +2116,20 @@ function celebrate(){
         </div>
 
         <div class="small">
+
             Y ahora sí...<br>
-            oficialmente somos novios 🥰
+
+            oficialmente somos nosotros 🥰
+
         </div>
 
     `;
 
+
     overlay.appendChild(
         message
     );
+
 
     requestAnimationFrame(() => {
 
@@ -1536,87 +2139,153 @@ function celebrate(){
 
     });
 
+
+    /* ----------------------------------------------
+       ELIMINAR ANIMACIÓN DESPUÉS DE 5 SEGUNDOS
+    ---------------------------------------------- */
+
     setTimeout(() => {
 
         overlay.remove();
 
-    },5000);
+    }, 5000);
 
 }
+
 
 
 /* ==================================================
    BLOQUEAR ZOOM EN IPHONE
 ================================================== */
 
+
+/* ----------------------------------------------
+   GESTOS DE ZOOM
+---------------------------------------------- */
+
 document.addEventListener(
     "gesturestart",
-    e => e.preventDefault(),
-    {passive:false}
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
 );
+
 
 document.addEventListener(
     "gesturechange",
-    e => e.preventDefault(),
-    {passive:false}
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
 );
+
 
 document.addEventListener(
     "gestureend",
-    e => e.preventDefault(),
-    {passive:false}
+    function(e) {
+
+        e.preventDefault();
+
+    },
+    {
+        passive: false
+    }
 );
+
+
+/* ----------------------------------------------
+   ZOOM CON DOS DEDOS
+---------------------------------------------- */
 
 document.addEventListener(
     "touchmove",
-    e => {
+    function(e) {
 
-        if(e.touches.length > 1){
+        if (
+            e.touches.length > 1
+        ) {
+
             e.preventDefault();
+
         }
 
     },
-    {passive:false}
+    {
+        passive: false
+    }
 );
+
+
+/* ----------------------------------------------
+   ZOOM CON DOBLE TOQUE
+---------------------------------------------- */
 
 let lastTouchEnd = 0;
 
+
 document.addEventListener(
     "touchend",
-    e => {
+    function(e) {
 
         const now =
             Date.now();
 
-        if(
+
+        if (
             now - lastTouchEnd <= 300
-        ){
+        ) {
 
             e.preventDefault();
 
         }
+
 
         lastTouchEnd = now;
 
     },
-    {passive:false}
+    {
+        passive: false
+    }
 );
+
+
+/* ----------------------------------------------
+   EVITAR DESPLAZAMIENTO
+---------------------------------------------- */
 
 document.addEventListener(
     "touchmove",
-    e => {
+    function(e) {
 
-        if(
-            e.target.closest(".screen") &&
-            e.touches.length === 1
-        ){
+        if (
+            e.target.closest(
+                ".screen"
+            )
+        ) {
 
-            e.preventDefault();
+            if (
+                e.touches.length === 1
+            ) {
+
+                e.preventDefault();
+
+            }
 
         }
 
     },
-    {passive:false}
+    {
+        passive: false
+    }
 );
 
 </script>
