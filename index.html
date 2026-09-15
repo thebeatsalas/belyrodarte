@@ -1,11 +1,720 @@
-from pathlib import Path
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#FCF9FA">
+<title>Para ti ❤️</title>
 
-src = Path("/mnt/data/Pasted text(1).txt")
-html = src.read_text(encoding="utf-8")
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500&display=swap');
 
-# Insert verification screen before the quiz.
-marker = "<!-- ==================================================\n     QUIZ\n================================================== -->"
-verification_html = """<!-- ==================================================
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    position:fixed;
+    left:0;
+    top:0;
+    overscroll-behavior:none;
+    background:#FCF9FA;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    color:#30292D;
+    -webkit-user-select:none;
+    user-select:none;
+    -webkit-touch-callout:none;
+}
+
+.screen{
+    width:100%;
+    height:100dvh;
+    min-height:100dvh;
+    max-height:100dvh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:
+        max(30px,env(safe-area-inset-top))
+        24px
+        max(30px,env(safe-area-inset-bottom))
+        24px;
+    position:fixed;
+    top:0;
+    left:0;
+    overflow:hidden;
+    overscroll-behavior:none;
+}
+
+.screen.active{
+    display:flex;
+    animation:appear .7s ease forwards;
+}
+
+.container{
+    width:100%;
+    max-width:540px;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+}
+
+.circle.one{
+    width:280px;
+    height:280px;
+    background:#F3E5E9;
+    top:-150px;
+    left:-120px;
+}
+
+.circle.two{
+    width:250px;
+    height:250px;
+    background:#F0E1E6;
+    bottom:-150px;
+    right:-100px;
+}
+
+.heart{
+    font-size:42px;
+    margin-bottom:24px;
+    animation:softPulse 2.5s ease-in-out infinite;
+}
+
+h1,h2,.question,.final-question{
+    font-family:"Playfair Display",serif;
+    font-weight:500;
+}
+
+h1{
+    font-size:clamp(42px,11vw,64px);
+    line-height:1.05;
+    margin-bottom:22px;
+}
+
+h2{
+    font-size:clamp(31px,8vw,44px);
+    line-height:1.15;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.7;
+    color:#756B70;
+}
+
+.subtitle{
+    max-width:430px;
+    margin:0 auto 34px;
+}
+
+.primary{
+    background:#30292D;
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    padding:16px 38px;
+    min-width:180px;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease;
+    touch-action:manipulation;
+}
+
+.primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(48,41,45,.18);
+}
+
+.primary:active{
+    transform:scale(.97);
+}
+
+/* PROGRESO */
+
+.progress-container{
+    position:absolute;
+    top:25px;
+    left:24px;
+    right:24px;
+    z-index:3;
+}
+
+.progress-text{
+    text-align:center;
+    font-size:12px;
+    color:#9A858C;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.progress{
+    width:100%;
+    height:3px;
+    background:#E9DDE1;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:20%;
+    background:#C98A9D;
+    transition:width .6s ease;
+}
+
+/* VERIFICACIÓN */
+
+.verification-container{
+    max-width:430px;
+}
+
+.verification-icon{
+    font-size:58px;
+    margin-bottom:22px;
+    animation:softPulse 2.5s ease-in-out infinite;
+}
+
+.verification-container h2{
+    margin-bottom:18px;
+}
+
+.verification-text{
+    max-width:380px;
+    margin:0 auto;
+}
+
+.verification-status{
+    margin-top:24px;
+    min-height:24px;
+    font-size:14px;
+    color:#9A858C;
+}
+
+.verification-progress{
+    width:100%;
+    height:4px;
+    margin:12px auto 0;
+    background:#E9DDE1;
+    border-radius:10px;
+    overflow:hidden;
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+.verification-progress.active{
+    opacity:1;
+}
+
+.verification-progress-bar{
+    width:0%;
+    height:100%;
+    background:#C98A9D;
+    transition:width .35s ease;
+}
+
+.verification-result{
+    min-height:58px;
+    margin-top:22px;
+    font-size:17px;
+    line-height:1.55;
+    color:#756B70;
+}
+
+.verification-result strong{
+    color:#30292D;
+}
+
+.verification-button{
+    margin-top:4px;
+}
+
+.verification-button.hidden{
+    display:none;
+}
+
+/* PREGUNTAS */
+
+.question{
+    font-size:clamp(30px,7.5vw,43px);
+    line-height:1.18;
+    margin-bottom:34px;
+}
+
+.answers{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.answer{
+    width:100%;
+    padding:17px 20px;
+    background:rgba(255,255,255,.8);
+    border:1px solid #E2D7DB;
+    border-radius:15px;
+    color:#443A3F;
+    font-family:inherit;
+    font-size:16px;
+    text-align:center;
+    cursor:pointer;
+    transition:all .25s ease;
+    touch-action:manipulation;
+}
+
+.answer:hover{
+    background:#fff;
+    border-color:#C99AA8;
+    transform:translateY(-2px);
+}
+
+.answer:active{
+    transform:scale(.98);
+}
+
+.question-changing{
+    animation:questionOut .35s ease forwards;
+}
+
+/* FOTO */
+
+.photo-frame{
+    width:100%;
+    height:310px;
+    margin:28px 0;
+    border-radius:22px;
+    overflow:hidden;
+    background:#F3E5E9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.photo-placeholder{
+    color:#9A858C;
+    font-size:15px;
+}
+
+/* PREGUNTA FINAL */
+
+.final-question{
+    font-size:clamp(39px,10vw,58px);
+    line-height:1.08;
+    margin:25px 0;
+}
+
+.final-message{
+    max-width:430px;
+    margin:0 auto;
+}
+
+.final-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:30px;
+}
+
+.yes-button{
+    width:100%;
+    padding:18px;
+    border-radius:999px;
+    border:none;
+    background:#30292D;
+    color:white;
+    font-family:inherit;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease;
+    touch-action:manipulation;
+}
+
+.yes-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(48,41,45,.18);
+}
+
+.yes-button:active{
+    transform:scale(.98);
+}
+
+.yes-button.secondary{
+    background:white;
+    color:#30292D;
+    border:1px solid #E1D6DA;
+}
+
+/* ÉXITO */
+
+.success-heart{
+    font-size:75px;
+    margin-bottom:25px;
+    animation:softPulse 1.5s ease-in-out infinite;
+}
+
+.success-title{
+    font-size:clamp(42px,10vw,58px);
+}
+
+/* CORAZONES */
+
+.floating-heart{
+    position:fixed;
+    bottom:-30px;
+    pointer-events:none;
+    z-index:20;
+    animation:floatHeart 5s linear forwards;
+}
+
+/* ANIMACIÓN FINAL */
+
+.celebration-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    pointer-events:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100vw;
+    height:100dvh;
+    overflow:hidden;
+    background:#FCF9FA;
+}
+
+.celebration-glow{
+    position:absolute;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:rgba(201,138,157,.18);
+    filter:blur(20px);
+    opacity:0;
+    transform:scale(.4);
+}
+
+.celebration-glow.show{
+    animation:glowPulse 2.3s ease forwards;
+}
+
+.heart-ring{
+    position:absolute;
+    width:85px;
+    height:85px;
+    border:2px solid rgba(201,138,157,.48);
+    border-radius:50%;
+    opacity:0;
+    transform:scale(.2);
+}
+
+.heart-ring.show{
+    animation:ringExpand 2s ease forwards;
+}
+
+.celebration-heart{
+    position:absolute;
+    font-size:95px;
+    opacity:0;
+    transform:scale(0);
+}
+
+.celebration-heart.show{
+    animation:heartReveal 2.4s ease forwards;
+}
+
+.celebration-particle{
+    position:absolute;
+    left:50%;
+    top:50%;
+    font-size:22px;
+    opacity:0;
+    will-change:transform,opacity;
+}
+
+.celebration-particle.show{
+    animation:particleBurst 2.5s ease forwards;
+}
+
+.celebration-message{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:90%;
+    max-width:360px;
+    text-align:center;
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.94);
+}
+
+.celebration-message.show{
+    animation:messageAppear 1s ease forwards;
+    animation-delay:1.7s;
+}
+
+.celebration-message .big{
+    font-family:"Playfair Display",serif;
+    font-size:52px;
+    margin-bottom:16px;
+}
+
+.celebration-message .small{
+    font-size:19px;
+    line-height:1.6;
+    color:#756B70;
+}
+
+.final-heart-button{
+    transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.final-heart-button:active{
+    animation:buttonHeartBeat .7s ease;
+}
+
+/* ANIMACIONES */
+
+@keyframes heartReveal{
+    0%{opacity:0;transform:scale(0)}
+    18%{opacity:1;transform:scale(1.15)}
+    32%{transform:scale(.90)}
+    47%{transform:scale(1.08)}
+    62%{transform:scale(1)}
+    100%{opacity:0;transform:scale(1.75)}
+}
+
+@keyframes ringExpand{
+    0%{opacity:0;transform:scale(.2)}
+    20%{opacity:1}
+    100%{opacity:0;transform:scale(5.5)}
+}
+
+@keyframes glowPulse{
+    0%{opacity:0;transform:scale(.4)}
+    25%{opacity:1;transform:scale(1.15)}
+    60%{opacity:.55;transform:scale(2)}
+    100%{opacity:0;transform:scale(3.2)}
+}
+
+@keyframes messageAppear{
+    from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.94);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+@keyframes particleBurst{
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.2);
+    }
+    15%{opacity:1}
+    100%{
+        opacity:0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            rotate(var(--rotation))
+            scale(1);
+    }
+}
+
+@keyframes buttonHeartBeat{
+    0%{transform:scale(1)}
+    30%{transform:scale(.88)}
+    55%{transform:scale(1.12)}
+    75%{transform:scale(.96)}
+    100%{transform:scale(1)}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes questionOut{
+    from{
+        opacity:1;
+        transform:translateY(0);
+    }
+    to{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+}
+
+@keyframes softPulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+
+@keyframes floatHeart{
+    0%{
+        opacity:0;
+        transform:translateY(0) rotate(0deg);
+    }
+    15%{opacity:.9}
+    100%{
+        opacity:0;
+        transform:translateY(-110vh) rotate(25deg);
+    }
+}
+
+/* MÓVIL */
+
+@media(max-width:480px){
+
+    .screen{
+        padding:
+            max(25px,env(safe-area-inset-top))
+            20px
+            max(25px,env(safe-area-inset-bottom))
+            20px;
+    }
+
+    .question{
+        margin-bottom:28px;
+    }
+
+    .photo-frame{
+        height:270px;
+    }
+
+    .answer{
+        padding:18px 15px;
+    }
+}
+
+@media(max-width:480px) and (max-height:750px){
+
+    .heart{
+        margin-bottom:16px;
+    }
+
+    h1{
+        margin-bottom:15px;
+    }
+
+    .subtitle{
+        margin-bottom:22px;
+    }
+
+    .question{
+        font-size:34px;
+        margin-bottom:22px;
+    }
+
+    .answer{
+        padding:14px 12px;
+    }
+
+    .final-question{
+        font-size:45px;
+        margin:18px 0;
+    }
+
+    .final-buttons{
+        margin-top:22px;
+    }
+}
+
+@media(min-width:381px) and (max-width:400px) and (min-height:800px) and (max-height:880px){
+
+    .container{
+        max-width:350px;
+    }
+
+    h1{
+        font-size:55px;
+    }
+
+    .question{
+        font-size:38px;
+    }
+
+    .final-question{
+        font-size:50px;
+    }
+
+    p{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     PANTALLA DE BIENVENIDA
+================================================== -->
+
+<section class="screen active" id="welcome">
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="container">
+
+        <div class="heart">
+            ❤️
+        </div>
+
+        <h1>
+            Hola, Belinda
+        </h1>
+
+        <p class="subtitle">
+            Tengo unas preguntas para ti...
+            pero hay una razón detrás de todas ellas.
+        </p>
+
+        <button
+            class="primary"
+            onclick="startQuiz()">
+            Empezar
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
      VERIFICACIÓN DE IDENTIDAD
 ================================================== -->
 
@@ -16,219 +725,901 @@ verification_html = """<!-- ==================================================
 
     <div class="container verification-container">
 
-        <div class="verification-icon" id="verificationIcon">🔐</div>
+        <div
+            class="verification-icon"
+            id="verificationIcon">
+            🔐
+        </div>
 
-        <h2>Verificación de identidad</h2>
+        <h2>
+            Verificación de identidad
+        </h2>
 
-        <p class="verification-text" id="verificationText">
+        <p
+            class="verification-text"
+            id="verificationText">
             Para continuar, necesitamos comprobar que realmente eres Belinda.
         </p>
 
-        <div class="verification-status" id="verificationStatus">
+        <div
+            class="verification-status"
+            id="verificationStatus">
             Coloca tu cara frente a la pantalla...
         </div>
 
         <div class="verification-progress">
-            <div class="verification-progress-bar" id="verificationProgressBar"></div>
+
+            <div
+                class="verification-progress-bar"
+                id="verificationProgressBar">
+            </div>
+
         </div>
 
-        <div class="verification-result" id="verificationResult"></div>
+        <div
+            class="verification-result"
+            id="verificationResult">
+        </div>
 
-        <button class="primary verification-button"
-                id="verificationButton"
-                onclick="runVerification()">
+        <button
+            class="primary verification-button"
+            id="verificationButton"
+            onclick="runVerification()">
+
             Iniciar verificación
+
         </button>
 
     </div>
 
 </section>
 
+<!-- ==================================================
+     QUIZ
+================================================== -->
 
-"""
-if marker not in html:
-    raise ValueError("No se encontró el marcador del quiz.")
-html = html.replace(marker, verification_html + marker, 1)
+<section class="screen" id="quiz">
 
-# Insert CSS immediately before the existing PREGUNTAS section.
-css_marker = "/* ==================================================\n   PREGUNTAS\n================================================== */"
-verification_css = """/* ==================================================
-   VERIFICACIÓN DE IDENTIDAD
+    <div class="progress-container">
+
+        <div
+            class="progress-text"
+            id="progressText">
+            Pregunta 1 de 5
+        </div>
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div
+            class="question"
+            id="questionText">
+        </div>
+
+        <div
+            class="answers"
+            id="answers">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     MEMORIA
+================================================== -->
+
+<section class="screen" id="memory">
+
+    <div class="container">
+
+        <div class="heart">
+            🤍
+        </div>
+
+        <h2>
+            Y una última cosa...
+        </h2>
+
+        <p>
+            Antes de hacerte la última pregunta,
+            quería recordarte algo.
+        </p>
+
+        <div class="photo-frame">
+
+            <div class="photo-placeholder">
+                Aquí pondremos una foto de nosotros ❤️
+            </div>
+
+        </div>
+
+        <p class="subtitle">
+            Me gusta mucho todo lo que hemos vivido juntos
+            y, sobre todo, me gusta compartirlo contigo.
+        </p>
+
+        <button
+            class="primary"
+            onclick="showFinalQuestion()">
+
+            Continuar ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     PREGUNTA FINAL
+================================================== -->
+
+<section class="screen" id="finalQuestion">
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="container">
+
+        <div class="heart">
+            ❤️
+        </div>
+
+        <p>
+            Y ahora sí...
+        </p>
+
+        <div class="final-question">
+            ¿Quieres ser mi novia?
+        </div>
+
+        <p class="final-message">
+            No hay una respuesta perfecta.
+            Solo quería preguntártelo porque
+            eres alguien muy especial para mí.
+        </p>
+
+        <div class="final-buttons">
+
+            <button
+                class="yes-button"
+                onclick="sayYes()">
+                Sí ❤️
+            </button>
+
+            <button
+                class="yes-button secondary"
+                onclick="sayYes()">
+                Sí, quiero 🥰
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     PANTALLA DE ÉXITO
+================================================== -->
+
+<section class="screen" id="success">
+
+    <div class="container">
+
+        <div class="success-heart">
+            ❤️
+        </div>
+
+        <h1 class="success-title">
+            Entonces...
+        </h1>
+
+        <h2>
+            Tenemos algo que celebrar 🥰
+        </h2>
+
+        <p class="final-message">
+            Gracias por decir que sí.
+            Ahora sí empieza oficialmente
+            una nueva etapa para nosotros.
+        </p>
+
+        <button
+            class="primary final-heart-button"
+            onclick="celebrate()">
+
+            ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+/* ==================================================
+   PREGUNTAS
 ================================================== */
 
-.verification-container {
-    max-width: 430px;
+const questions = [
+
+    {
+        question:
+            "¿Cuál crees que ha sido una de mis partes favoritas de todo este tiempo contigo?",
+
+        answers: [
+            "Las veces que nos hemos reído juntos",
+            "Las conversaciones que tenemos",
+            "Los lugares que hemos conocido",
+            "Todas las anteriores ❤️"
+        ]
+    },
+
+    {
+        question:
+            "¿Crees que me gusta pasar tiempo contigo?",
+
+        answers: [
+            "Sí",
+            "Muchísimo",
+            "Demasiado",
+            "Creo que ya es bastante obvio 😂"
+        ]
+    },
+
+    {
+        question:
+            "Si pudiéramos repetir un día juntos, ¿cuál escogerías?",
+
+        answers: [
+            "Uno tranquilo",
+            "Uno lleno de aventuras",
+            "Uno en el que no paramos de reír",
+            "Cualquiera mientras sea contigo"
+        ]
+    },
+
+    {
+        question:
+            "¿Crees que hemos creado momentos que voy a recordar durante mucho tiempo?",
+
+        answers: [
+            "Sí ❤️",
+            "Definitivamente",
+            "Muchísimos",
+            "Espero que todavía nos falten muchos más"
+        ]
+    },
+
+    {
+        question:
+            "Y siendo completamente sincera...",
+
+        answers: [
+            "Creo que ya sé qué me quieres preguntar",
+            "Me estás poniendo nerviosa 😂",
+            "Tengo una pequeña sospecha...",
+            "Quiero saber cuál es la última pregunta ❤️"
+        ]
+    }
+
+];
+
+let currentQuestion = 0;
+
+
+/* ==================================================
+   OCULTAR PANTALLAS
+================================================== */
+
+function hideScreens(){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
 }
 
-.verification-icon {
-    font-size: 58px;
-    margin-bottom: 22px;
-    animation: softPulse 2.5s ease-in-out infinite;
+
+/* ==================================================
+   MOSTRAR PANTALLA
+================================================== */
+
+function showScreen(id){
+
+    hideScreens();
+
+    const screen =
+        document.getElementById(id);
+
+    screen.classList.add("active");
+
+    window.scrollTo(0,0);
+
 }
 
-.verification-container h2 {
-    margin-bottom: 18px;
-}
 
-.verification-text {
-    max-width: 380px;
-    margin: 0 auto;
-}
+/* ==================================================
+   INICIAR QUIZ
+================================================== */
 
-.verification-status {
-    margin-top: 24px;
-    min-height: 24px;
-    font-size: 14px;
-    color: #9A858C;
-}
-
-.verification-progress {
-    width: 100%;
-    height: 4px;
-    margin: 12px auto 0;
-    background: #E9DDE1;
-    border-radius: 10px;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity .25s ease;
-}
-
-.verification-progress.active {
-    opacity: 1;
-}
-
-.verification-progress-bar {
-    width: 0%;
-    height: 100%;
-    background: #C98A9D;
-    transition: width .35s ease;
-}
-
-.verification-result {
-    min-height: 58px;
-    margin-top: 22px;
-    font-size: 17px;
-    line-height: 1.55;
-    color: #756B70;
-}
-
-.verification-result strong {
-    color: #30292D;
-}
-
-.verification-button {
-    margin-top: 4px;
-}
-
-.verification-button.hidden {
-    display: none;
-}
-
-"""
-if css_marker not in html:
-    raise ValueError("No se encontró el marcador CSS de preguntas.")
-html = html.replace(css_marker, verification_css + css_marker, 1)
-
-# Welcome now leads to verification; quiz itself remains unchanged.
-old_start = """function startQuiz() {
-
-    currentQuestion = 0;
-
-    showScreen("quiz");
-
-    loadQuestion();
-
-}"""
-new_start = """function startQuiz() {
+function startQuiz(){
 
     currentQuestion = 0;
 
     showScreen("verification");
 
-}"""
-if old_start not in html:
-    raise ValueError("No se encontró startQuiz original.")
-html = html.replace(old_start, new_start, 1)
+}
 
-# Add verification behavior before the existing celebration code.
-js_marker = "/* ==================================================\n   CELEBRACIÓN FINAL\n================================================== */"
-verification_js = """/* ==================================================
-   VERIFICACIÓN DE IDENTIDAD
+
+/* ==================================================
+   VERIFICACIÓN
 ================================================== */
 
 let verificationRunning = false;
 
-function runVerification() {
+function runVerification(){
 
-    if (verificationRunning) return;
+    if(verificationRunning) return;
 
     verificationRunning = true;
 
-    const icon = document.getElementById("verificationIcon");
-    const text = document.getElementById("verificationText");
-    const status = document.getElementById("verificationStatus");
-    const progress = document.querySelector("#verification .verification-progress");
-    const progressBar = document.getElementById("verificationProgressBar");
-    const result = document.getElementById("verificationResult");
-    const button = document.getElementById("verificationButton");
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const text =
+        document.getElementById(
+            "verificationText"
+        );
+
+    const status =
+        document.getElementById(
+            "verificationStatus"
+        );
+
+    const progress =
+        document.querySelector(
+            "#verification .verification-progress"
+        );
+
+    const progressBar =
+        document.getElementById(
+            "verificationProgressBar"
+        );
+
+    const result =
+        document.getElementById(
+            "verificationResult"
+        );
+
+    const button =
+        document.getElementById(
+            "verificationButton"
+        );
 
     button.classList.add("hidden");
+
     progress.classList.add("active");
+
     result.innerHTML = "";
 
     const steps = [
-        ["Iniciando reconocimiento facial...", 18],
-        ["Detectando rostro...", 38],
-        ["Analizando...", 61],
-        ["Comparando características...", 82],
-        ["Buscando coincidencias...", 100]
+
+        [
+            "Iniciando reconocimiento facial...",
+            18
+        ],
+
+        [
+            "Detectando rostro...",
+            38
+        ],
+
+        [
+            "Analizando...",
+            61
+        ],
+
+        [
+            "Comparando características...",
+            82
+        ],
+
+        [
+            "Buscando coincidencias...",
+            100
+        ]
+
     ];
 
     let step = 0;
 
-    function nextStep() {
+    function nextStep(){
 
-        status.textContent = steps[step][0];
-        progressBar.style.width = steps[step][1] + "%";
+        status.textContent =
+            steps[step][0];
+
+        progressBar.style.width =
+            steps[step][1] + "%";
+
         step++;
 
-        if (step < steps.length) {
-            setTimeout(nextStep, 650);
-        } else {
+        if(step < steps.length){
+
+            setTimeout(
+                nextStep,
+                650
+            );
+
+        }else{
+
             setTimeout(() => {
 
                 icon.textContent = "✅";
-                text.innerHTML = "<strong>Identidad confirmada.</strong>";
-                status.textContent = "Resultado: probablemente eres Belinda.";
+
+                text.innerHTML =
+                    "<strong>Identidad confirmada.</strong>";
+
+                status.textContent =
+                    "Resultado: probablemente eres Belinda.";
+
                 result.innerHTML =
                     "La verdad no tenemos tecnología para comprobarlo. 😂❤️";
 
-                button.textContent = "Continuar →";
-                button.classList.remove("hidden");
+                button.textContent =
+                    "Continuar →";
 
-                button.onclick = function() {
+                button.classList.remove(
+                    "hidden"
+                );
+
+                button.onclick = function(){
+
                     showScreen("quiz");
+
                     loadQuestion();
+
                 };
 
                 verificationRunning = false;
 
-            }, 700);
+            },700);
+
         }
+
     }
 
     nextStep();
+
 }
 
 
-"""
-if js_marker not in html:
-    raise ValueError("No se encontró el marcador JS de celebración.")
-html = html.replace(js_marker, verification_js + js_marker, 1)
+/* ==================================================
+   CARGAR PREGUNTA
+================================================== */
 
-out = Path("/mnt/data/index_belyrodarte_verificacion.html")
-out.write_text(html, encoding="utf-8")
+function loadQuestion(){
 
-print("Listo. Integré la pantalla de verificación sin cambiar las 5 preguntas ni la animación final.")
-print(f"Archivo creado: {out}")
-print(f"Líneas: {len(html.splitlines())}")
+    const questionElement =
+        document.getElementById(
+            "questionText"
+        );
+
+    const answersElement =
+        document.getElementById(
+            "answers"
+        );
+
+    const question =
+        questions[currentQuestion];
+
+    questionElement.textContent =
+        question.question;
+
+    answersElement.innerHTML = "";
+
+    question.answers.forEach(
+        answerText => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "answer";
+
+            button.textContent =
+                answerText;
+
+            button.onclick =
+                nextQuestion;
+
+            answersElement.appendChild(
+                button
+            );
+
+        }
+    );
+
+    document
+        .getElementById(
+            "progressText"
+        )
+        .textContent =
+        `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+
+    document
+        .getElementById(
+            "progressBar"
+        )
+        .style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+}
+
+
+/* ==================================================
+   SIGUIENTE PREGUNTA
+================================================== */
+
+function nextQuestion(){
+
+    const questionElement =
+        document.getElementById(
+            "questionText"
+        );
+
+    questionElement.classList.add(
+        "question-changing"
+    );
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if(
+            currentQuestion >=
+            questions.length
+        ){
+
+            showScreen("memory");
+
+        }else{
+
+            questionElement.classList.remove(
+                "question-changing"
+            );
+
+            loadQuestion();
+
+        }
+
+    },350);
+
+}
+
+
+/* ==================================================
+   PREGUNTA FINAL
+================================================== */
+
+function showFinalQuestion(){
+
+    showScreen(
+        "finalQuestion"
+    );
+
+}
+
+
+/* ==================================================
+   RESPUESTA SÍ
+================================================== */
+
+function sayYes(){
+
+    showScreen(
+        "success"
+    );
+
+}
+
+
+/* ==================================================
+   CELEBRACIÓN FINAL
+================================================== */
+
+function celebrate(){
+
+    const overlay =
+        document.createElement(
+            "div"
+        );
+
+    overlay.className =
+        "celebration-overlay";
+
+    document.body.appendChild(
+        overlay
+    );
+
+    const glow =
+        document.createElement(
+            "div"
+        );
+
+    glow.className =
+        "celebration-glow";
+
+    overlay.appendChild(
+        glow
+    );
+
+    const ring =
+        document.createElement(
+            "div"
+        );
+
+    ring.className =
+        "heart-ring";
+
+    overlay.appendChild(
+        ring
+    );
+
+    const bigHeart =
+        document.createElement(
+            "div"
+        );
+
+    bigHeart.className =
+        "celebration-heart";
+
+    bigHeart.textContent =
+        "❤️";
+
+    overlay.appendChild(
+        bigHeart
+    );
+
+    requestAnimationFrame(() => {
+
+        glow.classList.add(
+            "show"
+        );
+
+        ring.classList.add(
+            "show"
+        );
+
+        bigHeart.classList.add(
+            "show"
+        );
+
+    });
+
+    const symbols = [
+        "❤️",
+        "💗",
+        "💜",
+        "🤍",
+        "✨"
+    ];
+
+    const positions = [
+
+        [-170,-190],
+        [-110,-240],
+        [-40,-270],
+        [50,-250],
+        [125,-210],
+        [185,-150],
+
+        [-210,-70],
+        [210,-60],
+
+        [-230,40],
+        [230,45],
+
+        [-190,130],
+        [-125,180],
+        [-55,220],
+        [30,225],
+        [110,185],
+        [180,125]
+
+    ];
+
+    positions.forEach(
+        (position,index) => {
+
+            setTimeout(() => {
+
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
+
+                particle.className =
+                    "celebration-particle";
+
+                particle.textContent =
+                    symbols[
+                        index %
+                        symbols.length
+                    ];
+
+                particle.style.setProperty(
+                    "--x",
+                    position[0] + "px"
+                );
+
+                particle.style.setProperty(
+                    "--y",
+                    position[1] + "px"
+                );
+
+                particle.style.setProperty(
+                    "--rotation",
+                    (
+                        Math.random() * 60 - 30
+                    ) + "deg"
+                );
+
+                overlay.appendChild(
+                    particle
+                );
+
+                requestAnimationFrame(() => {
+
+                    particle.classList.add(
+                        "show"
+                    );
+
+                });
+
+            },index * 45);
+
+        }
+    );
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+    message.className =
+        "celebration-message";
+
+    message.innerHTML = `
+
+        <div class="big">
+            ❤️
+        </div>
+
+        <div class="small">
+            Y ahora sí...<br>
+            oficialmente somos nosotros 🥰
+        </div>
+
+    `;
+
+    overlay.appendChild(
+        message
+    );
+
+    requestAnimationFrame(() => {
+
+        message.classList.add(
+            "show"
+        );
+
+    });
+
+    setTimeout(() => {
+
+        overlay.remove();
+
+    },5000);
+
+}
+
+
+/* ==================================================
+   BLOQUEAR ZOOM EN IPHONE
+================================================== */
+
+document.addEventListener(
+    "gesturestart",
+    e => e.preventDefault(),
+    {passive:false}
+);
+
+document.addEventListener(
+    "gesturechange",
+    e => e.preventDefault(),
+    {passive:false}
+);
+
+document.addEventListener(
+    "gestureend",
+    e => e.preventDefault(),
+    {passive:false}
+);
+
+document.addEventListener(
+    "touchmove",
+    e => {
+
+        if(e.touches.length > 1){
+            e.preventDefault();
+        }
+
+    },
+    {passive:false}
+);
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+    "touchend",
+    e => {
+
+        const now =
+            Date.now();
+
+        if(
+            now - lastTouchEnd <= 300
+        ){
+
+            e.preventDefault();
+
+        }
+
+        lastTouchEnd = now;
+
+    },
+    {passive:false}
+);
+
+document.addEventListener(
+    "touchmove",
+    e => {
+
+        if(
+            e.target.closest(".screen") &&
+            e.touches.length === 1
+        ){
+
+            e.preventDefault();
+
+        }
+
+    },
+    {passive:false}
+);
+
+</script>
+
+</body>
+</html>
