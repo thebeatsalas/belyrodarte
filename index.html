@@ -1207,6 +1207,39 @@ p {
 .validation-button.show { opacity:1; pointer-events:auto; }
 
 
+
+/* SECUENCIA ANTES DE LA ÚLTIMA PREGUNTA */
+.last-step-buttons {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-top:28px;
+}
+.last-step-button {
+    min-width:225px;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(8px);
+    transition:opacity .45s ease, transform .45s ease;
+}
+.last-step-button.show {
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+}
+.last-step-loading {
+    min-height:30px;
+    margin-top:20px;
+    font-size:15px;
+    color:#9A858C;
+    opacity:0;
+    transition:opacity .5s ease;
+}
+.last-step-loading.show {
+    opacity:1;
+}
+
 </style>
 </head>
 
@@ -1385,13 +1418,62 @@ p {
         </p>
 
 
-        <button
-            class="primary"
-            onclick="showFinalQuestion()">
+        <div class="last-step-buttons">
 
-            Continuar ❤️
+            <button
+                class="primary last-step-button show"
+                id="lastStep1"
+                onclick="lastStepOne()">
 
-        </button>
+                ¿Lista para la última pregunta? ❤️
+
+            </button>
+
+            <button
+                class="primary last-step-button"
+                id="lastStep2"
+                onclick="lastStepTwo()">
+
+                ¿Estás segura? 👀
+
+            </button>
+
+            <button
+                class="primary last-step-button"
+                id="lastStep3"
+                onclick="lastStepThree()">
+
+                ¿Súper segura? 🥰
+
+            </button>
+
+            <button
+                class="primary last-step-button"
+                id="lastStep4"
+                onclick="lastStepFour()">
+
+                ¿Segurísima? ❤️
+
+            </button>
+
+            <button
+                class="primary last-step-button"
+                id="lastStep5"
+                onclick="lastStepFive()">
+
+                ¿Así de que súper súper segura? 👀❤️
+
+            </button>
+
+        </div>
+
+        <div
+            class="last-step-loading"
+            id="lastStepLoading">
+
+            Preparando la última pregunta... ❤️
+
+        </div>
 
     </div>
 
@@ -1836,6 +1918,8 @@ function nextQuestion() {
                 "memory"
             );
 
+            resetLastStep();
+
         }
 
         else {
@@ -1857,6 +1941,89 @@ function nextQuestion() {
 /* ==================================================
    PREGUNTA FINAL
 ================================================== */
+
+function resetLastStep() {
+
+    document.getElementById("lastStep1").classList.add("show");
+    document.getElementById("lastStep2").classList.remove("show");
+    document.getElementById("lastStep3").classList.remove("show");
+    document.getElementById("lastStep4").classList.remove("show");
+    document.getElementById("lastStep5").classList.remove("show");
+    document.getElementById("lastStepLoading").classList.remove("show");
+
+}
+
+
+function lastStepOne() {
+
+    document.getElementById("lastStep1").classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById("lastStep2").classList.add("show");
+
+    }, 650);
+
+}
+
+
+function lastStepTwo() {
+
+    document.getElementById("lastStep2").classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById("lastStep3").classList.add("show");
+
+    }, 650);
+
+}
+
+
+function lastStepThree() {
+
+    document.getElementById("lastStep3").classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById("lastStep4").classList.add("show");
+
+    }, 650);
+
+}
+
+
+function lastStepFour() {
+
+    document.getElementById("lastStep4").classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById("lastStep5").classList.add("show");
+
+    }, 650);
+
+}
+
+
+function lastStepFive() {
+
+    document.getElementById("lastStep5").classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById("lastStepLoading").classList.add("show");
+
+    }, 500);
+
+    setTimeout(() => {
+
+        showFinalQuestion();
+
+    }, 3800);
+
+}
+
 
 function showFinalQuestion() {
 
