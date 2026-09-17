@@ -786,6 +786,45 @@ p {
 }
 
 
+.celebration-message .initials {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 22px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    color: #C98A9D;
+
+    margin-top: 18px;
+}
+
+
+.celebration-message .date {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: #9A858C;
+
+    margin-top: 6px;
+}
+
+
 /* ==================================================
    BOTÓN FINAL
 ================================================== */
@@ -2496,6 +2535,12 @@ function celebrate() {
         "celebration-message";
 
 
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString(
+        "es-MX",
+        { day: "numeric", month: "long", year: "numeric" }
+    );
+
     message.innerHTML = `
 
         <div class="big">
@@ -2508,6 +2553,14 @@ function celebrate() {
 
             somos novios
 
+        </div>
+
+        <div class="initials">
+            B&amp;D
+        </div>
+
+        <div class="date">
+            ${formattedDate}
         </div>
 
     `;
