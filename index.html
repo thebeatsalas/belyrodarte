@@ -922,6 +922,7 @@ p {
 }
 
 
+
 .celebration-message .date {
 
     font-family:
@@ -1567,6 +1568,120 @@ p {
     }
 }
 
+
+/* ==================================================
+   CONTRATO DE NOVIAZGO
+================================================== */
+
+.contract-container {
+    max-width: 470px;
+}
+
+.contract-icon {
+    font-size: 54px;
+    line-height: 1;
+    margin-bottom: 16px;
+    animation: contractRing 2.2s ease-in-out infinite;
+}
+
+.contract-title {
+    margin-bottom: 12px;
+}
+
+.contract-intro {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.contract-names {
+    font-family: "Great Vibes", "Playfair Display", serif;
+    font-size: clamp(31px, 8vw, 43px);
+    color: #30292D;
+    margin-bottom: 18px;
+}
+
+.contract-names span {
+    font-family: "DM Sans", sans-serif;
+    font-size: .65em;
+}
+
+.contract-clauses {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0 auto 20px;
+    text-align: left;
+}
+
+.contract-clause {
+    background: rgba(255,255,255,.8);
+    border: 1px solid #E2D7DB;
+    border-radius: 12px;
+    padding: 9px 13px;
+    color: #443A3F;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.contract-clause span {
+    display: block;
+    color: #C98A9D;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.contract-question {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    color: #443A3F;
+    margin-bottom: 16px;
+}
+
+.contract-button {
+    min-width: 190px;
+}
+
+@keyframes contractRing {
+    0%, 100% { transform: rotate(-5deg) scale(1); }
+    50% { transform: rotate(5deg) scale(1.08); }
+}
+
+@media (max-width: 480px) {
+    .contract-container {
+        max-width: 350px;
+    }
+
+    .contract-icon {
+        font-size: 46px;
+        margin-bottom: 10px;
+    }
+
+    .contract-names {
+        margin-bottom: 13px;
+    }
+
+    .contract-clauses {
+        gap: 5px;
+        margin-bottom: 14px;
+    }
+
+    .contract-clause {
+        padding: 7px 10px;
+        font-size: 13px;
+    }
+
+    .contract-question {
+        font-size: 18px;
+        margin-bottom: 13px;
+    }
+}
+
+
 </style>
 </head>
 
@@ -1977,6 +2092,77 @@ p {
 
             ❤️
 
+        </button>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- ==================================================
+     PANTALLA FINAL: CONTRATO DE NOVIAZGO
+================================================== -->
+
+<section class="screen" id="contract">
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="container contract-container">
+
+        <div class="contract-icon">💍</div>
+
+        <h2 class="contract-title">
+            Solicitud aceptada. ❤️
+        </h2>
+
+        <p class="contract-intro">
+            Se ha creado oficialmente el contrato de noviazgo entre:
+        </p>
+
+        <div class="contract-names">
+            Belinda <span>❤️</span> David
+        </div>
+
+        <div class="contract-clauses">
+
+            <div class="contract-clause">
+                <span>1. — Elegirnos.</span>
+                Ambas partes se comprometen a seguir eligiéndose, incluso en los días difíciles.
+            </div>
+
+            <div class="contract-clause">
+                <span>2. — Cuidarnos.</span>
+                Queda establecido que ambos deberán cuidarse, escucharse y procurarse siempre.
+            </div>
+
+            <div class="contract-clause">
+                <span>3. — Estar presentes.</span>
+                Se acuerda compartir tanto los días increíbles como aquellos en los que simplemente necesitemos compañía.
+            </div>
+
+            <div class="contract-clause">
+                <span>4. — Crear recuerdos.</span>
+                Ambas partes se comprometen a llenar este contrato de momentos que algún día recordaremos con una sonrisa.
+            </div>
+
+            <div class="contract-clause">
+                <span>5. — Querernos mucho.</span>
+                El cariño deberá demostrarse no solo con palabras, sino también con pequeños detalles.
+            </div>
+
+        </div>
+
+        <p class="contract-question">
+            ¿Aceptas los términos y condiciones?
+        </p>
+
+        <button
+            class="primary contract-button"
+            onclick="acceptContract()">
+            ACEPTO ❤️
         </button>
 
     </div>
@@ -2544,9 +2730,7 @@ function confirmNervous() {
 
 function sayYes() {
 
-    showScreen(
-        "success"
-    );
+    showScreen("contract");
 
 }
 
@@ -2896,6 +3080,27 @@ function celebrate() {
 }
 
 
+
+
+
+
+function acceptContract() {
+
+    const button = document.querySelector(".contract-button");
+
+    button.textContent = "ACEPTADO ❤️";
+    button.disabled = true;
+
+    setTimeout(() => {
+        button.textContent = "💍 Oficialmente novios";
+
+        setTimeout(() => {
+            celebrate();
+        }, 900);
+
+    }, 700);
+
+}
 
 /* ==================================================
    BLOQUEAR ZOOM EN IPHONE
