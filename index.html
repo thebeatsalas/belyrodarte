@@ -1826,7 +1826,7 @@ p {
 
             <button
                 class="yes-button"
-                onclick="sayYes()">
+                onclick="sayYes(false)">
 
                 Sí ♥️
 
@@ -1835,9 +1835,20 @@ p {
 
             <button
                 class="yes-button secondary"
-                onclick="sayYes()">
+                onclick="sayYes(true)">
 
                 Sí, mil veces sí 🥰
+
+            </button>
+
+            <button
+                class="yes-button secondary no-button"
+                id="noButton"
+                onmouseover="moveNoButton(this)"
+                onclick="moveNoButton(this)"
+                ontouchstart="moveNoButton(this)">
+
+                No 😜
 
             </button>
 
@@ -2418,12 +2429,111 @@ function showFinalQuestion() {
    RESPUESTA SÍ
 ================================================== */
 
-function sayYes() {
+function sayYes(intense = false) {
+
+    // Vibración de celebración ❤️
+    if ("vibrate" in navigator) {
+
+        if (intense) {
+            // Vibración intensa para "Sí, mil veces sí"
+            navigator.vibrate([
+                150, 80,
+                150, 80,
+                250, 100,
+                150, 80,
+                500
+            ]);
+        } else {
+            // Vibración suave tipo latido para "Sí"
+            navigator.vibrate([
+                200, 100,
+                200, 100,
+                400
+            ]);
+        }
+    }
 
     showScreen(
         "success"
     );
 
+}
+
+
+/* ==================================================
+   BOTÓN TRAVIESO — OPCIÓN NO
+================================================== */
+
+let noAttempts = 0;
+
+const noMessages = [
+    "No 😜",
+    "¿Segura? 👀",
+    "Piénsalo otra vez 😂",
+    "Ese botón no funciona 😌",
+    "Intenta otra vez 😏",
+    "Creo que quieres decir que sí ❤️"
+];
+
+function moveNoButton(button) {
+
+    noAttempts++;
+
+    // Cambiar el texto
+    const messageIndex = Math.min(
+        noAttempts,
+        noMessages.length - 1
+    );
+
+    button.textContent = noMessages[messageIndex];
+
+    // Después de varios intentos, desaparece
+    if (noAttempts >= 7) {
+
+        button.style.opacity = "0";
+        button.style.pointerEvents = "none";
+
+        setTimeout(() => {
+            button.remove();
+        }, 350);
+
+        return;
+    }
+
+    // Convertirlo en botón flotante
+    button.classList.add("running");
+
+    const margin = 25;
+
+    const maxX =
+        window.innerWidth -
+        button.offsetWidth -
+        margin;
+
+    const maxY =
+        window.innerHeight -
+        button.offsetHeight -
+        margin;
+
+    const x =
+        margin +
+        Math.random() * Math.max(0, maxX - margin);
+
+    const y =
+        margin +
+        Math.random() * Math.max(0, maxY - margin);
+
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+
+    // Pequeño efecto de escape
+    button.style.transform =
+        `scale(.92) rotate(${Math.random() * 8 - 4}deg)`;
+
+    setTimeout(() => {
+        button.style.transform =
+            "scale(1) rotate(0deg)";
+    }, 250);
 }
 
 
