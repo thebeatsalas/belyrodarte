@@ -444,6 +444,69 @@ p {
 
 
 /* ==================================================
+   PANTALLA "QUÉ NERVIOS"
+================================================== */
+
+.nervous-monkey {
+    font-size: clamp(110px, 30vw, 180px);
+    line-height: 1;
+    margin-bottom: 24px;
+    display: inline-block;
+    animation: nervousMonkeyIn .9s cubic-bezier(.16,1.2,.3,1) forwards;
+}
+
+.nervous-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: clamp(40px, 10vw, 58px);
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.nervous-subtitle {
+    font-family: "Great Vibes", "Playfair Display", serif;
+    font-size: clamp(34px, 8vw, 46px);
+    line-height: 1.25;
+    color: #30292D;
+    margin-bottom: 30px;
+}
+
+.nervous-button {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: nervousButtonIn .6s ease .8s forwards;
+}
+
+@keyframes nervousMonkeyIn {
+    0% {
+        opacity: 0;
+        transform: scale(.3) rotate(-10deg);
+    }
+    65% {
+        opacity: 1;
+        transform: scale(1.12) rotate(4deg);
+    }
+    82% {
+        transform: scale(.96) rotate(-2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes nervousButtonIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
    PREGUNTA FINAL
 ================================================== */
 
@@ -1784,6 +1847,43 @@ p {
 
 
 <!-- ==================================================
+     PANTALLA: QUÉ NERVIOS
+================================================== -->
+
+<section
+    class="screen"
+    id="nervous">
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="container">
+
+        <div class="nervous-monkey">🙊</div>
+
+        <div class="nervous-title">
+            Qué nervios...
+        </div>
+
+        <p class="nervous-subtitle">
+            ¿Estás segura?
+        </p>
+
+        <button
+            class="primary nervous-button"
+            onclick="confirmNervous()">
+
+            Sí, estoy segura ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
      PREGUNTA FINAL
 ================================================== -->
 
@@ -2352,20 +2452,28 @@ function lastStepFive() {
 }
 
 
-function showHeartLoading() {
+function showHeartLoading(showProposalAfter = false) {
 
     showScreen("heartLoading");
 
     const icon = document.querySelector(".heart-loading-icon");
     const textEl = document.getElementById("heartLoadingText");
 
-    const messages = [
-        "Preparando algo importante...",
-        "Esto significa mucho para mí...",
-        "Respira hondo...",
-        "Ya casi está listo...",
-        "Aquí viene..."
-    ];
+    const messages = showProposalAfter
+        ? [
+            "Preparando algo importante...",
+            "Esto significa mucho para mí...",
+            "Respira hondo...",
+            "Ya casi está listo...",
+            "Aquí viene..."
+          ]
+        : [
+            "He pensado mucho en este momento...",
+            "Hay cosas que simplemente se sienten...",
+            "Y contigo he sentido muchas de ellas...",
+            "Creo que ya sabes por dónde voy...",
+            "Solo falta una pequeña cosa..."
+          ];
 
     let i = 0;
 
@@ -2391,7 +2499,15 @@ function showHeartLoading() {
 
             else {
 
-                setTimeout(showFinalQuestion, 2000);
+                setTimeout(() => {
+
+                    if (showProposalAfter) {
+                        showScreen("finalQuestion");
+                    } else {
+                        showFinalQuestion();
+                    }
+
+                }, 2000);
 
             }
 
@@ -2407,10 +2523,18 @@ function showHeartLoading() {
 function showFinalQuestion() {
 
     showScreen(
-        "finalQuestion"
+        "nervous"
     );
 
 }
+
+function confirmNervous() {
+
+    showHeartLoading(true);
+
+}
+
+
 
 
 
