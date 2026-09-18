@@ -1303,7 +1303,65 @@ p {
 }
 
 
-/* VALIDACION DE IDENTIDAD */
+/* ==================================================
+   PANTALLA DE CARGA CON CORAZÓN LATIENDO
+================================================== */
+
+.heart-loading-icon {
+
+    font-size: 64px;
+
+    margin-bottom: 30px;
+
+    animation:
+        heartBeat 1.1s ease-in-out infinite;
+}
+
+.heart-loading-text {
+
+    font-size: 16px;
+
+    color: #756B70;
+
+    min-height: 26px;
+
+    transition:
+        opacity .4s ease;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    15% {
+
+        transform:
+            scale(1.25);
+    }
+
+    30% {
+
+        transform:
+            scale(1);
+    }
+
+    45% {
+
+        transform:
+            scale(1.18);
+    }
+
+    60% {
+
+        transform:
+            scale(1);
+    }
+}
 .validation-container { max-width:430px; }
 .validation-icon { font-size:58px; margin-bottom:20px; animation:softPulse 2.5s ease-in-out infinite; }
 .validation-container h2 { margin-bottom:18px; }
@@ -1688,6 +1746,34 @@ p {
             id="lastStepLoading">
 
             Preparando la última pregunta... ❤️
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CARGA CON CORAZÓN
+================================================== -->
+
+<section
+    class="screen"
+    id="heartLoading">
+
+    <div class="container">
+
+        <div class="heart-loading-icon">
+            ❤️
+        </div>
+
+        <div
+            class="heart-loading-text"
+            id="heartLoadingText">
+
+            Preparando algo importante...
 
         </div>
 
@@ -2259,9 +2345,61 @@ function lastStepFive() {
 
     setTimeout(() => {
 
-        showFinalQuestion();
+        showHeartLoading();
 
-    }, 3800);
+    }, 2200);
+
+}
+
+
+function showHeartLoading() {
+
+    showScreen("heartLoading");
+
+    const icon = document.querySelector(".heart-loading-icon");
+    const textEl = document.getElementById("heartLoadingText");
+
+    const messages = [
+        "Preparando algo importante...",
+        "Esto significa mucho para mí...",
+        "Respira hondo...",
+        "Ya casi está listo...",
+        "Aquí viene..."
+    ];
+
+    let i = 0;
+
+    function nextMessage() {
+
+        textEl.style.opacity = "0";
+
+        setTimeout(() => {
+
+            textEl.textContent = messages[i];
+            textEl.style.opacity = "1";
+
+            icon.style.animationDuration =
+                Math.max(0.45, 1.1 - i * 0.16) + "s";
+
+            i++;
+
+            if (i < messages.length) {
+
+                setTimeout(nextMessage, 1700);
+
+            }
+
+            else {
+
+                setTimeout(showFinalQuestion, 2000);
+
+            }
+
+        }, 400);
+
+    }
+
+    nextMessage();
 
 }
 
