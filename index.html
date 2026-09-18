@@ -537,20 +537,74 @@ p {
    PANTALLA DE ÉXITO
 ================================================== */
 
-.success-heart {
+.success-heading {
 
-    font-size: 75px;
-
-    margin-bottom: 25px;
-
-    animation:
-        softPulse 1.5s ease-in-out infinite;
-}
-
-.success-title {
+    font-family:
+        "Great Vibes",
+        "Playfair Display",
+        serif;
 
     font-size:
-        clamp(42px, 10vw, 58px);
+        clamp(46px, 12vw, 64px);
+
+    font-weight: 400;
+
+    color: #30292D;
+
+    line-height: 1.2;
+
+    margin-bottom: 28px;
+}
+
+.success-message {
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #756B70;
+
+    max-width: 360px;
+
+    margin: 0 auto 48px;
+}
+
+.celebrate-button {
+
+    background: #30292D;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 999px;
+
+    width: 64px;
+    height: 64px;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.celebrate-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(48,41,45,.18);
+}
+
+.celebrate-button:active {
+
+    animation:
+        buttonHeartBeat .7s ease;
 }
 
 
@@ -774,13 +828,13 @@ p {
         Georgia,
         serif;
 
-    font-size: 46px;
+    font-size: 32px;
 
     font-weight: 400;
 
     letter-spacing: .3px;
 
-    line-height: 1.3;
+    line-height: 1.35;
 
     color: #30292D;
 }
@@ -1674,9 +1728,10 @@ p {
 
         <p class="final-message">
 
-            Ya lo traíamos claro desde hace rato,
-            pero quería preguntarlo como se debe.
-            Eres alguien muy especial para mí.
+            Porque entre tantas conversaciones,
+            momentos y recuerdos, me di cuenta
+            de que quiero seguir construyendo
+            muchos más contigo.
 
         </p>
 
@@ -1718,32 +1773,20 @@ p {
 
     <div class="container">
 
-        <div class="success-heart">
-            ❤️
+        <div class="success-heading">
+            Un sí que lo<br>cambia todo
         </div>
 
+        <p class="success-message">
 
-        <h1 class="success-title">
-            Entonces...
-        </h1>
-
-
-        <h2>
-            Tenemos algo que celebrar 🥰
-        </h2>
-
-
-        <p class="final-message">
-
-            Gracias por decir que sí.
-            Ahora sí empieza oficialmente
-            una nueva etapa para nosotros.
+            Gracias por elegirme.
+            Ahora comienza todo lo bonito
+            que nos queda por vivir.
 
         </p>
 
-
         <button
-            class="primary final-heart-button"
+            class="celebrate-button final-heart-button"
             onclick="celebrate()">
 
             ❤️
@@ -2549,9 +2592,13 @@ function celebrate() {
 
         <div class="small">
 
-            Finalmente<br>
+            Tú y yo.<br>
 
-            somos novios
+            Como siempre.<br>
+
+            Pero ahora, oficialmente.<br>
+
+            Somos novios
 
         </div>
 
