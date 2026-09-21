@@ -414,29 +414,38 @@ p {
    FOTO
 ================================================== */
 
-.photo-frame {
+/* ==================================================
+   FOTO
+================================================== */
 
-    width: 100%;
+.photo-frame {
+    width: min(100%, 390px);
 
     aspect-ratio: 1 / 1;
     height: auto;
 
     margin:
-        28px 0;
+        28px auto;
 
-    border-radius: 22px;
+    border-radius: 24px;
 
     overflow: hidden;
 
-    background: #F3E5E9;
+    background: transparent;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    box-shadow:
+        0 15px 35px rgba(48,41,45,.15),
+        0 3px 10px rgba(48,41,45,.08);
+
+    border: 6px solid #fff;
 }
 
-/* La foto llena el marco y se centra en las caras */
+/* La foto conserva toda su proporción */
 .photo-frame img {
 
     width: 100%;
@@ -444,7 +453,7 @@ p {
 
     display: block;
 
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 
     pointer-events: none;
